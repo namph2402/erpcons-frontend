@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { MobileShell } from '../../components/mobile'
 import { Button, Icon, Select } from '../../components/ui'
-import { mainNav, personalFooterNav } from '../../data/navigation'
 import { currentUser } from '../../data/mock'
+import { appFooterNav, appNav } from '../../data/navigation'
 import './mobile.css'
 
 /** Biên độ sóng cố định để lần render nào cũng như nhau */
@@ -18,8 +18,8 @@ export default function FieldReport() {
   return (
     <MobileShell
       user={currentUser}
-      navGroups={mainNav}
-      drawerFooterItems={personalFooterNav}
+      navGroups={appNav}
+      drawerFooterItems={appFooterNav}
       navActiveId="more"
       hideNavBar
       header={{

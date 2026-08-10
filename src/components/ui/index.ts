@@ -57,3 +57,12 @@ export type { SelectProps, SelectOption } from './Select'
 
 export { default as EmptyState } from './EmptyState'
 export type { EmptyStateProps } from './EmptyState'
+
+export { default as Modal } from './Modal'
+export type { ModalProps, ModalSize } from './Modal'
+
+export { default as Field, TextInput, TextArea } from './Field'
+export type { FieldProps, TextInputProps } from './Field'
+
+export { default as Rating } from './Rating'
+export type { RatingProps } from './Rating'

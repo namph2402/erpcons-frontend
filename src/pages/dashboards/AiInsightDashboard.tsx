@@ -1,4 +1,5 @@
 import DashboardShell from './DashboardShell'
+import { COMPARE_OPTIONS } from '../../data/dashboardNav'
 import {
   Badge,
   Card,
@@ -10,7 +11,6 @@ import {
   WordCloud,
 } from '../../components/ui'
 import { AiCopilotPanel } from '../../components/widgets'
-import { aiInsightNav, COMPARE_OPTIONS } from '../../data/dashboardNav'
 import {
   aiFactors,
   aiForecast,
@@ -49,11 +49,9 @@ const PRIORITY_TONE = {
 export default function AiInsightDashboard() {
   return (
     <DashboardShell
-      navGroups={aiInsightNav}
-      activeId="ai-insight"
+      activeId="dashboard-ai"
       user={analystUser}
-      index="58."
-      title="AI Insight Dashboard"
+      title="Phân tích AI"
       tag={{ label: 'AI', tone: 'ai' }}
       subtitle="Tổng quan thông minh & dự báo"
       dateRange="01/05/2024 - 31/05/2024"

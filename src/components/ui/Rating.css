@@ -1,0 +1,23 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  line-height: 1;
+}
+
+.rating__star {
+  color: var(--slate-300);
+}
+.rating__star.is-on {
+  color: var(--warning);
+}
+
+.rating__btn {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: var(--r-xs);
+  transition: transform var(--dur-fast) var(--ease-standard);
+}
+.rating__btn:hover {
+  transform: scale(1.15);
+}

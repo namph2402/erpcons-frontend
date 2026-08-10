@@ -1,0 +1,278 @@
+/* Bố cục dùng chung cho toàn bộ Object Workspace */
+
+.ws-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.ws-title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.ws-star {
+  color: var(--slate-300);
+  display: grid;
+  place-items: center;
+}
+.ws-star:hover {
+  color: var(--warning);
+}
+.ws-star.is-on {
+  color: var(--warning);
+}
+
+/* ---- hàng KPI ---- */
+.ws-kpis {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+/* ---- thân trang ---- */
+.ws-body {
+  display: grid;
+  gap: var(--sp-4);
+  align-items: start;
+}
+.ws-body--with-detail {
+  grid-template-columns: minmax(0, 1fr) 380px;
+}
+
+.ws-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  min-width: 0;
+}
+
+/* ---- thanh công cụ lọc ---- */
+.ws-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  padding: var(--sp-3);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+}
+.ws-toolbar__search {
+  flex: 1;
+  min-width: 200px;
+  max-width: 320px;
+}
+
+/* ---- panel chi tiết bên phải ---- */
+.ws-detail {
+  position: sticky;
+  top: var(--sp-4);
+  min-width: 0;
+}
+
+.ws-detail__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-1);
+}
+.ws-detail__code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-title-1);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.ws-detail__title {
+  font-size: var(--fs-body-2);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-3);
+}
+.ws-detail__badges {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-3);
+}
+
+/* danh sách thuộc tính trong panel chi tiết */
+.ws-props {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-3);
+}
+.ws-props--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+.ws-prop__label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+.ws-prop__value {
+  margin-top: 2px;
+  font-size: var(--fs-caption-1);
+  font-weight: 500;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.ws-detail__section {
+  margin-top: var(--sp-4);
+}
+.ws-detail__section-title {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--sp-2);
+}
+.ws-detail__actions {
+  display: flex;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
+.ws-detail__actions > * {
+  flex: 1;
+}
+
+/* ảnh hiện trường trong panel */
+.ws-thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--sp-2);
+}
+.ws-thumb {
+  aspect-ratio: 1;
+  border-radius: var(--r-sm);
+  background: linear-gradient(140deg, #d9e2ec 0%, #b8c6d4 100%);
+  display: grid;
+  place-items: center;
+  color: var(--slate-500);
+}
+.ws-thumb--add {
+  background: var(--slate-50);
+  border: 1px dashed var(--border-strong);
+  color: var(--slate-400);
+}
+
+/* ---- phân trang ---- */
+.ws-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  padding: var(--sp-3) var(--sp-4);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-caption-1);
+  color: var(--text-tertiary);
+}
+.ws-pagination__left {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.ws-pagination__pages {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+.ws-pagination__pages button {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 var(--sp-2);
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  color: var(--text-secondary);
+  font-size: var(--fs-caption-1);
+  font-weight: 500;
+}
+.ws-pagination__pages button:hover {
+  background: var(--slate-100);
+}
+.ws-pagination__pages button.is-active {
+  background: var(--info);
+  color: var(--white);
+  font-weight: 700;
+}
+
+/* ---- lưới phân tích cuối trang ---- */
+.ws-analytics {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+}
+
+/* ---- thao tác nhanh ---- */
+.ws-quick {
+  padding: var(--sp-4) var(--sp-5) var(--sp-5);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+}
+.ws-quick__title {
+  font-size: var(--fs-title-1);
+  font-weight: 600;
+  margin-bottom: var(--sp-3);
+}
+
+/* ---- bảng xếp hạng đơn giản trong widget phân tích ---- */
+.ws-rank {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(60px, 1fr) 78px;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-caption-1);
+  color: var(--text-secondary);
+}
+.ws-rank:last-child {
+  border-bottom: none;
+}
+.ws-rank__value {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 1599px) {
+  .ws-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .ws-analytics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1279px) {
+  .ws-body--with-detail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ws-detail {
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .ws-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ws-analytics {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ws-toolbar__search {
+    max-width: none;
+  }
+}

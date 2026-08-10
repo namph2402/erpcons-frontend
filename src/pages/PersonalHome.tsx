@@ -22,7 +22,6 @@ import {
   ScheduleTimeline,
   TaskList,
 } from '../components/widgets'
-import { personalFooterNav, personalNav } from '../data/navigation'
 import {
   notifications,
   personalDocuments,
@@ -31,6 +30,7 @@ import {
   personalUser,
 } from '../data/mock'
 import type { TaskItem } from '../types'
+import { appFooterNav, appNav } from '../data/navigation'
 import './pages.css'
 
 const LEAVE_SPLIT = [
@@ -134,9 +134,9 @@ export default function PersonalHome() {
 
   return (
     <AppLayout
-      navGroups={personalNav}
-      sidebarFooterItems={personalFooterNav}
-      activeId="home"
+      navGroups={appNav}
+      sidebarFooterItems={appFooterNav}
+      activeId="personal"
       user={personalUser}
       notificationCount={12}
       searchPlaceholder="Tìm kiếm (Công việc, tài liệu, đồng nghiệp...)"

@@ -12,7 +12,6 @@ import {
   StatCard,
 } from '../../components/ui'
 import { CountRowList, DocumentList, ProjectSelector } from '../../components/widgets'
-import { constructionNav } from '../../data/dashboardNav'
 import {
   constructionCostSplit,
   constructionDocs,
@@ -38,11 +37,9 @@ export default function ConstructionDashboard() {
 
   return (
     <DashboardShell
-      navGroups={constructionNav}
-      activeId="construction"
+      activeId="dashboard-construction"
       user={pmUser}
-      index="57."
-      title="Construction Dashboard"
+      title="Tổng quan thi công"
       subtitle="Tổng quan dự án xây dựng"
       selector={<ProjectSelector name="The Nexus Tower" />}
       dateRange="01/05/2024 - 31/05/2024"

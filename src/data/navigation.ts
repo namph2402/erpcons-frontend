@@ -1,99 +1,92 @@
 import type { NavGroup, NavItem } from '../types'
 
 /**
- * Cấu hình menu — tách khỏi component để mọi màn hình kế thừa Sidebar
- * mà chỉ cần đổi bộ dữ liệu này.
+ * ============================================================
+ * MENU DÙNG CHUNG TOÀN HỆ THỐNG — chỉ có MỘT nguồn duy nhất.
+ * ============================================================
+ * Mọi màn hình (desktop · dashboard · workspace · mobile) đều
+ * truyền `appNav` vào AppLayout/MobileShell. Không màn hình nào
+ * được tự định nghĩa menu riêng.
+ *
+ * Toàn bộ nhãn dùng tiếng Việt theo yêu cầu chuẩn hoá.
  */
-
-/** View 01 — Trang chủ Enterprise (menu theo module tiếng Anh) */
-export const enterpriseNav: NavGroup[] = [
+export const appNav: NavGroup[] = [
   {
-    id: 'main',
+    id: 'dieu-hanh',
+    title: 'Điều hành',
     items: [
       { id: 'home', label: 'Trang chủ', icon: 'home', href: '#/' },
-      { id: 'search', label: 'Enterprise Search', icon: 'search', href: '#/search' },
-      { id: 'workspace', label: 'Workspace', icon: 'grid_view', href: '#/workspace' },
-      { id: 'tasks', label: 'Tasks & Workflows', icon: 'checklist', href: '#/tasks' },
-      { id: 'projects', label: 'Projects', icon: 'domain', href: '#/du-an' },
-      { id: 'construction', label: 'Construction', icon: 'engineering', href: '#/construction' },
-      { id: 'quality', label: 'Quality / HSE', icon: 'verified_user', href: '#/quality' },
-      { id: 'finance', label: 'Finance', icon: 'payments', href: '#/finance' },
-      { id: 'hr', label: 'HR & Admin', icon: 'groups', href: '#/hr' },
-      { id: 'crm', label: 'CRM', icon: 'handshake', href: '#/crm' },
-      { id: 'warehouse', label: 'Warehouse', icon: 'warehouse', href: '#/warehouse' },
-      { id: 'assets', label: 'Assets', icon: 'precision_manufacturing', href: '#/assets' },
-      { id: 'documents', label: 'Documents', icon: 'folder_open', href: '#/documents' },
-      { id: 'reports', label: 'Reports & Analytics', icon: 'insights', href: '#/reports' },
-      { id: 'copilot', label: 'AI Copilot', icon: 'smart_toy', href: '#/copilot' },
-    ],
-  },
-]
-
-/** View 02–04 — Menu vận hành chính (tiếng Việt) */
-export const mainNav: NavGroup[] = [
-  {
-    id: 'operate',
-    items: [
-      { id: 'home', label: 'Trang chủ', icon: 'home', href: '#/dashboard' },
       {
-        id: 'projects',
-        label: 'Dự án',
-        icon: 'domain',
-        href: '#/du-an',
+        id: 'dashboard',
+        label: 'Bảng điều hành',
+        icon: 'space_dashboard',
+        href: '#/dashboard',
         children: [
-          { id: 'project-list', label: 'Danh sách dự án', icon: 'list', href: '#/du-an' },
-          { id: 'project-calendar', label: 'Lịch dự án', icon: 'event', href: '#/du-an/lich' },
-          { id: 'project-diary', label: 'Nhật ký công trường', icon: 'menu_book', href: '#/du-an/nhat-ky' },
+          { id: 'dashboard-exec', label: 'Điều hành tổng thể', icon: 'insights', href: '#/dashboard/executive' },
+          { id: 'dashboard-project', label: 'Dự án', icon: 'dashboard', href: '#/dashboard/project' },
+          { id: 'dashboard-finance', label: 'Tài chính', icon: 'payments', href: '#/dashboard/finance' },
+          { id: 'dashboard-construction', label: 'Thi công', icon: 'engineering', href: '#/dashboard/construction' },
+          { id: 'dashboard-ai', label: 'Phân tích AI', icon: 'auto_awesome', href: '#/dashboard/ai-insight' },
+          { id: 'dashboard-iot', label: 'Thiết bị IoT', icon: 'sensors', href: '#/dashboard/iot' },
+          { id: 'dashboard-graph', label: 'Đồ thị tri thức', icon: 'hub', href: '#/dashboard/knowledge-graph' },
         ],
       },
-      { id: 'tasks', label: 'Công việc', icon: 'assignment', href: '#/cong-viec' },
-      { id: 'finance', label: 'Tài chính', icon: 'payments', href: '#/tai-chinh' },
-      { id: 'procurement', label: 'Mua sắm', icon: 'shopping_cart', href: '#/mua-sam' },
-      { id: 'contracts', label: 'Hợp đồng', icon: 'contract', href: '#/hop-dong' },
-      { id: 'warehouse', label: 'Kho & Vật tư', icon: 'inventory_2', href: '#/kho' },
-      { id: 'quality', label: 'Chất lượng (QA/QC)', icon: 'verified', href: '#/chat-luong' },
-      { id: 'hse', label: 'An toàn (HSE)', icon: 'health_and_safety', href: '#/an-toan' },
-      { id: 'hr', label: 'Nhân sự', icon: 'groups', href: '#/nhan-su' },
-      { id: 'assets', label: 'Tài sản & Thiết bị', icon: 'precision_manufacturing', href: '#/tai-san' },
-      { id: 'cde', label: 'Tài liệu (CDE)', icon: 'folder_open', href: '#/tai-lieu' },
-      { id: 'crm', label: 'CRM', icon: 'handshake', href: '#/crm' },
+      { id: 'projects', label: 'Dự án', icon: 'domain', href: '#/du-an' },
+      { id: 'collaboration', label: 'Cộng tác', icon: 'forum', href: '#/cong-tac' },
     ],
   },
   {
-    id: 'intelligence',
+    id: 'thi-cong',
+    title: 'Thi công & Chất lượng',
     items: [
+      { id: 'tasks', label: 'Công việc', icon: 'assignment', href: '#/lam-viec/cong-viec' },
+      { id: 'issues', label: 'Vấn đề', icon: 'report', href: '#/lam-viec/van-de' },
+      { id: 'ncr', label: 'Báo cáo không phù hợp', icon: 'rule', href: '#/lam-viec/ncr' },
+      { id: 'rfi', label: 'Yêu cầu thông tin', icon: 'help_center', href: '#/lam-viec/rfi' },
+      { id: 'drawings', label: 'Bản vẽ', icon: 'architecture', href: '#/lam-viec/ban-ve' },
+      { id: 'meetings', label: 'Cuộc họp', icon: 'groups_3', href: '#/lam-viec/cuoc-hop' },
+      { id: 'documents', label: 'Tài liệu', icon: 'folder_open', href: '#/lam-viec/tai-lieu' },
+    ],
+  },
+  {
+    id: 'tai-chinh',
+    title: 'Tài chính & Mua sắm',
+    items: [
+      { id: 'contracts', label: 'Hợp đồng', icon: 'contract', href: '#/lam-viec/hop-dong' },
+      { id: 'budget', label: 'Ngân sách', icon: 'account_balance_wallet', href: '#/lam-viec/ngan-sach' },
+      { id: 'cost', label: 'Chi phí', icon: 'request_quote', href: '#/lam-viec/chi-phi' },
+      { id: 'invoices', label: 'Hóa đơn', icon: 'receipt_long', href: '#/lam-viec/hoa-don' },
+      { id: 'purchase', label: 'Đơn mua hàng', icon: 'shopping_cart', href: '#/lam-viec/don-mua-hang' },
+      { id: 'suppliers', label: 'Nhà cung cấp', icon: 'local_shipping', href: '#/doi-tac/nha-cung-cap' },
+      { id: 'customers', label: 'Khách hàng', icon: 'handshake', href: '#/doi-tac/khach-hang' },
+    ],
+  },
+  {
+    id: 'nguon-luc',
+    title: 'Nguồn lực',
+    items: [
+      { id: 'assets', label: 'Tài sản', icon: 'inventory', href: '#/lam-viec/tai-san' },
+      { id: 'equipment', label: 'Thiết bị', icon: 'precision_manufacturing', href: '#/lam-viec/thiet-bi' },
+      { id: 'materials', label: 'Vật tư', icon: 'inventory_2', href: '#/lam-viec/vat-tu' },
+      { id: 'hr', label: 'Nhân sự', icon: 'groups', href: '#/nhan-su' },
+      { id: 'personal', label: 'Trang cá nhân', icon: 'account_circle', href: '#/ca-nhan' },
+    ],
+  },
+  {
+    id: 'thong-minh',
+    title: 'Phân tích & Hệ thống',
+    items: [
+      { id: 'ai-result', label: 'Kết quả AI', icon: 'auto_awesome', href: '#/lam-viec/ket-qua-ai', tag: 'AI' },
       { id: 'reports', label: 'Báo cáo & BI', icon: 'monitoring', href: '#/bao-cao' },
-      { id: 'ai', label: 'AI Insights', icon: 'auto_awesome', href: '#/ai-insights', tag: 'New' },
+      { id: 'mobile', label: 'Ứng dụng mobile', icon: 'smartphone', href: '#/mobile' },
       { id: 'settings', label: 'Cài đặt hệ thống', icon: 'settings', href: '#/cai-dat' },
     ],
   },
 ]
 
-/** View 05 — Trang chủ cá nhân (menu tự phục vụ nhân viên) */
-export const personalNav: NavGroup[] = [
-  {
-    id: 'self-service',
-    items: [
-      { id: 'home', label: 'Trang chủ', icon: 'home', href: '#/ca-nhan' },
-      { id: 'profile', label: 'Hồ sơ cá nhân', icon: 'account_circle', href: '#/ca-nhan/ho-so' },
-      { id: 'tasks', label: 'Công việc', icon: 'assignment', href: '#/ca-nhan/cong-viec' },
-      { id: 'calendar', label: 'Lịch & Họp', icon: 'event', href: '#/ca-nhan/lich' },
-      { id: 'timesheet', label: 'Chấm công', icon: 'schedule', href: '#/ca-nhan/cham-cong' },
-      { id: 'leave', label: 'Nghỉ phép', icon: 'beach_access', href: '#/ca-nhan/nghi-phep' },
-      { id: 'payroll', label: 'Bảng lương', icon: 'payments', href: '#/ca-nhan/bang-luong' },
-      { id: 'benefit', label: 'Phúc lợi', icon: 'redeem', href: '#/ca-nhan/phuc-loi' },
-      { id: 'training', label: 'Đào tạo', icon: 'school', href: '#/ca-nhan/dao-tao' },
-      { id: 'review', label: 'Đánh giá', icon: 'star_rate', href: '#/ca-nhan/danh-gia' },
-      { id: 'documents', label: 'Tài liệu', icon: 'folder_open', href: '#/ca-nhan/tai-lieu' },
-      { id: 'reports', label: 'Báo cáo', icon: 'monitoring', href: '#/ca-nhan/bao-cao' },
-      { id: 'requests', label: 'Yêu cầu', icon: 'contact_support', href: '#/ca-nhan/yeu-cau' },
-      { id: 'support', label: 'Hỗ trợ', icon: 'help', href: '#/ca-nhan/ho-tro' },
-    ],
-  },
-]
-
-export const personalFooterNav: NavItem[] = [
-  { id: 'settings', label: 'Cài đặt', icon: 'settings', href: '#/ca-nhan/cai-dat' },
+/** Mục cố định dưới đáy sidebar — dùng chung mọi màn hình */
+export const appFooterNav: NavItem[] = [
+  { id: 'help', label: 'Trợ giúp', icon: 'help', href: '#/tro-giup' },
   { id: 'logout', label: 'Đăng xuất', icon: 'logout', href: '#/dang-xuat' },
 ]
 
@@ -112,3 +105,12 @@ export const projectTabs = [
   { id: 'diary', label: 'Nhật ký' },
   { id: 'settings', label: 'Cài đặt' },
 ]
+
+/* ------------------------------------------------------------------ *
+ * Bí danh tương thích ngược — tất cả đều trỏ về cùng một menu.
+ * Giữ lại để các import cũ không vỡ; nên dùng `appNav` cho code mới.
+ * ------------------------------------------------------------------ */
+export const mainNav = appNav
+export const enterpriseNav = appNav
+export const personalNav = appNav
+export const personalFooterNav = appFooterNav

@@ -9,7 +9,6 @@ import {
   StatCard,
 } from '../../components/ui'
 import { CountRowList } from '../../components/widgets'
-import { financeNav } from '../../data/dashboardNav'
 import {
   bankBalances,
   budgetExecution,
@@ -42,11 +41,9 @@ const CASHFLOW_STATEMENT = [
 export default function FinanceDashboard() {
   return (
     <DashboardShell
-      navGroups={financeNav}
-      activeId="finance"
+      activeId="dashboard-finance"
       user={cfoUser}
-      index="56."
-      title="Finance Dashboard"
+      title="Tổng quan tài chính"
       subtitle="Tổng quan tài chính doanh nghiệp"
       dateRange="01/05/2024 - 31/05/2024"
       utilityIcons={[{ icon: 'download', label: 'Tải xuống' }]}

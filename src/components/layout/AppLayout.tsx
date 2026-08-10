@@ -24,8 +24,8 @@ export interface AppLayoutProps {
   /** Ẩn topbar khi trang tự dựng header riêng */
   hideTopbar?: boolean
   /**
-   * Thay thế Topbar mặc định bằng header riêng (vd DashboardHeader).
-   * Nhận sẵn hàm mở/đóng sidebar để nút hamburger vẫn hoạt động trên mobile.
+   * Thay thế Topbar mặc định bằng header riêng (hiếm khi cần —
+   * mặc định mọi màn hình dùng chung Topbar). Nhận sẵn hàm mở/đóng sidebar.
    */
   topbar?: (api: { toggleSidebar: () => void }) => ReactNode
   /* ---- Drawer phải (02.8 Notification Center) ---- */

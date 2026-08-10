@@ -1,8 +1,7 @@
 import { MobileShell } from '../../components/mobile'
 import { Avatar, Badge, Icon, ProgressBar } from '../../components/ui'
-import { mainNav } from '../../data/navigation'
-import { personalFooterNav } from '../../data/navigation'
 import { currentUser } from '../../data/mock'
+import { appFooterNav, appNav } from '../../data/navigation'
 import './mobile.css'
 
 const TILES = [
@@ -50,9 +49,9 @@ export default function MobileHome() {
   return (
     <MobileShell
       user={currentUser}
-      navGroups={mainNav}
+      navGroups={appNav}
       menuActiveId="home"
-      drawerFooterItems={personalFooterNav}
+      drawerFooterItems={appFooterNav}
       navActiveId="home"
       header={{ variant: 'home', notificationCount: 12 }}
       fab={{ icon: 'add', label: 'Tạo nhanh' }}

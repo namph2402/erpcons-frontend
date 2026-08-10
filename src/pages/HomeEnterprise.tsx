@@ -16,7 +16,6 @@ import {
   TaskList,
   WelcomeBanner,
 } from '../components/widgets'
-import { enterpriseNav } from '../data/navigation'
 import {
   enterpriseUser,
   notifications,
@@ -24,6 +23,7 @@ import {
   todayTasks,
 } from '../data/mock'
 import type { TaskItem } from '../types'
+import { appNav } from '../data/navigation'
 import './pages.css'
 
 const BUDGET_SPLIT = [
@@ -76,7 +76,7 @@ export default function HomeEnterprise() {
 
   return (
     <AppLayout
-      navGroups={enterpriseNav}
+      navGroups={appNav}
       activeId="home"
       user={enterpriseUser}
       notificationCount={12}

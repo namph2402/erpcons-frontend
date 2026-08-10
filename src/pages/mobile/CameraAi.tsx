@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { MobileShell } from '../../components/mobile'
 import { Icon } from '../../components/ui'
-import { mainNav, personalFooterNav } from '../../data/navigation'
 import { currentUser } from '../../data/mock'
+import { appFooterNav, appNav } from '../../data/navigation'
 import './mobile.css'
 
 const FILTERS = [
@@ -31,8 +31,8 @@ export default function CameraAi() {
   return (
     <MobileShell
       user={currentUser}
-      navGroups={mainNav}
-      drawerFooterItems={personalFooterNav}
+      navGroups={appNav}
+      drawerFooterItems={appFooterNav}
       navActiveId="more"
       hideNavBar
       fullBleed
