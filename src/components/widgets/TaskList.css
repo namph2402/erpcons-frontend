@@ -1,0 +1,100 @@
+.task-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.task {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+.task:last-child {
+  border-bottom: none;
+}
+
+.task .checkbox {
+  margin-top: 2px;
+}
+
+.task__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.task__title {
+  font-size: var(--fs-body-3);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.task.is-done .task__title {
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+}
+
+.task__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-1);
+  min-width: 0;
+}
+
+.task__context {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.task__right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.task__due {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: var(--fs-caption-2);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+.task__due--overdue {
+  color: var(--danger);
+}
+.task__due--today {
+  color: var(--info);
+}
+
+.task__priority {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.task__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  flex-shrink: 0;
+}
+.task__dot--danger {
+  background: var(--danger);
+}
+.task__dot--info {
+  background: var(--info);
+}
+.task__dot--success {
+  background: var(--success);
+}
+.task__dot--neutral {
+  background: var(--slate-300);
+}
+
+/* Biến thể "Công việc hôm nay": nhãn module dạng chip dưới tiêu đề */
+.task-list--schedule .task {
+  align-items: center;
+}

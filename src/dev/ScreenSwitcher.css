@@ -1,0 +1,61 @@
+.screen-switcher {
+  position: fixed;
+  right: var(--sp-5);
+  bottom: var(--sp-5);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--sp-2);
+}
+
+.screen-switcher__fab {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background: var(--erp-red);
+  color: var(--white);
+  box-shadow: var(--shadow-pop);
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+.screen-switcher__fab:hover {
+  background: var(--erp-red-hover);
+}
+
+.screen-switcher__list {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-pop);
+  padding: var(--sp-2);
+  min-width: 230px;
+}
+
+.screen-switcher__title {
+  padding: var(--sp-2) var(--sp-3);
+  font-size: var(--fs-caption-2);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.screen-switcher__list a {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-caption-1);
+  color: var(--text-secondary);
+}
+.screen-switcher__list a:hover {
+  background: var(--slate-100);
+}
+.screen-switcher__list a.is-active {
+  background: var(--info-soft);
+  color: var(--info);
+  font-weight: 600;
+}

@@ -1,0 +1,75 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  min-width: 0;
+}
+
+.card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5) 0;
+}
+
+.card__titles {
+  min-width: 0;
+}
+
+.card__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.card__title {
+  font-size: var(--fs-title-1);
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: var(--text-primary);
+}
+
+.card__subtitle {
+  margin-top: 2px;
+  font-size: var(--fs-caption-1);
+  color: var(--text-tertiary);
+}
+
+.card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+}
+
+.card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--info);
+  border-radius: var(--r-sm);
+  padding: 2px 4px;
+}
+.card__link:hover {
+  background: var(--info-soft);
+}
+
+.card__body {
+  padding: var(--sp-4) var(--sp-5) var(--sp-5);
+  flex: 1;
+  min-width: 0;
+}
+.card__body--flush {
+  padding: var(--sp-3) 0 0;
+}
+
+.card__footer {
+  padding: var(--sp-3) var(--sp-5);
+  border-top: 1px solid var(--border);
+}

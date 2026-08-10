@@ -1,0 +1,131 @@
+.profile {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  padding: var(--sp-5);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  flex-wrap: wrap;
+}
+
+.profile__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  min-width: 0;
+}
+
+.profile__info {
+  min-width: 0;
+}
+
+.profile__name-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.profile__name {
+  font-size: var(--fs-heading-3);
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.profile__dept {
+  margin-top: 2px;
+  font-size: var(--fs-caption-1);
+  color: var(--text-tertiary);
+}
+
+.profile__contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin: var(--sp-2) 0 var(--sp-3);
+  font-size: var(--fs-caption-1);
+  color: var(--text-secondary);
+}
+.profile__contact span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+.profile__contact .material-symbols-rounded {
+  color: var(--slate-400);
+}
+
+.profile__stats {
+  display: flex;
+  flex: 1;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.profile__stat {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  min-width: 120px;
+}
+
+.profile__stat-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r-sm);
+  flex-shrink: 0;
+}
+.profile__stat-icon--info {
+  background: var(--info-soft);
+  color: var(--info);
+}
+.profile__stat-icon--success {
+  background: var(--success-soft);
+  color: var(--success);
+}
+.profile__stat-icon--warning {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+.profile__stat-icon--danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.profile__stat-icon--ai {
+  background: var(--ai-soft);
+  color: var(--ai);
+}
+
+.profile__stat-label {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.profile__stat-value {
+  font-size: var(--fs-heading-4);
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.profile__stat-total {
+  margin-left: 2px;
+  font-size: var(--fs-caption-1);
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+
+.profile__stat-caption {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 1023px) {
+  .profile__stats {
+    justify-content: flex-start;
+  }
+}

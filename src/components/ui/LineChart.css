@@ -1,0 +1,44 @@
+.linechart {
+  width: 100%;
+  min-width: 0;
+}
+
+.linechart svg {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.linechart__axis {
+  font-size: 9px;
+  fill: var(--slate-400);
+  font-family: var(--font-sans);
+}
+
+.linechart__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+  margin-top: var(--sp-1);
+}
+
+.linechart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-top: var(--sp-3);
+  font-size: var(--fs-caption-1);
+  color: var(--text-secondary);
+}
+.linechart__legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.linechart__legend i {
+  width: 14px;
+  height: 3px;
+  border-radius: var(--r-pill);
+  display: inline-block;
+}

@@ -1,0 +1,225 @@
+.gantt {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  overflow: hidden;
+}
+
+/* ---- cột trái: danh sách công việc ---- */
+.gantt__side {
+  width: 340px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border);
+}
+
+.gantt__side-head,
+.gantt__period {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  background: var(--slate-50);
+  border-bottom: 1px solid var(--border);
+}
+.gantt__period {
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+.gantt__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 36px;
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-caption-1);
+}
+.gantt__row--level-0 {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.gantt__row--level-1 {
+  padding-left: var(--sp-5);
+  color: var(--text-secondary);
+}
+
+.gantt__toggle {
+  display: grid;
+  place-items: center;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.gantt__check {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.gantt__check--done {
+  color: var(--success);
+}
+.gantt__check--doing {
+  color: var(--info);
+}
+.gantt__check--plan {
+  color: var(--slate-300);
+}
+
+.gantt__name {
+  flex: 1;
+  min-width: 0;
+}
+
+.gantt__pct {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: var(--fs-caption-2);
+}
+
+.gantt__flag {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  flex-shrink: 0;
+}
+.gantt__flag--done {
+  background: var(--success);
+}
+.gantt__flag--doing {
+  background: var(--info);
+}
+.gantt__flag--plan {
+  background: var(--slate-200);
+}
+
+/* ---- vùng phải: trục thời gian ---- */
+.gantt__timeline {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.gantt__cols {
+  display: grid;
+  border-bottom: 1px solid var(--border);
+  background: var(--slate-50);
+}
+
+.gantt__col-label {
+  height: 32px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  border-left: 1px solid var(--border);
+}
+.gantt__col-label.is-today b {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--r-pill);
+  background: var(--info);
+  color: var(--white);
+  font-size: 11px;
+}
+
+.gantt__grid {
+  position: relative;
+  display: grid;
+  min-height: 240px;
+}
+
+.gantt__gridline {
+  grid-row: 1;
+  border-left: 1px solid var(--slate-100);
+}
+.gantt__gridline.is-today {
+  border-left: 2px solid var(--info);
+}
+
+.gantt__bar {
+  position: relative;
+  align-self: start;
+  height: 20px;
+  margin: 0 2px;
+  border-radius: var(--r-pill);
+  background: var(--slate-200);
+  overflow: visible;
+}
+.gantt__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-pill);
+}
+.gantt__bar.is-done .gantt__bar-fill {
+  background: var(--success);
+}
+.gantt__bar.is-doing .gantt__bar-fill {
+  background: var(--info);
+}
+.gantt__bar.is-plan .gantt__bar-fill {
+  background: var(--slate-300);
+}
+
+.gantt__milestone {
+  position: absolute;
+  right: -12px;
+  top: 3px;
+  width: 14px;
+  height: 14px;
+  background: var(--danger);
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+/* ---- chú giải ---- */
+.gantt-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-top: var(--sp-3);
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+.gantt-legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.gantt-legend i {
+  width: 14px;
+  height: 8px;
+  border-radius: var(--r-pill);
+}
+.gantt-legend .is-done {
+  background: var(--success);
+}
+.gantt-legend .is-doing {
+  background: var(--info);
+}
+.gantt-legend .is-plan {
+  background: var(--slate-300);
+}
+.gantt-legend .is-milestone {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--success);
+  transform: rotate(45deg);
+}
+.gantt-legend .is-today {
+  width: 2px;
+  height: 12px;
+  border-radius: 0;
+  background: var(--info);
+}
+
+@media (max-width: 1023px) {
+  .gantt__side {
+    width: 200px;
+  }
+}

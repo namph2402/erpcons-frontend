@@ -1,0 +1,108 @@
+.welcome {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  padding: var(--sp-5) var(--sp-6);
+  min-height: 124px;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  color: var(--white);
+  background:
+    linear-gradient(100deg, #0b2545 0%, #123a6b 55%, #1b4f8f 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+.welcome__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(11, 37, 69, 0.96) 0%,
+    rgba(11, 37, 69, 0.82) 42%,
+    rgba(11, 37, 69, 0.35) 100%
+  );
+}
+
+.welcome__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  min-width: 0;
+}
+
+.welcome__emoji {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.welcome__title {
+  font-size: var(--fs-heading-1);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.welcome__subtitle {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-body-2);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.welcome__aside {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-input);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  flex-shrink: 0;
+}
+
+.welcome__weather {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.welcome__weather .material-symbols-rounded {
+  color: #ffd166;
+}
+
+.welcome__temp {
+  font-size: var(--fs-heading-4);
+  font-weight: 700;
+}
+.welcome__weather-meta {
+  font-size: var(--fs-caption-2);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.welcome__divider {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.welcome__weekday {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+}
+.welcome__time {
+  font-size: var(--fs-caption-1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 1023px) {
+  .welcome {
+    flex-wrap: wrap;
+    padding: var(--sp-4);
+  }
+  .welcome__title {
+    font-size: var(--fs-heading-3);
+  }
+}

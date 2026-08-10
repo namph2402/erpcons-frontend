@@ -1,0 +1,57 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  user-select: none;
+}
+
+.logo--vertical {
+  flex-direction: column;
+  gap: var(--sp-1);
+  text-align: center;
+}
+
+.logo__mark {
+  flex-shrink: 0;
+}
+
+.logo__word {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.logo__name {
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.4px;
+}
+.logo__name strong {
+  color: var(--erp-red);
+  font-weight: 800;
+}
+.logo__name em {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+  letter-spacing: 0.4px;
+}
+
+.logo__tagline {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: var(--text-tertiary);
+}
+
+/* Trên nền tối: chữ CONS + tagline chuyển sáng, ERP giữ nguyên ERP RED */
+.logo--on-dark .logo__name em {
+  color: var(--white);
+}
+.logo--on-dark .logo__tagline {
+  color: var(--nav-text-muted);
+}

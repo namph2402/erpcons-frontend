@@ -1,0 +1,51 @@
+.select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--r-input);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+}
+
+.select select {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0 32px 0 var(--sp-3);
+  border-radius: inherit;
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+}
+
+.select--sm {
+  height: 32px;
+}
+.select--sm select {
+  font-size: var(--fs-caption-1);
+}
+.select--md {
+  height: 40px;
+}
+.select--md select {
+  font-size: var(--fs-body-3);
+}
+
+.select--soft {
+  background: var(--slate-50);
+  border-color: transparent;
+}
+
+.select:focus-within {
+  border-color: var(--info);
+  box-shadow: var(--ring-focus);
+}
+
+.select__caret {
+  position: absolute;
+  right: var(--sp-2);
+  pointer-events: none;
+  color: var(--slate-400);
+}

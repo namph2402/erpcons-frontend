@@ -1,0 +1,440 @@
+/* Bố cục dùng chung cho các trang — 06 · SPACING & 12 COLUMN GRID */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* ---- lời chào đầu trang ---- */
+.greeting {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+.greeting__title {
+  font-size: var(--fs-heading-2);
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+.greeting__subtitle {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-body-3);
+  color: var(--text-tertiary);
+}
+
+/* ---- hàng chỉ số ---- */
+.stat-row {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+/* ---- lưới nội dung ---- */
+.grid-3 {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-2 {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-main-aside {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: start;
+}
+.grid-aside-main {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  align-items: start;
+}
+.grid-1-1-1\.2 {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: start;
+}
+.col-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  min-width: 0;
+}
+
+/* ---- dải KPI trong card (Tổng quan dự án) ---- */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+.kpi-strip__item + .kpi-strip__item {
+  border-left: 1px solid var(--border);
+  padding-left: var(--sp-4);
+}
+.kpi-strip__label {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+.kpi-strip__value {
+  margin-top: 2px;
+  font-size: var(--fs-heading-4);
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+.kpi-strip__value--info {
+  color: var(--info);
+}
+.kpi-strip__value--success {
+  color: var(--success);
+}
+.kpi-strip__value--danger {
+  color: var(--danger);
+}
+
+/* ---- danh sách tiến độ theo dòng ---- */
+.progress-list {
+  display: flex;
+  flex-direction: column;
+}
+.progress-list__head,
+.progress-list__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(90px, 1.2fr) 44px;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) 0;
+}
+.progress-list__head {
+  padding-top: 0;
+  font-size: var(--fs-caption-1);
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+.progress-list__row {
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-body-3);
+  color: var(--text-secondary);
+}
+.progress-list__value {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: var(--fs-caption-1);
+}
+
+/* ---- danh sách xếp hạng (Top nhà thầu) ---- */
+.rank-list {
+  display: flex;
+  flex-direction: column;
+}
+.rank-list__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(80px, 1.1fr) 44px;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-body-3);
+  color: var(--text-secondary);
+}
+.rank-list__row:last-child {
+  border-bottom: none;
+}
+
+/* ---- ô chỉ số nhỏ trong card (Thu vào / Chi ra) ---- */
+.mini-stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--sp-3);
+}
+.mini-stat {
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  background: var(--slate-50);
+  min-width: 0;
+}
+.mini-stat__label {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+.mini-stat__value {
+  margin-top: 2px;
+  font-size: var(--fs-heading-4);
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+.mini-stat__unit {
+  margin-left: var(--sp-1);
+  font-size: var(--fs-caption-2);
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+
+/* ---- thời tiết công trường ---- */
+.weather-now {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+.weather-now__temp {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.weather-now__value {
+  font-size: var(--fs-heading-1);
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+.weather-now__desc {
+  font-size: var(--fs-caption-1);
+  color: var(--text-tertiary);
+}
+.weather-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  font-size: var(--fs-caption-1);
+}
+.weather-meta__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--text-tertiary);
+}
+.weather-meta__row strong {
+  margin-left: auto;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.weather-forecast {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--sp-2);
+  padding-top: var(--sp-4);
+  text-align: center;
+}
+.weather-forecast__day {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+.weather-forecast__icon {
+  color: var(--warning);
+  margin: var(--sp-1) 0;
+}
+.weather-forecast__temp {
+  font-size: var(--fs-caption-2);
+  color: var(--text-secondary);
+}
+
+/* ---- thành viên dự án ---- */
+.members__avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+.members__roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.member-role {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-1) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-caption-2);
+  color: var(--text-secondary);
+}
+
+/* ---- rủi ro ---- */
+.risk-list {
+  display: flex;
+  flex-direction: column;
+}
+.risk {
+  display: flex;
+  gap: var(--sp-3);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+.risk:last-child {
+  border-bottom: none;
+}
+.risk__body {
+  min-width: 0;
+}
+.risk__title {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.risk__meta {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+/* ---- mục tiêu cá nhân ---- */
+.goal-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.goal {
+  display: flex;
+  gap: var(--sp-3);
+}
+.goal__icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  background: var(--slate-100);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+.goal__body {
+  flex: 1;
+  min-width: 0;
+}
+.goal__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+.goal__title {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.goal__value {
+  font-size: var(--fs-caption-1);
+  font-weight: 700;
+}
+.goal__bar {
+  margin-top: var(--sp-2);
+}
+.goal__due {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+  margin-top: var(--sp-1);
+}
+
+/* ---- danh sách người (sinh nhật / danh bạ) ---- */
+.people-list {
+  display: flex;
+  flex-direction: column;
+}
+.people-list__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+}
+.people-list__name {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.people-list__sub {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+.people-list__meta {
+  margin-left: auto;
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--sp-2);
+  text-align: center;
+  margin-top: var(--sp-3);
+}
+.contact-grid__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+/* ---- footer trang ---- */
+.page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+.page-footer__links {
+  display: flex;
+  gap: var(--sp-5);
+}
+.page-footer__brand {
+  color: var(--erp-red);
+  font-weight: 600;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 1439px) {
+  .grid-1-1-1\.2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid-1-1-1\.2 > :last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 1279px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid-main-aside,
+  .grid-aside-main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .grid-3,
+  .grid-2,
+  .grid-1-1-1\.2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .grid-1-1-1\.2 > :last-child {
+    grid-column: auto;
+  }
+  .contact-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .kpi-strip__item + .kpi-strip__item {
+    border-left: none;
+    padding-left: 0;
+  }
+}
