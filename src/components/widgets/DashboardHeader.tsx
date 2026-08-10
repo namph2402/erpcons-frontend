@@ -1,34 +1,38 @@
-import type { ReactNode } from 'react'
-import Badge from '../ui/Badge'
-import Button from '../ui/Button'
-import Icon from '../ui/Icon'
-import Select from '../ui/Select'
-import type { BadgeTone } from '../ui/Badge'
-import type { SelectOption } from '../ui/Select'
-import './DashboardHeader.css'
+import type { ReactNode } from "react";
+import Badge from "../ui/Badge";
+import Button from "../ui/Button";
+import Icon from "../ui/Icon";
+import Select from "../ui/Select";
+import type { BadgeTone } from "../ui/Badge";
+import type { SelectOption } from "../ui/Select";
+import "./DashboardHeader.css";
 
 export interface DashboardHeaderProps {
   /** Số thứ tự màn hình theo bộ thiết kế, vd "54." */
-  index?: string
-  title: string
-  subtitle?: string
+  index?: string;
+  title: string;
+  subtitle?: string;
   /** Chip cạnh tiêu đề (AI · IoT · Knowledge Graph) */
-  tag?: { label: string; tone?: BadgeTone; icon?: string }
+  tag?: { label: string; tone?: BadgeTone; icon?: string };
   /** Breadcrumb phía trên tiêu đề */
-  breadcrumbs?: { label: string; href?: string }[]
+  breadcrumbs?: { label: string; href?: string }[];
   /** Bộ chọn đối tượng đặt giữa header (chọn dự án) */
-  selector?: ReactNode
+  selector?: ReactNode;
   /** Khoảng thời gian đang xem */
-  dateRange?: string
+  dateRange?: string;
   /** Bộ chọn kỳ so sánh / phạm vi */
-  compare?: { options: SelectOption[]; value?: string; onChange?: (v: string) => void }
+  compare?: {
+    options: SelectOption[];
+    value?: string;
+    onChange?: (v: string) => void;
+  };
   /** Nút hành động chính (mặc định "+ Thêm widget") */
-  primaryAction?: { label: string; icon?: string; onClick?: () => void }
+  primaryAction?: { label: string; icon?: string; onClick?: () => void };
   /** Các nút icon phụ: tải xuống, chia sẻ, làm mới... */
-  utilityIcons?: { icon: string; label: string; onClick?: () => void }[]
-  notificationCount?: number
-  onOpenNotifications?: () => void
-  onToggleSidebar?: () => void
+  utilityIcons?: { icon: string; label: string; onClick?: () => void }[];
+  notificationCount?: number;
+  onOpenNotifications?: () => void;
+  onToggleSidebar?: () => void;
 }
 
 /**
@@ -45,7 +49,7 @@ export default function DashboardHeader({
   selector,
   dateRange,
   compare,
-  primaryAction = { label: 'Thêm widget', icon: 'add' },
+  primaryAction = { label: "Thêm widget", icon: "add" },
   utilityIcons = [],
   notificationCount = 0,
   onOpenNotifications,
@@ -68,7 +72,7 @@ export default function DashboardHeader({
             {breadcrumbs.map((b, i) => (
               <span key={b.label}>
                 {i > 0 && <Icon name="chevron_right" size={16} />}
-                <a href={b.href ?? '#'}>{b.label}</a>
+                <a href={b.href ?? "#"}>{b.label}</a>
               </span>
             ))}
           </nav>
@@ -79,7 +83,7 @@ export default function DashboardHeader({
             {title}
           </h1>
           {tag && (
-            <Badge tone={tag.tone ?? 'ai'} size="md">
+            <Badge tone={tag.tone ?? "ai"} size="md">
               {tag.icon && <Icon name={tag.icon} size={12} />}
               {tag.label}
             </Badge>
@@ -108,11 +112,19 @@ export default function DashboardHeader({
             />
           ) : (
             /* Không có handler → để select tự quản lý, tránh controlled input thiếu onChange */
-            <Select size="md" options={compare.options} defaultValue={compare.value} />
+            <Select
+              size="md"
+              options={compare.options}
+              defaultValue={compare.value}
+            />
           ))}
 
         {primaryAction && (
-          <Button variant="primary" icon={primaryAction.icon} onClick={primaryAction.onClick}>
+          <Button
+            variant="primary"
+            icon={primaryAction.icon}
+            onClick={primaryAction.onClick}
+          >
             {primaryAction.label}
           </Button>
         )}
@@ -142,12 +154,16 @@ export default function DashboardHeader({
           )}
         </button>
 
-        <button className="dash-header__icon-btn" type="button" aria-label="Trợ giúp">
+        <button
+          className="dash-header__icon-btn"
+          type="button"
+          aria-label="Trợ giúp"
+        >
           <Icon name="help" size={20} />
         </button>
       </div>
     </header>
-  )
+  );
 }
 
 /** Bộ chọn dự án dùng ở Project / Construction Dashboard */
@@ -155,8 +171,8 @@ export function ProjectSelector({
   name,
   onClick,
 }: {
-  name: string
-  onClick?: () => void
+  name: string;
+  onClick?: () => void;
 }) {
   return (
     <button className="dash-selector" type="button" onClick={onClick}>
@@ -166,5 +182,5 @@ export function ProjectSelector({
       <span className="dash-selector__name truncate">{name}</span>
       <Icon name="expand_more" size={18} />
     </button>
-  )
+  );
 }
