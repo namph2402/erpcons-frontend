@@ -17,6 +17,8 @@ npm run lint
 Nút tròn đỏ góc dưới phải là **ScreenSwitcher** để chuyển nhanh giữa 5 màn hình mẫu
 (`src/dev/ScreenSwitcher.tsx` — xoá khi lên production).
 
+> Thư mục ảnh nguồn hiện tại: `Erpcons/Custom/` (quy chuẩn) và `Erpcons/erpcons UI/` (39 ảnh giao diện).
+
 ## Kiến trúc thư mục
 
 ```
@@ -83,6 +85,8 @@ Ví dụ `TaskList` được dùng lại ở cả 4 màn hình qua prop `variant
 
 ### 4. Pages (`src/pages`)
 
+**Nhóm vận hành**
+
 | Route | Page | Ảnh nguồn |
 |---|---|---|
 | `#/` | `HomeEnterprise` | Trang chủ Enterprise (banner chào + tổng quan công ty) |
@@ -90,6 +94,40 @@ Ví dụ `TaskList` được dùng lại ở cả 4 màn hình qua prop `variant
 | `#/dashboard/thong-bao` | `Dashboard` (drawer mở) | Dashboard + Notification Center |
 | `#/du-an/:code` | `ProjectWorkspace` | Workspace chi tiết dự án + Gantt |
 | `#/ca-nhan` | `PersonalHome` | Trang chủ cá nhân (Employee Self-Service) |
+
+**Nhóm Dashboard 54–60** (`src/pages/dashboards`)
+
+| Route | Page | Ảnh nguồn |
+|---|---|---|
+| `#/dashboard/executive` | `ExecutiveDashboard` | 54 · Tổng quan toàn doanh nghiệp |
+| `#/dashboard/project` | `ProjectDashboard` | 55 · Tổng quan dự án theo thời gian thực |
+| `#/dashboard/finance` | `FinanceDashboard` | 56 · Tổng quan tài chính |
+| `#/dashboard/construction` | `ConstructionDashboard` | 57 · Tổng quan dự án xây dựng |
+| `#/dashboard/ai-insight` | `AiInsightDashboard` | 58 · Tổng quan thông minh & dự báo |
+| `#/dashboard/iot` | `IotDashboard` | 59 · Hệ thống thiết bị & cảm biến |
+| `#/dashboard/knowledge-graph` | `KnowledgeGraphDashboard` | 60 · Trực quan hoá quan hệ dữ liệu |
+
+Cả 7 dashboard dùng chung [`DashboardShell`](src/pages/dashboards/DashboardShell.tsx) — kế thừa
+nguyên vẹn `AppLayout` + `Sidebar` của nhóm vận hành, chỉ thay Topbar nghiệp vụ (global search)
+bằng [`DashboardHeader`](src/components/widgets/DashboardHeader.tsx) (tiêu đề đánh số + bộ lọc
+thời gian + kỳ so sánh + "Thêm widget"). Menu riêng của từng dashboard nằm trong
+[`data/dashboardNav.ts`](src/data/dashboardNav.ts), dữ liệu trong
+[`data/dashboards.ts`](src/data/dashboards.ts).
+
+```tsx
+<DashboardShell
+  navGroups={financeNav} activeId="finance" user={cfoUser}
+  index="56." title="Finance Dashboard" subtitle="Tổng quan tài chính doanh nghiệp"
+  dateRange="01/05/2024 - 31/05/2024" updatedAt="31/05/2024 10:30:45"
+>
+  {/* chỉ còn phần widget của riêng dashboard */}
+</DashboardShell>
+```
+
+Component bổ sung phục vụ nhóm này: `BarChart` (cột nhóm/xếp chồng, hỗ trợ giá trị âm + đường phủ),
+`GaugeChart` (cung 180° và vòng tròn), `WordCloud`, `CountRowList`, `KnowledgeGraphView`, `DeviceMap`;
+`StatCard` được mở rộng thêm `layout="stacked"` + `sparkline` + `ring` để dùng làm KPI card chuẩn
+của dashboard mà không phá biến thể `inline` đang dùng ở các màn hình trước.
 
 ## Design token (bắt buộc dùng, không hard-code màu)
 

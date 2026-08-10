@@ -1,0 +1,427 @@
+/* Bố cục dùng chung cho nhóm màn hình Dashboard 54–60 */
+
+.dash-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* ---- hàng KPI 6 ô ---- */
+.dash-kpis {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.dash-kpis--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.dash-kpis--5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* ---- lưới widget ---- */
+.dash-grid {
+  display: grid;
+  gap: var(--sp-4);
+  align-items: start;
+}
+.dash-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.dash-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.dash-grid--main {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+.dash-grid--wide-left {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+.dash-grid--wide-right {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+}
+.dash-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  min-width: 0;
+}
+
+/* ---- chân trang dashboard ---- */
+.dash-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+.dash-footer span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.dash-footer__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--r-pill);
+  background: var(--success);
+}
+
+/* ---- ô chỉ số nhỏ trong widget (ROE / CPI / SPI) ---- */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--sp-3);
+}
+.metric-tile {
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  background: var(--slate-50);
+  min-width: 0;
+}
+.metric-tile__label {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+.metric-tile__value {
+  margin-top: 2px;
+  font-size: var(--fs-heading-4);
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+.metric-tile__unit {
+  margin-left: 2px;
+  font-size: var(--fs-caption-1);
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+.metric-tile__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: var(--sp-1);
+  font-size: var(--fs-caption-2);
+  font-weight: 600;
+}
+.metric-tile__delta--up {
+  color: var(--success);
+}
+.metric-tile__delta--down {
+  color: var(--danger);
+}
+.metric-tile__delta--warn {
+  color: var(--warning);
+}
+
+/* ---- bảng KPI phòng ban (có sparkline trong ô) ---- */
+.trend-cell {
+  width: 88px;
+}
+
+/* ---- hộp tóm tắt cạnh biểu đồ S-Curve ---- */
+.summary-box {
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  background: var(--slate-50);
+  padding: var(--sp-3);
+  min-width: 180px;
+}
+.summary-box__title {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  margin-bottom: var(--sp-2);
+}
+.summary-box__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-1) 0;
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+.summary-box__row strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+.summary-box__row--accent strong {
+  color: var(--info);
+}
+
+.chart-with-summary {
+  display: flex;
+  gap: var(--sp-4);
+  align-items: flex-start;
+}
+.chart-with-summary > :first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---- dải yếu tố ảnh hưởng (AI Insight) ---- */
+.factor-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 56px minmax(80px, 1.6fr) 90px;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+  font-size: var(--fs-caption-1);
+  color: var(--text-secondary);
+}
+.factor-row__value {
+  font-weight: 600;
+  text-align: right;
+}
+.factor-row__value--up {
+  color: var(--success);
+}
+.factor-row__value--down {
+  color: var(--danger);
+}
+.factor-row__level {
+  text-align: right;
+  font-size: var(--fs-caption-2);
+}
+.factor-bar {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--slate-100);
+  overflow: hidden;
+  position: relative;
+}
+.factor-bar span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: var(--r-pill);
+}
+
+/* ---- danh sách giá trị cảm biến thời gian thực (IoT) ---- */
+.sensor-row {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 92px 88px minmax(0, 1.1fr);
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+.sensor-row:last-child {
+  border-bottom: none;
+}
+.sensor-row__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-sm);
+  background: var(--info-soft);
+  color: var(--info);
+}
+.sensor-row__label {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.sensor-row__id {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+.sensor-row__value {
+  font-size: var(--fs-title-1);
+  font-weight: 700;
+  text-align: right;
+}
+.sensor-row__unit {
+  margin-left: 2px;
+  font-size: var(--fs-caption-2);
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+.sensor-row__delta {
+  font-size: var(--fs-caption-2);
+  font-weight: 600;
+}
+.sensor-row__delta--up {
+  color: var(--danger);
+}
+.sensor-row__delta--down {
+  color: var(--success);
+}
+
+/* ---- vạch cường độ tín hiệu gateway ---- */
+.signal {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+.signal i {
+  width: 3px;
+  border-radius: 1px;
+  background: var(--slate-200);
+}
+.signal i:nth-child(1) { height: 4px; }
+.signal i:nth-child(2) { height: 7px; }
+.signal i:nth-child(3) { height: 10px; }
+.signal i:nth-child(4) { height: 12px; }
+.signal i:nth-child(5) { height: 14px; }
+.signal i.is-on {
+  background: var(--success);
+}
+.signal--weak i.is-on {
+  background: var(--danger);
+}
+
+/* ---- danh sách nguồn dữ liệu (Knowledge Graph) ---- */
+.source-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(80px, 1.2fr) 110px;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+  font-size: var(--fs-caption-1);
+  color: var(--text-secondary);
+}
+.source-row__value {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* ---- gợi ý AI dạng dòng ---- */
+.suggest-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+.suggest-row:last-child {
+  border-bottom: none;
+}
+.suggest-row__icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  background: var(--ai-soft);
+  color: var(--ai);
+  flex-shrink: 0;
+}
+.suggest-row__body {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-caption-1);
+  color: var(--text-secondary);
+}
+.suggest-row__sub {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+/* ---- thẻ ảnh công trường ---- */
+.site-photos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-2);
+}
+.site-photo {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-sm);
+  background: linear-gradient(140deg, #d7e3f0 0%, #b9cbdf 60%, #9fb6ce 100%);
+  display: grid;
+  place-items: center;
+  color: var(--slate-500);
+  overflow: hidden;
+}
+
+/* ---- dự báo thời tiết 7 ngày ---- */
+.forecast-7d {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--sp-2);
+  text-align: center;
+}
+.forecast-7d__day {
+  font-size: var(--fs-caption-2);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.forecast-7d__date {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+.forecast-7d__icon {
+  margin: var(--sp-2) 0 var(--sp-1);
+  color: var(--warning);
+}
+.forecast-7d__high {
+  font-size: var(--fs-caption-1);
+  font-weight: 700;
+}
+.forecast-7d__low {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+.forecast-7d__rain {
+  margin-top: var(--sp-1);
+  font-size: 11px;
+  color: var(--info);
+}
+
+/* ---- responsive ---- */
+@media (max-width: 1599px) {
+  .dash-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .dash-grid--main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .dash-grid--main > :last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 1279px) {
+  .dash-kpis,
+  .dash-kpis--4,
+  .dash-kpis--5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .dash-grid--3,
+  .dash-grid--2,
+  .dash-grid--wide-left,
+  .dash-grid--wide-right,
+  .dash-grid--main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dash-grid--main > :last-child {
+    grid-column: auto;
+  }
+  .chart-with-summary {
+    flex-direction: column;
+  }
+  .summary-box {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .dash-kpis,
+  .dash-kpis--4,
+  .dash-kpis--5 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .forecast-7d {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .site-photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

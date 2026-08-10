@@ -1,0 +1,50 @@
+.barchart {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.barchart svg {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.barchart__axis {
+  font-size: 9px;
+  fill: var(--slate-400);
+  font-family: var(--font-sans);
+}
+
+.barchart__unit {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.barchart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-top: var(--sp-3);
+  font-size: var(--fs-caption-1);
+  color: var(--text-secondary);
+}
+.barchart__legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.barchart__legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.barchart__legend-line {
+  width: 14px !important;
+  height: 3px !important;
+  border-radius: var(--r-pill) !important;
+}

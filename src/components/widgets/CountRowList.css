@@ -1,0 +1,106 @@
+.count-rows__group {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: var(--sp-2) 0 var(--sp-1);
+}
+
+.count-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-2) 0;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.count-rows li:last-child .count-row {
+  border-bottom: none;
+}
+.count-row:hover .count-row__label {
+  color: var(--info);
+}
+
+.count-row__badge {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-caption-2);
+  font-weight: 700;
+  flex-shrink: 0;
+  color: var(--white);
+}
+.count-row__badge--danger {
+  background: var(--danger);
+}
+.count-row__badge--warning {
+  background: var(--warning);
+}
+.count-row__badge--info {
+  background: var(--info);
+}
+.count-row__badge--success {
+  background: var(--success);
+}
+.count-row__badge--neutral {
+  background: var(--slate-400);
+}
+
+.count-row__icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  flex-shrink: 0;
+}
+.count-row__icon--danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.count-row__icon--warning {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+.count-row__icon--info {
+  background: var(--info-soft);
+  color: var(--info);
+}
+.count-row__icon--success {
+  background: var(--success-soft);
+  color: var(--success);
+}
+.count-row__icon--neutral {
+  background: var(--slate-100);
+  color: var(--slate-500);
+}
+
+.count-row__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.count-row__label {
+  font-size: var(--fs-body-3);
+  color: var(--text-secondary);
+}
+
+.count-row__sub {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.count-row__value {
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.count-row__chev {
+  color: var(--slate-300);
+  flex-shrink: 0;
+}

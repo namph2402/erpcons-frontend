@@ -118,3 +118,60 @@
   background: var(--slate-100);
   color: var(--slate-500);
 }
+.stat-card--automation .stat-card__icon {
+  background: var(--automation-soft);
+  color: var(--automation);
+}
+.stat-card--iot .stat-card__icon {
+  background: #e2f7fb;
+  color: var(--iot);
+}
+
+/* =========================================================
+   Biến thể stacked — KPI card chuẩn của các Dashboard 54–60
+   ========================================================= */
+.stat-card--stacked {
+  flex-direction: column;
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+}
+
+.stat-card--stacked .stat-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+
+.stat-card--stacked .stat-card__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.stat-card--stacked .stat-card__label {
+  font-size: var(--fs-caption-1);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.stat-card--stacked .stat-card__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.stat-card--stacked .stat-card__main-text {
+  min-width: 0;
+}
+
+.stat-card--stacked .stat-card__value {
+  font-size: var(--fs-heading-1);
+}
+
+.stat-card__ring {
+  flex-shrink: 0;
+}
+
+.stat-card__spark {
+  margin-top: var(--sp-3);
+}

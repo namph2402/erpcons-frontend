@@ -74,3 +74,10 @@
   color: var(--text-primary);
   white-space: nowrap;
 }
+
+.donut__legend-extra {
+  min-width: 44px;
+  text-align: right;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}

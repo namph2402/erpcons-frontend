@@ -1,0 +1,57 @@
+.gauge {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gauge svg {
+  display: block;
+  overflow: visible;
+}
+
+.gauge__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Cung 180°: chữ nằm ở nửa dưới của cung */
+.gauge__label--semi {
+  justify-content: flex-end;
+  padding-bottom: 2px;
+}
+
+.gauge__value {
+  font-size: var(--fs-heading-3);
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.gauge__caption {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.gauge__sub {
+  font-size: var(--fs-caption-2);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.gauge__bounds {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: var(--sp-1);
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}

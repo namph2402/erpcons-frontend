@@ -1,0 +1,18 @@
+.wordcloud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2) var(--sp-3);
+  padding: var(--sp-2) 0;
+  line-height: 1.2;
+}
+
+.wordcloud__word {
+  padding: 2px 4px;
+  border-radius: var(--r-sm);
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+.wordcloud__word:hover {
+  background: var(--slate-100);
+}

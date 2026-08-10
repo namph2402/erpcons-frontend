@@ -37,3 +37,15 @@ export type { AlertListProps, AlertItem } from './AlertList'
 
 export { default as ProfileCard } from './ProfileCard'
 export type { ProfileCardProps, ProfileStat } from './ProfileCard'
+
+export { default as DashboardHeader, ProjectSelector } from './DashboardHeader'
+export type { DashboardHeaderProps } from './DashboardHeader'
+
+export { default as CountRowList } from './CountRowList'
+export type { CountRowListProps, CountRow } from './CountRowList'
+
+export { default as KnowledgeGraphView } from './KnowledgeGraphView'
+export type { KnowledgeGraphViewProps, GraphNode } from './KnowledgeGraphView'
+
+export { default as DeviceMap } from './DeviceMap'
+export type { DeviceMapProps, MapMarker } from './DeviceMap'

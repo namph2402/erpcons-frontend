@@ -7,6 +7,8 @@ export interface DonutSlice {
   color: string
   /** Text phụ hiển thị ở legend (vd "12 (50%)") */
   note?: string
+  /** Cột số thứ hai ở legend (vd note = "37", extra = "54%") */
+  extra?: string
 }
 
 export interface DonutChartProps {
@@ -86,6 +88,7 @@ export default function DonutChart({
                 {d.note ??
                   (showPercent ? `${Math.round((d.value / total) * 100)}%` : d.value)}
               </span>
+              {d.extra && <span className="donut__legend-extra num">{d.extra}</span>}
             </li>
           ))}
         </ul>

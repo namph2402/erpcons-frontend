@@ -13,7 +13,16 @@ export type { BadgeProps, BadgeTone } from './Badge'
 export { STATUS_TONE } from './statusTone'
 
 export { default as StatCard } from './StatCard'
-export type { StatCardProps } from './StatCard'
+export type { StatCardProps, StatTone, TrendDirection } from './StatCard'
+
+export { default as BarChart } from './BarChart'
+export type { BarChartProps, BarSeries } from './BarChart'
+
+export { default as GaugeChart } from './GaugeChart'
+export type { GaugeChartProps, GaugeSegment } from './GaugeChart'
+
+export { default as WordCloud } from './WordCloud'
+export type { WordCloudProps, CloudWord } from './WordCloud'
 
 export { default as ProgressBar } from './ProgressBar'
 export type { ProgressBarProps } from './ProgressBar'

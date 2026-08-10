@@ -3,7 +3,7 @@ import './ProgressBar.css'
 export interface ProgressBarProps {
   /** 0 – 100 */
   value: number
-  tone?: 'info' | 'success' | 'warning' | 'danger' | 'brand'
+  tone?: 'info' | 'success' | 'warning' | 'danger' | 'brand' | 'ai'
   size?: 'sm' | 'md' | 'lg'
   /** Hiện % ở cuối thanh */
   showValue?: boolean

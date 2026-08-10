@@ -21,6 +21,11 @@ export interface AppLayoutProps {
   searchPlaceholder?: string
   /** Ẩn topbar khi trang tự dựng header riêng */
   hideTopbar?: boolean
+  /**
+   * Thay thế Topbar mặc định bằng header riêng (vd DashboardHeader).
+   * Nhận sẵn hàm mở/đóng sidebar để nút hamburger vẫn hoạt động trên mobile.
+   */
+  topbar?: (api: { toggleSidebar: () => void }) => ReactNode
   /* ---- Drawer phải (02.8 Notification Center) ---- */
   drawer?: ReactNode
   drawerOpen?: boolean
@@ -49,6 +54,7 @@ export default function AppLayout({
   notificationCount = 0,
   searchPlaceholder,
   hideTopbar = false,
+  topbar,
   drawer,
   drawerOpen = false,
   onCloseDrawer,
@@ -87,7 +93,11 @@ export default function AppLayout({
       )}
 
       <div className="app-layout__main">
-        {!hideTopbar && (
+        {topbar
+          ? topbar({ toggleSidebar: () => setMobileOpen((v) => !v) })
+          : null}
+
+        {!topbar && !hideTopbar && (
           <Topbar
             user={user}
             notificationCount={notificationCount}

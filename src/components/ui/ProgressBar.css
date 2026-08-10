@@ -44,6 +44,9 @@
 .progress__fill--brand {
   background: var(--erp-red);
 }
+.progress__fill--ai {
+  background: var(--ai);
+}
 
 .progress__value {
   font-size: var(--fs-caption-1);
