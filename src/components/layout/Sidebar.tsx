@@ -108,9 +108,9 @@ export default function Sidebar({
     <aside className={`sidebar${collapsed ? ' sidebar--collapsed' : ''}`}>
       <div className="sidebar__brand">
         {collapsed ? (
-          <Logo variant="mark" size={32} />
+          <Logo variant="mark" size={44} />
         ) : (
-          <Logo variant="horizontal" onDark size={34} />
+          <Logo variant="horizontal" onDark width="100%" />
         )}
       </div>
 

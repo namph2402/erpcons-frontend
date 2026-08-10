@@ -1,59 +1,65 @@
+import logoImg from '../../assets/logo.png'
 import './Logo.css'
 
 export interface LogoProps {
-  /** 01 · LOGO BẤT BIẾN — chỉ 2 phiên bản: ngang & dọc */
+  /** Biến thể logo: 'horizontal' (đầy đủ), 'vertical', hoặc 'mark' (chỉ icon) */
   variant?: 'horizontal' | 'vertical' | 'mark'
-  /** invert = đặt trên nền tối (sidebar) */
+  /** Đặt trên nền tối (như sidebar, mobile drawer) */
   onDark?: boolean
-  size?: number
+  /** Kích thước chiều cao hoặc chiều rộng (px hoặc chuỗi CSS như '100%') */
+  size?: number | string
+  /** Chiều rộng cụ thể (nếu muốn set theo width, ví dụ '100%' hoặc số px) */
+  width?: number | string
+  /** Chiều cao cụ thể (nếu muốn set theo height) */
+  height?: number | string
   className?: string
+  alt?: string
 }
 
 /**
- * Logo ERPCons — vẽ bằng SVG để giữ đúng tỷ lệ ở mọi kích thước.
- * NGHIÊM CẤM: đổi màu, xoay, thêm viền/hiệu ứng, bóp méo tỷ lệ.
+ * Logo ERPCons — Sử dụng logo chuẩn từ assets/logo.png
  */
 export default function Logo({
   variant = 'horizontal',
   onDark = false,
-  size = 36,
+  size,
+  width,
+  height,
   className = '',
+  alt = 'ERPCons - Construction OS',
 }: LogoProps) {
-  const mark = (
-    <svg
-      className="logo__mark"
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M31 4c-9.4 0-17 7-17 15.6 0 3.6 1.2 6.5 3.4 9.2 1.2 1.5 1.6 2.6 1.6 4.3V44h6.4v-6.6c0-2.4-.7-4.3-2.4-6.4-1.7-2-2.6-4.2-2.6-6.9C20.4 17 25 12.6 31 12.6h13V4H31Z"
-        fill="var(--erp-red)"
-      />
-      <rect x="4" y="10" width="12" height="3.6" rx="1.8" fill="var(--erp-red)" />
-      <rect x="4" y="18" width="9" height="3.6" rx="1.8" fill="var(--erp-red)" />
-      <rect x="4" y="26" width="12" height="3.6" rx="1.8" fill="var(--erp-red)" />
-      <path
-        d="m34 16 3 3 6-6"
-        stroke="var(--erp-red)"
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m34 26 3 3 6-6"
-        stroke="var(--erp-red)"
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-
   if (variant === 'mark') {
-    return <span className={`logo logo--mark ${className}`.trim()}>{mark}</span>
+    const markSize = size ?? width ?? height ?? 44
+    const markSizeStr = typeof markSize === 'number' ? `${markSize}px` : markSize
+    return (
+      <span
+        className={[
+          'logo',
+          'logo--mark',
+          onDark ? 'logo--on-dark' : '',
+          className,
+        ]
+          .filter(Boolean)
+          .join(' ')}
+        style={{ width: markSizeStr, height: markSizeStr }}
+      >
+        <img
+          src={logoImg}
+          alt={alt}
+          className="logo__img logo__img--mark"
+        />
+      </span>
+    )
+  }
+
+  const customStyle: React.CSSProperties = {}
+  if (width !== undefined) {
+    customStyle.width = typeof width === 'number' ? `${width}px` : width
+  }
+  if (height !== undefined) {
+    customStyle.height = typeof height === 'number' ? `${height}px` : height
+  } else if (size !== undefined && width === undefined) {
+    customStyle.height = typeof size === 'number' ? `${size}px` : size
   }
 
   return (
@@ -66,15 +72,16 @@ export default function Logo({
       ]
         .filter(Boolean)
         .join(' ')}
+      style={Object.keys(customStyle).length > 0 ? customStyle : undefined}
     >
-      {mark}
-      <span className="logo__word">
-        <span className="logo__name">
-          <strong>ERP</strong>
-          <em>CONS</em>
-        </span>
-        <span className="logo__tagline">Construction OS</span>
-      </span>
+      <img
+        src={logoImg}
+        alt={alt}
+        className="logo__img"
+        style={Object.keys(customStyle).length > 0 ? customStyle : undefined}
+      />
     </span>
   )
 }
+
+

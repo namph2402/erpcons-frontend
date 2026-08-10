@@ -37,15 +37,13 @@
   color: var(--white);
 }
 
-.mheader__logo .logo__mark {
-  display: none;
+.mheader__logo {
+  height: 32px;
 }
-.mheader__logo .logo__tagline {
-  display: none;
+.mheader__logo .logo__img {
+  height: 32px;
 }
-.mheader__logo .logo__name {
-  font-size: 18px;
-}
+
 
 .mheader__spacer {
   flex: 1;
