@@ -10,6 +10,11 @@ import FinanceDashboard from './pages/dashboards/FinanceDashboard'
 import IotDashboard from './pages/dashboards/IotDashboard'
 import KnowledgeGraphDashboard from './pages/dashboards/KnowledgeGraphDashboard'
 import ProjectDashboard from './pages/dashboards/ProjectDashboard'
+import CameraAi from './pages/mobile/CameraAi'
+import FieldReport from './pages/mobile/FieldReport'
+import MobileHome from './pages/mobile/MobileHome'
+import OfflineSync from './pages/mobile/OfflineSync'
+import QrScanner from './pages/mobile/QrScanner'
 import ScreenSwitcher from './dev/ScreenSwitcher'
 
 /**
@@ -45,6 +50,11 @@ const ROUTES: { match: (p: string) => boolean; render: () => React.ReactElement 
     match: (p) => p.startsWith('/dashboard'),
     render: () => <Dashboard initialDrawerOpen={window.location.hash.includes('thong-bao')} />,
   },
+  { match: (p) => p.startsWith('/mobile/dong-bo'), render: () => <OfflineSync /> },
+  { match: (p) => p.startsWith('/mobile/qr'), render: () => <QrScanner /> },
+  { match: (p) => p.startsWith('/mobile/camera-ai'), render: () => <CameraAi /> },
+  { match: (p) => p.startsWith('/mobile/bao-cao'), render: () => <FieldReport /> },
+  { match: (p) => p.startsWith('/mobile'), render: () => <MobileHome /> },
   { match: (p) => p.startsWith('/du-an'), render: () => <ProjectWorkspace /> },
   { match: (p) => p.startsWith('/ca-nhan'), render: () => <PersonalHome /> },
 ]
