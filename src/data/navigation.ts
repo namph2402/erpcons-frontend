@@ -63,7 +63,7 @@ export const mainNav: NavGroup[] = [
     id: 'intelligence',
     items: [
       { id: 'reports', label: 'Báo cáo & BI', icon: 'monitoring', href: '#/bao-cao' },
-      { id: 'ai', label: 'AI Insights', icon: 'auto_awesome', href: '#/ai-insights', tag: 'New' },
+      { id: 'ai', label: 'AI Chuyên sâu', icon: 'auto_awesome', href: '#/ai-insights', tag: 'New' },
       { id: 'settings', label: 'Cài đặt hệ thống', icon: 'settings', href: '#/cai-dat' },
     ],
   },

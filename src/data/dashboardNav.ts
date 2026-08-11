@@ -162,7 +162,7 @@ export const aiInsightNav: NavGroup[] = [
       { id: 'project', label: 'Dự án', icon: 'dashboard', href: '#/dashboard/project' },
       { id: 'finance', label: 'Tổng quan tài chính', icon: 'payments', href: '#/dashboard/finance' },
       { id: 'construction', label: 'Xây dựng', icon: 'engineering', href: '#/dashboard/construction' },
-      { id: 'ai-insight', label: 'AI Insight', icon: 'auto_awesome', href: '#/dashboard/ai-insight' },
+      { id: 'ai-insight', label: 'AI chuyên sâu', icon: 'auto_awesome', href: '#/dashboard/ai-insight' },
       { id: 'camera', label: 'AI Camera', icon: 'videocam', href: '#' },
     ],
   },
