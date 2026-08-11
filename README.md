@@ -124,7 +124,29 @@ thời gian + kỳ so sánh + "Thêm widget"). Menu riêng của từng dashboar
 </DashboardShell>
 ```
 
-Component bổ sung phục vụ nhóm này: `BarChart` (cột nhóm/xếp chồng, hỗ trợ giá trị âm + đường phủ),
+**Nhóm Mobile 61–65** (`src/pages/mobile`)
+
+| Route | Page | Ảnh nguồn |
+|---|---|---|
+| `#/mobile` | `MobileHome` | 61 · Trang chủ mobile |
+| `#/mobile/dong-bo` | `OfflineSync` | 62 · Đồng bộ dữ liệu offline/online |
+| `#/mobile/qr` | `QrScanner` | 63 · Quét QR code |
+| `#/mobile/camera-ai` | `CameraAi` | 64 · Nhận diện AI từ camera |
+| `#/mobile/bao-cao` | `FieldReport` | 65 · Báo cáo hiện trường |
+
+Cấu trúc mobile gồm **3 tầng điều hướng**, đặt tại `src/components/mobile`:
+
+| Component | Vai trò |
+|---|---|
+| `MobileShell` | Khung app mobile: header + nội dung + nav đáy + drawer. Trên desktop tự bọc trong khung điện thoại 390×844 để review |
+| `MobileHeader` | `variant="home"` (hamburger + logo + tìm kiếm + chuông) · `variant="page"` (quay lại + tiêu đề + hành động) |
+| `MobileDrawer` | "Menu thu gọn" trượt từ trái — **dùng lại đúng `NavGroup`/`NavItem` của Sidebar desktop** |
+| `MobileNavBar` | Thanh điều hướng đáy 4 mục + FAB nổi ở giữa, có badge số đếm |
+
+`AppLayout` cũng nhận `MobileNavBar` nên **mọi màn hình desktop đều có thanh đáy khi thu nhỏ
+dưới 768px**; tắt bằng `hideMobileNav`, đổi mục bằng `mobileNavItems` / `mobileNavActiveId` / `mobileFab`.
+
+Component bổ sung phục vụ nhóm dashboard: `BarChart` (cột nhóm/xếp chồng, hỗ trợ giá trị âm + đường phủ),
 `GaugeChart` (cung 180° và vòng tròn), `WordCloud`, `CountRowList`, `KnowledgeGraphView`, `DeviceMap`;
 `StatCard` được mở rộng thêm `layout="stacked"` + `sparkline` + `ring` để dùng làm KPI card chuẩn
 của dashboard mà không phá biến thể `inline` đang dùng ở các màn hình trước.

@@ -1,0 +1,382 @@
+/* ==========================================================================
+   PROFILE PAGE STYLES (Khớp với ProfilePage.tsx)
+   ========================================================================== */
+
+.profile-container {
+  padding: var(--sp-4);
+  background-color: #f4f7f6; /* Màu nền xám nhạt như ảnh */
+  min-height: 100vh;
+}
+
+/* Điều hướng Breadcrumbs */
+.profile-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+  font-size: var(--fs-body-3);
+  color: var(--text-tertiary);
+}
+.profile-breadcrumbs .current {
+  color: #00897b;
+  font-weight: 600;
+}
+
+/* Bố cục chính: Sidebar | Main Content */
+.profile-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* --- SIDEBAR TRÁI --- */
+.profile-sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.profile-sidebar__identity {
+  background: white;
+  padding: 32px 24px;
+  border-radius: var(--r-lg);
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.profile-sidebar__avatar-group {
+  position: relative;
+  width: 96px;
+  margin: 0 auto var(--sp-4);
+}
+
+.profile-sidebar__avatar-edit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #00897b;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.profile-sidebar__name {
+  font-size: var(--fs-heading-4);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.profile-sidebar__role {
+  color: var(--text-tertiary);
+  font-size: var(--fs-body-3);
+  margin-bottom: 24px;
+}
+
+.profile-sidebar__contact {
+  text-align: left;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-item {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.profile-sidebar__footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-align: left;
+}
+
+.profile-sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menu-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-secondary);
+  border-radius: var(--r-md);
+  transition: all 0.2s;
+}
+
+.menu-btn.active {
+  background: white;
+  color: #00897b;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* --- NỘI DUNG CHÍNH BÊN PHẢI --- */
+.profile-main {
+  flex: 1;
+  background: white;
+  border-radius: var(--r-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  min-width: 0;
+}
+
+.profile-main__tabs {
+  display: flex;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border);
+  gap: 32px;
+}
+
+.tab-btn {
+  padding: 20px 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  color: #00897b;
+  border-bottom-color: #00897b;
+  font-weight: 600;
+}
+
+.profile-main__content {
+  padding: 32px;
+}
+
+/* Form chia lưới 3 cột giống ảnh */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.span-2 {
+  grid-column: span 2;
+}
+.form-group.span-full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  font-size: 14px;
+  width: 100%;
+}
+
+.form-group input:focus {
+  border-color: #00897b;
+  outline: none;
+}
+
+.form-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-save {
+  background: #00897b;
+  color: white;
+  padding: 10px 24px;
+  border-radius: var(--r-md);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profile-alert {
+  margin-top: 32px;
+  background: #e3f2fd;
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: #1976d2;
+  font-size: 13px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #00897b;
+  margin-bottom: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 1200px) {
+  .profile-layout {
+    flex-direction: column;
+  }
+  .profile-sidebar {
+    width: 100%;
+  }
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .profile-main__tabs {
+    gap: 16px;
+    overflow-x: auto;
+  }
+}
+/* Input có đơn vị đi kèm (VND) */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group input {
+  padding-right: 50px !important;
+}
+
+.input-group .unit {
+  position: absolute;
+  right: 12px;
+  font-size: 12px;
+  color: #999;
+  font-weight: 600;
+}
+
+/* Tiêu đề phụ trong tab */
+.sub-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 16px 0;
+  color: #333;
+}
+
+/* Badge trạng thái */
+.badge-status {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.badge-status.success {
+  background-color: #e6f4ea;
+  color: #1e8e3e;
+}
+
+/* Phần file đính kèm */
+.attachment-section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #eee;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  gap: 16px;
+}
+
+.pdf-icon {
+  color: #d93025;
+}
+
+.file-info {
+  flex: 1;
+}
+.file-name {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+.file-size {
+  font-size: 12px;
+  color: #999;
+  margin: 0;
+}
+
+.file-actions {
+  display: flex;
+  gap: 16px;
+  color: #666;
+  cursor: pointer;
+}
+
+/* Các loại nút mới */
+.btn-add-row,
+.btn-outline-add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-add-row {
+  background-color: #00897b;
+  color: white;
+  border: none;
+}
+
+.btn-outline-add {
+  background: white;
+  color: #00897b;
+  border: 1px solid #00897b;
+}

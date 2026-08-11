@@ -1,6 +1,8 @@
 import { useState, type ReactNode } from "react";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
+import MobileNavBar, { type MobileNavItem } from "../mobile/MobileNavBar";
+import { DEFAULT_MOBILE_NAV } from "../../data/mobileNav";
 import type { NavGroup, NavItem, User } from "../../types";
 import "./AppLayout.css";
 
@@ -36,6 +38,13 @@ export interface AppLayoutProps {
   footer?: ReactNode;
   /** Giới hạn bề rộng nội dung theo container-max */
   contained?: boolean;
+  /* ---- Thanh điều hướng đáy (chỉ hiện dưới 768px) ---- */
+  mobileNavItems?: MobileNavItem[];
+  /** id mục đang active trên thanh đáy */
+  mobileNavActiveId?: string;
+  mobileFab?: { icon?: string; label?: string; onClick?: () => void };
+  /** Tắt thanh điều hướng đáy ở màn hình không cần */
+  hideMobileNav?: boolean;
 }
 
 /**
@@ -62,6 +71,10 @@ export default function AppLayout({
   children,
   footer,
   contained = true,
+  mobileNavItems = DEFAULT_MOBILE_NAV,
+  mobileNavActiveId = "home",
+  mobileFab = { icon: "add", label: "Tạo nhanh" },
+  hideMobileNav = false,
 }: AppLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -133,6 +146,14 @@ export default function AppLayout({
           )}
         </div>
       </div>
+
+      {!hideMobileNav && (
+        <MobileNavBar
+          items={mobileNavItems}
+          activeId={mobileNavActiveId}
+          fab={mobileFab}
+        />
+      )}
     </div>
   );
 }

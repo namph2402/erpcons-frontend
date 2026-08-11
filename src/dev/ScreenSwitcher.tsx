@@ -30,6 +30,16 @@ const GROUPS: ScreenGroup[] = [
       { path: '/dashboard/knowledge-graph', label: '60 · Knowledge Graph', icon: 'hub', hash: '#/dashboard/knowledge-graph' },
     ],
   },
+  {
+    title: 'Mobile 61–65',
+    screens: [
+      { path: '/mobile', label: '61 · Mobile Home', icon: 'smartphone', hash: '#/mobile' },
+      { path: '/mobile/dong-bo', label: '62 · Offline Sync', icon: 'cloud_sync', hash: '#/mobile/dong-bo' },
+      { path: '/mobile/qr', label: '63 · QR Scanner', icon: 'qr_code_scanner', hash: '#/mobile/qr' },
+      { path: '/mobile/camera-ai', label: '64 · Camera AI', icon: 'videocam', hash: '#/mobile/camera-ai' },
+      { path: '/mobile/bao-cao', label: '65 · Field Report', icon: 'edit_note', hash: '#/mobile/bao-cao' },
+    ],
+  },
 ]
 
 /**
@@ -39,9 +49,12 @@ const GROUPS: ScreenGroup[] = [
 export default function ScreenSwitcher({ current }: { current: string }) {
   const [open, setOpen] = useState(false)
 
+  /** Các route là tiền tố của route khác → chỉ active khi khớp tuyệt đối */
+  const EXACT = ['/', '/dashboard', '/mobile']
+
   const isActive = (path: string) => {
     if (path === '/') return current === '/' || current === ''
-    if (path === '/dashboard') return current === '/dashboard'
+    if (EXACT.includes(path)) return current === path
     return current.startsWith(path)
   }
 

@@ -4,6 +4,7 @@ import Button from "../ui/Button";
 import Icon from "../ui/Icon";
 import type { User } from "../../types";
 import "./ProfileCard.css";
+import { useNavigate } from "react-router-dom";
 
 export interface ProfileStat {
   id: string;
@@ -64,7 +65,18 @@ export default function ProfileCard({
               </span>
             )}
           </p>
-          <Button size="sm" variant="secondary" onClick={onViewProfile}>
+
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={() => {
+              if (onViewProfile) {
+                onViewProfile();
+              } else {
+                window.location.hash = "#/ca-nhan/ho-so";
+              }
+            }}
+          >
             Xem hồ sơ
           </Button>
         </div>

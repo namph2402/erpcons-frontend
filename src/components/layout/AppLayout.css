@@ -93,6 +93,9 @@
 @media (max-width: 1023px) {
   .app-layout__sidebar {
     position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
     z-index: 60;
     transform: translateX(-100%);
     transition: transform var(--dur-normal) var(--ease-standard);
@@ -102,5 +105,12 @@
   }
   .app-layout__content {
     padding: var(--sp-4);
+  }
+}
+
+/* Dưới 768px: chừa chỗ cho thanh điều hướng đáy */
+@media (max-width: 767px) {
+  .app-layout__content {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
   }
 }

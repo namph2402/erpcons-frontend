@@ -248,15 +248,13 @@
   color: #7fb0ff;
 }
 
-/* ---- responsive: dưới 1024px sidebar trượt ra ngoài ---- */
+/*
+ * Hành vi trượt ra/vào dưới 1024px do .app-layout__sidebar (AppLayout.css)
+ * đảm nhiệm — nơi state `is-open` được gán. KHÔNG đặt position/transform
+ * cho .sidebar ở đây, nếu không panel sẽ bị đẩy khỏi màn hình vĩnh viễn.
+ */
 @media (max-width: 1023px) {
   .sidebar {
-    position: fixed;
-    z-index: 60;
-    transform: translateX(-100%);
     box-shadow: var(--shadow-pop);
-  }
-  .sidebar.is-open {
-    transform: translateX(0);
   }
 }
