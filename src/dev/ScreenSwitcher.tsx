@@ -24,6 +24,7 @@ const GROUPS: ScreenGroup[] = [
       { path: '/dashboard', label: 'Bảng điều hành', icon: 'space_dashboard', hash: '#/dashboard' },
       { path: '/du-an', label: 'Workspace dự án', icon: 'domain', hash: '#/du-an/NT-2024-001' },
       { path: '/ca-nhan', label: 'Trang cá nhân', icon: 'account_circle', hash: '#/ca-nhan' },
+      { path: '/lam-viec/cong-viec', label: 'Công việc (Kanban)', icon: 'view_kanban', hash: '#/lam-viec/cong-viec' },
     ],
   },
   {

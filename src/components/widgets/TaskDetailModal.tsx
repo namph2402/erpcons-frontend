@@ -60,15 +60,12 @@ export default function TaskDetailModal({
       status={<Badge tone={statusTone} dot>{statusLabel}</Badge>}
       footer={
         <>
-          <Button variant="ghost" onClick={onClose}>
-            Đóng
-          </Button>
           {onEdit && (
-            <Button variant="secondary" icon="edit" onClick={() => onEdit(task)}>
+            <Button variant="ghost" icon="edit" onClick={() => onEdit(task)}>
               Chỉnh sửa
             </Button>
           )}
-          <Button variant="primary" icon="send" onClick={send} disabled={!draft.trim()}>
+          <Button variant="primary" onClick={send} disabled={!draft.trim()}>
             Lưu
           </Button>
         </>

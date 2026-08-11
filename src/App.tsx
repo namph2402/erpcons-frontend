@@ -3,6 +3,7 @@ import Dashboard from './pages/Dashboard'
 import HomeEnterprise from './pages/HomeEnterprise'
 import PersonalHome from './pages/PersonalHome'
 import ProjectWorkspace from './pages/ProjectWorkspace'
+import TaskBoardPage from './pages/TaskBoardPage'
 import AiInsightDashboard from './pages/dashboards/AiInsightDashboard'
 import ConstructionDashboard from './pages/dashboards/ConstructionDashboard'
 import ExecutiveDashboard from './pages/dashboards/ExecutiveDashboard'
@@ -68,6 +69,10 @@ const ROUTES: Route[] = [
     match: (p) => p.startsWith('/dashboard'),
     render: () => <Dashboard initialDrawerOpen={window.location.hash.includes('thong-bao')} />,
   },
+  /* Công việc dùng bảng Kanban riêng, đặt trước workspaceRoutes để thắng route chung */
+  { match: (p) => p.startsWith('/lam-viec/cong-viec'), render: () => <TaskBoardPage /> },
+  { match: (p) => p.startsWith('/tac-vu'), render: () => <TaskBoardPage /> },
+  { match: (p) => p.startsWith('/ca-nhan/cong-viec'), render: () => <TaskBoardPage /> },
   { match: (p) => p.startsWith('/lam-viec/hop-dong'), render: () => <ContractDetail /> },
   { match: (p) => p.startsWith('/doi-tac/nha-cung-cap'), render: () => <SupplierPortal /> },
   { match: (p) => p.startsWith('/doi-tac/cong-khach-hang'), render: () => <CustomerPortal /> },

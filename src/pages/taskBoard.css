@@ -1,22 +1,62 @@
-/* Màn hình Tác vụ cá nhân — chỉ phần nội dung, menu & header dùng khung chuẩn */
+/* Tác vụ cá nhân — workspace Kanban chiếm trọn chiều cao vùng nội dung.
+   Menu & header dùng khung chuẩn, file này chỉ lo phần content. */
 
-.tboard-card {
-  overflow: hidden;
+.tboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  height: 100%;
+  min-height: 0;
 }
 
-.tboard-toolbar {
+/* ---- Thanh tiêu đề gọn (thay cho PageHeader để nhường chỗ cho bảng) ---- */
+.tboard-bar {
   display: flex;
   align-items: center;
   gap: var(--sp-2);
   flex-wrap: wrap;
-  padding: var(--sp-3) var(--sp-4);
-  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  padding: var(--sp-2) var(--sp-3);
   background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-sm);
 }
 
-.tboard-toolbar__search {
-  flex: 1 1 280px;
-  max-width: 420px;
+.tboard-bar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  color: var(--erp-red);
+  background: var(--erp-red-soft);
+}
+
+.tboard-bar__title {
+  font-size: var(--fs-title-1);
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.tboard-bar__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 var(--sp-2);
+  margin-right: var(--sp-2);
+  font-size: var(--fs-caption-1);
+  font-weight: 700;
+  color: var(--info);
+  background: var(--info-soft);
+  border-radius: var(--r-pill);
+}
+
+.tboard-bar__search {
+  flex: 0 1 260px;
 }
 
 /* 03.10 · VIEW MODES — chuyển Bảng / Danh sách */
@@ -30,10 +70,10 @@
 .viewswitch button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 6px var(--sp-3);
-  font-size: var(--fs-caption-1);
-  font-weight: 600;
+  width: 34px;
+  height: 30px;
   color: var(--text-tertiary);
   border-radius: var(--r-sm);
   transition:
@@ -49,12 +89,13 @@
   box-shadow: var(--shadow-sm);
 }
 
-.tboard-canvas {
-  padding: var(--sp-4);
-  background: var(--bg-app);
+/* ---- List view ---- */
+.tboard-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
-/* ---- List view ---- */
 .tlist__name {
   font-size: var(--fs-body-3);
   font-weight: 600;
@@ -73,11 +114,24 @@
   gap: var(--sp-2);
 }
 
-@media (max-width: 767px) {
-  .tboard-toolbar__search {
-    max-width: none;
+@media (max-width: 1279px) {
+  .tboard-bar__search {
+    flex: 1 1 200px;
   }
-  .tboard-canvas {
-    padding: var(--sp-3);
+}
+
+/* Dưới 768px: trang cuộn dọc bình thường, bảng xếp chồng */
+@media (max-width: 767px) {
+  .tboard-page {
+    height: auto;
+  }
+  .tboard-bar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .tboard-bar__search {
+    flex: 1 1 100%;
+    order: 5;
   }
 }
