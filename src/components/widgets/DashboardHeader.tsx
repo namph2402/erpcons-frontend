@@ -8,27 +8,27 @@ import type { SelectOption } from "../ui/Select";
 import "./DashboardHeader.css";
 
 export interface DashboardHeaderProps {
-  /** Số thứ tự màn hình theo bộ thiết kế, vd "54." */
+  // Số thứ tự màn hình theo bộ thiết kế, vd "54."
   index?: string;
   title: string;
   subtitle?: string;
-  /** Chip cạnh tiêu đề (AI · IoT · Knowledge Graph) */
+  // Chip cạnh tiêu đề (AI · IoT · Knowledge Graph)
   tag?: { label: string; tone?: BadgeTone; icon?: string };
-  /** Breadcrumb phía trên tiêu đề */
+  // Breadcrumb phía trên tiêu đề
   breadcrumbs?: { label: string; href?: string }[];
-  /** Bộ chọn đối tượng đặt giữa header (chọn dự án) */
+  // Bộ chọn đối tượng đặt giữa header (chọn dự án)
   selector?: ReactNode;
-  /** Khoảng thời gian đang xem */
+  // Khoảng thời gian đang xem
   dateRange?: string;
-  /** Bộ chọn kỳ so sánh / phạm vi */
+  //Bộ chọn kỳ so sánh / phạm vi
   compare?: {
     options: SelectOption[];
     value?: string;
     onChange?: (v: string) => void;
   };
-  /** Nút hành động chính (mặc định "+ Thêm widget") */
+  // Nút hành động chính (mặc định "+ Thêm widget")
   primaryAction?: { label: string; icon?: string; onClick?: () => void };
-  /** Các nút icon phụ: tải xuống, chia sẻ, làm mới... */
+  // Các nút icon phụ: tải xuống, chia sẻ, làm mới...
   utilityIcons?: { icon: string; label: string; onClick?: () => void }[];
   notificationCount?: number;
   onOpenNotifications?: () => void;

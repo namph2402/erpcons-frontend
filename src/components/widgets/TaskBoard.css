@@ -1,0 +1,306 @@
+/* 03.10 · BOARD VIEW — Kanban tác vụ */
+
+.board {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(300px, 1fr);
+  gap: var(--sp-4);
+  overflow-x: auto;
+  padding-bottom: var(--sp-2);
+  align-items: start;
+}
+
+.board__col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-height: calc(100vh - 260px);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  transition:
+    border-color var(--dur-fast) var(--ease-standard),
+    background var(--dur-fast) var(--ease-standard);
+}
+.board__col.is-over {
+  border-color: var(--info);
+  background: var(--info-soft);
+}
+
+/* ---- Đầu cột: nền nhạt + chữ theo màu trạng thái ---- */
+.board__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-3) var(--sp-3) var(--sp-4);
+  border-radius: var(--r-card) var(--r-card) 0 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.board__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.board__label {
+  font-size: var(--fs-body-3);
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  color: inherit;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.board__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: var(--fs-caption-2);
+  font-weight: 700;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: var(--r-pill);
+}
+
+.board__add {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-sm);
+  color: inherit;
+  opacity: 0.75;
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+.board__add:hover {
+  background: rgba(255, 255, 255, 0.8);
+  opacity: 1;
+}
+
+.board__head--neutral {
+  color: var(--slate-700);
+  background: var(--slate-100);
+}
+.board__head--warning {
+  color: #b45309;
+  background: var(--warning-soft);
+}
+.board__head--info {
+  color: var(--info);
+  background: var(--info-soft);
+}
+.board__head--success {
+  color: #047857;
+  background: var(--success-soft);
+}
+.board__head--danger {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.board__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  overflow-y: auto;
+  min-height: 120px;
+}
+
+/* ---- Card tác vụ ---- */
+.tcard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition:
+    box-shadow var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-standard);
+}
+.tcard:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+.tcard.is-dragging {
+  opacity: 0.5;
+  transform: rotate(-1deg);
+}
+
+.tcard__title {
+  font-size: var(--fs-body-3);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+  color: var(--text-primary);
+}
+
+.tcard__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  margin: 0;
+}
+
+.tcard__row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  font-size: var(--fs-caption-1);
+}
+.tcard__row dt {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+.tcard__row dd {
+  margin: 0;
+  min-width: 0;
+  color: var(--text-secondary);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- Thời gian ---- */
+.tcard__time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.tcard__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px var(--sp-2);
+  font-size: var(--fs-caption-2);
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-muted);
+  border-radius: var(--r-pill);
+}
+
+.tcard__due {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-caption-2);
+  font-weight: 600;
+  color: var(--success);
+}
+.tcard__due.is-overdue {
+  color: var(--danger);
+}
+
+/* ---- Tiến độ ---- */
+.tcard__progress-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-bottom: 4px;
+}
+
+.tcard__assignee {
+  font-size: var(--fs-caption-1);
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tcard__pct {
+  font-size: var(--fs-caption-1);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ---- Chân card ---- */
+.tcard__foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--border);
+}
+
+.tcard__date {
+  margin-left: 2px;
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.tcard__rating {
+  margin-left: 2px;
+}
+
+/* Cụm hành động luôn dạt phải, tự xuống dòng khi cột hẹp */
+.tcard__acts {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.tcard__act {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-sm);
+  color: var(--text-tertiary);
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard);
+}
+.tcard__act:hover {
+  background: var(--info-soft);
+  color: var(--info);
+}
+.tcard__act--danger:hover {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.board__list .empty {
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-input);
+  background: var(--bg-surface);
+}
+
+@media (max-width: 1023px) {
+  .board__col {
+    max-height: none;
+  }
+  .board__list {
+    max-height: 560px;
+  }
+}
+
+@media (max-width: 767px) {
+  .board {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    overflow-x: visible;
+  }
+}

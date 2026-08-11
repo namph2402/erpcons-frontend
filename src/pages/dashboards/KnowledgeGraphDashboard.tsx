@@ -1,4 +1,5 @@
 import DashboardShell from './DashboardShell'
+import { COMPARE_OPTIONS } from '../../data/dashboardNav'
 import {
   Badge,
   Card,
@@ -12,7 +13,6 @@ import {
   WordCloud,
 } from '../../components/ui'
 import { KnowledgeGraphView } from '../../components/widgets'
-import { COMPARE_OPTIONS, knowledgeNav } from '../../data/dashboardNav'
 import {
   entityTypes,
   graphActivity,
@@ -37,12 +37,10 @@ const KG_KPIS = [
 export default function KnowledgeGraphDashboard() {
   return (
     <DashboardShell
-      navGroups={knowledgeNav}
-      activeId="knowledge"
+      activeId="dashboard-graph"
       user={knowledgeUser}
-      index="60."
-      title="Knowledge Graph"
-      tag={{ label: 'Graph', tone: 'ai', icon: 'hub' }}
+      title="Đồ thị tri thức"
+      tag={{ label: 'Đồ thị', tone: 'ai', icon: 'hub' }}
       subtitle="Trực quan hóa mối quan hệ dữ liệu trong hệ thống"
       dateRange="01/05/2024 - 31/05/2024"
       compare={{

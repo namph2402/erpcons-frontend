@@ -1,0 +1,1795 @@
+import type { WorkspaceConfig } from '../types/workspace'
+
+/**
+ * Cấu hình 15 Object Workspace (Erpcons/page).
+ * Mọi workspace dùng chung `WorkspacePage` + `WorkspaceShell`,
+ * chỉ khác nhau ở dữ liệu trong file này.
+ */
+
+const PROJECT_FILTER = {
+  id: 'project',
+  label: 'Dự án',
+  options: [
+    { value: 'all', label: 'Dự án: Tất cả' },
+    { value: 'nexus', label: 'The Nexus Tower' },
+    { value: 'sunrise', label: 'Sunrise Riverside' },
+    { value: 'green', label: 'Green City Villa' },
+  ],
+}
+
+const STATUS_FILTER = {
+  id: 'status',
+  label: 'Trạng thái',
+  options: [
+    { value: 'all', label: 'Trạng thái: Tất cả' },
+    { value: 'open', label: 'Đang mở' },
+    { value: 'done', label: 'Hoàn thành' },
+  ],
+}
+
+const PRIORITY_FILTER = {
+  id: 'priority',
+  label: 'Mức độ ưu tiên',
+  options: [
+    { value: 'all', label: 'Ưu tiên: Tất cả' },
+    { value: 'high', label: 'Cao' },
+    { value: 'mid', label: 'Trung bình' },
+    { value: 'low', label: 'Thấp' },
+  ],
+}
+
+/* ================================================================== */
+/* 1 · CÔNG VIỆC                                                       */
+/* ================================================================== */
+const tasks: WorkspaceConfig = {
+  id: 'tasks',
+  route: '/lam-viec/cong-viec',
+  title: 'Công việc',
+  subtitle: 'Quản lý công việc, theo dõi tiến độ và phối hợp hiệu quả',
+  createLabel: 'Tạo nhiệm vụ',
+  searchPlaceholder: 'Tìm kiếm nhiệm vụ, dự án, người giao, #tag...',
+  kpis: [
+    { id: 'k1', label: 'Tổng nhiệm vụ', value: '1,248', icon: 'assignment', tone: 'info', trend: { direction: 'up', value: '15.6%', label: 'so với tháng trước' } },
+    { id: 'k2', label: 'Đang thực hiện', value: '532', icon: 'play_circle', tone: 'info', hint: '42.6% tổng nhiệm vụ' },
+    { id: 'k3', label: 'Hoàn thành', value: '678', icon: 'check_circle', tone: 'success', hint: '54.3% tổng nhiệm vụ' },
+    { id: 'k4', label: 'Quá hạn', value: '38', icon: 'schedule', tone: 'danger', hint: '3.1% tổng nhiệm vụ' },
+    { id: 'k5', label: 'Chờ xác nhận', value: '74', icon: 'hourglass_top', tone: 'warning', hint: '5.9% tổng nhiệm vụ' },
+    { id: 'k6', label: 'Hiệu suất chung', value: '92.4%', icon: 'trending_up', tone: 'ai', trend: { direction: 'up', value: '8.7%', label: 'so với tháng trước' } },
+  ],
+  filters: [PROJECT_FILTER, { id: 'assignee', label: 'Người giao', options: [{ value: 'all', label: 'Người giao: Tất cả' }] }, PRIORITY_FILTER],
+  tabs: [
+    { id: 'kanban', label: 'Bảng Kanban' },
+    { id: 'list', label: 'Danh sách' },
+    { id: 'calendar', label: 'Lịch' },
+    { id: 'gantt', label: 'Gantt' },
+    { id: 'report', label: 'Báo cáo' },
+  ],
+  table: {
+    title: 'Danh sách nhiệm vụ',
+    total: '1,248',
+    pages: 125,
+    columns: [
+      { key: 'code', header: 'Mã', type: 'code', width: '130px' },
+      { key: 'name', header: 'Nhiệm vụ' },
+      { key: 'project', header: 'Dự án', width: '160px' },
+      { key: 'assignee', header: 'Người phụ trách', width: '160px', type: 'avatar' },
+      { key: 'priority', header: 'Ưu tiên', width: '110px', type: 'badge' },
+      { key: 'progress', header: 'Tiến độ', width: '130px', type: 'progress' },
+      { key: 'status', header: 'Trạng thái', width: '140px', type: 'badge' },
+      { key: 'due', header: 'Hạn', width: '110px' },
+    ],
+    rows: [
+      { id: 1, code: 'TASK-000123', name: 'Thi công móng tầng hầm B1', project: 'The Nexus Tower', assignee: 'Trần Văn B', priority: 'Cao', progress: 60, status: 'Đang thực hiện', due: '20/05/2024' },
+      { id: 2, code: 'TASK-000124', name: 'Lắp dựng cốt thép cột', project: 'The Nexus Tower', assignee: 'Lê Minh C', priority: 'Trung bình', progress: 35, status: 'Đang thực hiện', due: '22/05/2024' },
+      { id: 3, code: 'TASK-000125', name: 'Rà soát hồ sơ thiết kế', project: 'The Nexus Tower', assignee: 'Nguyễn Văn A', priority: 'Cao', progress: 0, status: 'Chưa bắt đầu', due: '26/05/2024' },
+      { id: 4, code: 'TASK-000126', name: 'Kiểm tra chất lượng bê tông', project: 'Sunrise Riverside', assignee: 'Phạm Văn D', priority: 'Thấp', progress: 70, status: 'Đang thực hiện', due: '21/05/2024' },
+      { id: 5, code: 'TASK-000127', name: 'Nghiệm thu phần móng', project: 'The Nexus Tower', assignee: 'Hoàng Văn E', priority: 'Cao', progress: 100, status: 'Chờ xác nhận', due: '20/05/2024' },
+      { id: 6, code: 'TASK-000128', name: 'Duyệt bản vẽ shopdrawing', project: 'Sunrise Riverside', assignee: 'Trần Thị B', priority: 'Trung bình', progress: 100, status: 'Hoàn thành', due: '19/05/2024' },
+      { id: 7, code: 'TASK-000129', name: 'Báo cáo tiến độ tuần 19', project: 'The Nexus Tower', assignee: 'Lê Minh C', priority: 'Cao', progress: 0, status: 'Quá hạn', due: '18/05/2024' },
+      { id: 8, code: 'TASK-000130', name: 'San lấp mặt bằng', project: 'Green City Villa', assignee: 'Đỗ Thị H', priority: 'Thấp', progress: 100, status: 'Hoàn thành', due: '10/05/2024' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Tổng quan tiến độ', kind: 'donut',
+      donut: {
+        center: '1,248', centerLabel: 'Tổng nhiệm vụ',
+        data: [
+          { label: 'Hoàn thành', value: 678, color: 'var(--success)', note: '678', extra: '54.3%' },
+          { label: 'Đang thực hiện', value: 532, color: 'var(--info)', note: '532', extra: '42.6%' },
+          { label: 'Chờ xác nhận', value: 74, color: 'var(--warning)', note: '74', extra: '5.9%' },
+          { label: 'Quá hạn', value: 38, color: 'var(--danger)', note: '38', extra: '3.1%' },
+          { label: 'Chưa bắt đầu', value: 156, color: 'var(--slate-300)', note: '156', extra: '12.5%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Nhiệm vụ theo mức ưu tiên', kind: 'bar',
+      bar: {
+        labels: ['Cao', 'Trung bình', 'Thấp'],
+        series: [{ name: 'Số lượng', color: 'var(--info)', values: [326, 582, 340] }],
+      },
+    },
+    {
+      id: 'a3', title: 'Nhiệm vụ theo dự án', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 'r1', label: 'The Nexus Tower', value: '642', rate: 51 },
+          { id: 'r2', label: 'Sunrise Riverside', value: '312', rate: 25 },
+          { id: 'r3', label: 'Green City Villa', value: '198', rate: 16 },
+          { id: 'r4', label: 'Văn phòng ERPcons', value: '96', rate: 8 },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Hiệu suất theo người', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 'p1', label: 'Trần Văn B', value: '98%', rate: 98 },
+          { id: 'p2', label: 'Lê Minh C', value: '94%', rate: 94 },
+          { id: 'p3', label: 'Phạm Văn D', value: '92%', rate: 92 },
+          { id: 'p4', label: 'Hoàng Văn E', value: '89%', rate: 89 },
+          { id: 'p5', label: 'Nguyễn Văn F', value: '85%', rate: 85 },
+        ],
+      },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tạo nhiệm vụ mới', icon: 'add_task' },
+    { id: 'q2', label: 'Nhiệm vụ của tôi', icon: 'person' },
+    { id: 'q3', label: 'Nhiệm vụ quá hạn', icon: 'schedule' },
+    { id: 'q4', label: 'Báo cáo nhiệm vụ', icon: 'monitoring' },
+    { id: 'q5', label: 'Thiết lập mẫu', icon: 'dashboard_customize' },
+    { id: 'q6', label: 'Cài đặt quy tắc', icon: 'settings' },
+  ],
+  detail: {
+    code: 'TASK-000123',
+    title: 'Thi công móng tầng hầm B1',
+    badges: [{ label: 'Đang thực hiện', tone: 'info' }, { label: 'Cao', tone: 'danger' }],
+    tabs: ['Thông tin', 'Checklist', 'File đính kèm (8)', 'Bình luận (12)', 'Nhật ký'],
+    props: [
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Gói công việc', value: 'Thi công phần móng', icon: 'category' },
+      { label: 'Người giao', value: 'Nguyễn Văn A', icon: 'person' },
+      { label: 'Người phụ trách', value: 'Trần Văn B', icon: 'engineering' },
+      { label: 'Ngày bắt đầu', value: '10/05/2024', icon: 'event' },
+      { label: 'Hạn hoàn thành', value: '20/05/2024', icon: 'event_busy' },
+      { label: 'Tiến độ', value: '60%', icon: 'donut_small' },
+      { label: 'Nhóm thực hiện', value: 'Đội thi công móng', icon: 'groups' },
+    ],
+    description: {
+      label: 'Mô tả',
+      text: 'Thi công móng tầng hầm B1 theo bản vẽ kết cấu đã được phê duyệt. Đảm bảo đúng tiến độ và chất lượng.',
+    },
+    actions: [
+      { label: 'Chỉnh sửa', icon: 'edit' },
+      { label: 'Cập nhật tiến độ', icon: 'update', primary: true },
+    ],
+  },
+}
+
+/* ================================================================== */
+/* 2 · VẤN ĐỀ                                                          */
+/* ================================================================== */
+const issues: WorkspaceConfig = {
+  id: 'issues',
+  route: '/lam-viec/van-de',
+  title: 'Vấn đề',
+  subtitle: 'Quản lý và xử lý vấn đề, sự cố phát sinh trong dự án và vận hành',
+  createLabel: 'Tạo vấn đề',
+  searchPlaceholder: 'Tìm kiếm vấn đề, mã, dự án, người tạo...',
+  kpis: [
+    { id: 'k1', label: 'Tổng số vấn đề', value: '268', icon: 'report', tone: 'info', trend: { direction: 'up', value: '14.5%', label: 'so với tháng trước' } },
+    { id: 'k2', label: 'Mở', value: '86', icon: 'lock_open', tone: 'info', hint: '32.1% tổng vấn đề' },
+    { id: 'k3', label: 'Đang xử lý', value: '92', icon: 'engineering', tone: 'warning', hint: '34.3% tổng vấn đề' },
+    { id: 'k4', label: 'Chờ phản hồi', value: '34', icon: 'hourglass_top', tone: 'warning', hint: '12.7% tổng vấn đề' },
+    { id: 'k5', label: 'Đã giải quyết', value: '54', icon: 'check_circle', tone: 'success', trend: { direction: 'up', value: '5.8%', label: 'so với tháng trước' } },
+    { id: 'k6', label: 'Quá hạn xử lý', value: '18', icon: 'crisis_alert', tone: 'danger', hint: '6.7% tổng vấn đề' },
+  ],
+  filters: [PROJECT_FILTER, { id: 'type', label: 'Loại vấn đề', options: [{ value: 'all', label: 'Loại: Tất cả' }, { value: 'quality', label: 'Chất lượng' }, { value: 'safety', label: 'An toàn' }] }, PRIORITY_FILTER, STATUS_FILTER],
+  table: {
+    title: 'Danh sách vấn đề',
+    total: '268',
+    pages: 27,
+    columns: [
+      { key: 'code', header: 'Mã vấn đề', type: 'code', width: '160px' },
+      { key: 'name', header: 'Tiêu đề' },
+      { key: 'project', header: 'Dự án', width: '150px' },
+      { key: 'type', header: 'Loại', width: '120px' },
+      { key: 'priority', header: 'Ưu tiên', width: '110px', type: 'badge' },
+      { key: 'status', header: 'Trạng thái', width: '130px', type: 'badge' },
+      { key: 'owner', header: 'Người phụ trách', width: '150px', type: 'avatar' },
+      { key: 'due', header: 'Hạn xử lý', width: '120px' },
+    ],
+    rows: [
+      { id: 1, code: 'ISS-2024-000128', name: 'Rò rỉ nước tại tầng 5 khu A', project: 'The Nexus Tower', type: 'Chất lượng', priority: 'Cao', status: 'Đang xử lý', owner: 'Trần Văn B', due: '20/05/2024' },
+      { id: 2, code: 'ISS-2024-000127', name: 'Bê tông cột C1 không đạt mác', project: 'Sunrise Riverside', type: 'Chất lượng', priority: 'Cao', status: 'Mở', owner: 'Phạm Văn D', due: '21/05/2024' },
+      { id: 3, code: 'ISS-2024-000126', name: 'Thiếu biện pháp ATLĐ tại giàn giáo', project: 'Green City Villa', type: 'An toàn', priority: 'Cao', status: 'Chờ phản hồi', owner: 'Lê Minh C', due: '22/05/2024' },
+      { id: 4, code: 'ISS-2024-000125', name: 'Sai lệch kích thước dầm D2', project: 'The Nexus Tower', type: 'Chất lượng', priority: 'Trung bình', status: 'Đang xử lý', owner: 'Nguyễn Văn A', due: '23/05/2024' },
+      { id: 5, code: 'ISS-2024-000124', name: 'Vật liệu thép không đúng chủng loại', project: 'Văn phòng ERPcons', type: 'Vật liệu', priority: 'Cao', status: 'Mở', owner: 'Hoàng Văn E', due: '24/05/2024' },
+      { id: 6, code: 'ISS-2024-000123', name: 'Chậm tiến độ đổ bê tông sàn tầng 3', project: 'Sunrise Riverside', type: 'Tiến độ', priority: 'Trung bình', status: 'Đang xử lý', owner: 'Trần Thị B', due: '25/05/2024' },
+      { id: 7, code: 'ISS-2024-000122', name: 'Nứt tường ngăn phòng 302', project: 'Green City Villa', type: 'Chất lượng', priority: 'Thấp', status: 'Đã giải quyết', owner: 'Lê Minh C', due: '18/05/2024' },
+      { id: 8, code: 'ISS-2024-000121', name: 'Hệ thống điện tạm không an toàn', project: 'The Nexus Tower', type: 'An toàn', priority: 'Cao', status: 'Chờ phản hồi', owner: 'Đặng Quốc H', due: '18/05/2024' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Phân bố theo trạng thái', kind: 'donut',
+      donut: {
+        center: '268', centerLabel: 'Tổng vấn đề',
+        data: [
+          { label: 'Mở', value: 86, color: 'var(--info)', note: '86', extra: '32.1%' },
+          { label: 'Đang xử lý', value: 92, color: 'var(--warning)', note: '92', extra: '34.3%' },
+          { label: 'Chờ phản hồi', value: 34, color: '#f97316', note: '34', extra: '12.7%' },
+          { label: 'Đã giải quyết', value: 54, color: 'var(--success)', note: '54', extra: '20.1%' },
+          { label: 'Đã đóng', value: 2, color: 'var(--slate-300)', note: '2', extra: '0.8%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Vấn đề theo mức ưu tiên', kind: 'bar',
+      bar: {
+        labels: ['Cao', 'Trung bình', 'Thấp', 'Không ưu tiên'],
+        series: [{ name: 'Số lượng', color: 'var(--danger)', values: [116, 98, 38, 16] }],
+      },
+    },
+    {
+      id: 'a3', title: 'Vấn đề quá hạn', kind: 'metric',
+      metric: { value: '18', caption: 'vấn đề quá hạn', sub: '▲ 5.8% so với tháng trước' },
+    },
+    {
+      id: 'a4', title: 'Top dự án có nhiều vấn đề', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 'r1', label: 'The Nexus Tower', value: '116', rate: 43 },
+          { id: 'r2', label: 'Sunrise Riverside', value: '72', rate: 27 },
+          { id: 'r3', label: 'Green City Villa', value: '48', rate: 18 },
+          { id: 'r4', label: 'Văn phòng ERPcons', value: '22', rate: 8 },
+          { id: 'r5', label: 'Khác', value: '10', rate: 4 },
+        ],
+      },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tạo vấn đề mới', icon: 'add_circle' },
+    { id: 'q2', label: 'Vấn đề của tôi', icon: 'person' },
+    { id: 'q3', label: 'Vấn đề quá hạn', icon: 'schedule' },
+    { id: 'q4', label: 'Vấn đề theo dự án', icon: 'domain' },
+    { id: 'q5', label: 'Báo cáo vấn đề', icon: 'monitoring' },
+    { id: 'q6', label: 'Cài đặt quy tắc', icon: 'settings' },
+  ],
+  detail: {
+    code: 'ISS-2024-000128',
+    title: 'Rò rỉ nước tại tầng 5 khu A',
+    badges: [{ label: 'Cao', tone: 'danger' }, { label: 'Đang xử lý', tone: 'warning' }],
+    tabs: ['Thông tin', 'Hoạt động (12)', 'Tệp đính kèm (6)', 'Bình luận (8)', 'Nhật ký'],
+    props: [
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Mức độ ưu tiên', value: 'Cao', icon: 'priority_high', tone: 'danger' },
+      { label: 'Vị trí', value: 'Tầng 5 - Khu A', icon: 'location_on' },
+      { label: 'Trạng thái', value: 'Đang xử lý', icon: 'sync', tone: 'warning' },
+      { label: 'Loại vấn đề', value: 'Chất lượng', icon: 'category' },
+      { label: 'Người phụ trách', value: 'Trần Văn B', icon: 'person' },
+      { label: 'Người tạo', value: 'Nguyễn Văn A', icon: 'edit' },
+      { label: 'Hạn xử lý', value: '20/05/2024 (Quá hạn 2 ngày)', icon: 'event_busy' },
+    ],
+    description: {
+      label: 'Mô tả',
+      text: 'Xuất hiện hiện tượng rò rỉ nước tại trần khu vực phòng kỹ thuật tầng 5, cần kiểm tra và xử lý.',
+    },
+    photos: 3,
+    actions: [
+      { label: 'Chỉnh sửa', icon: 'edit' },
+      { label: 'Cập nhật trạng thái', icon: 'update', primary: true },
+    ],
+  },
+}
+
+/* ================================================================== */
+/* 3 · NCR                                                             */
+/* ================================================================== */
+const ncr: WorkspaceConfig = {
+  id: 'ncr',
+  route: '/lam-viec/ncr',
+  title: 'Báo cáo không phù hợp (NCR)',
+  subtitle: 'Quản lý Non-Conformance Report và hành động khắc phục',
+  createLabel: 'Tạo NCR',
+  searchPlaceholder: 'Tìm kiếm NCR, mã, tiêu đề, dự án, người tạo...',
+  kpis: [
+    { id: 'k1', label: 'Tổng số NCR', value: '128', icon: 'rule', tone: 'info', trend: { direction: 'up', value: '15.2%', label: 'so với tháng trước' } },
+    { id: 'k2', label: 'Mở', value: '34', icon: 'lock_open', tone: 'info', hint: '26.6% tổng NCR' },
+    { id: 'k3', label: 'Đang xử lý', value: '48', icon: 'engineering', tone: 'warning', hint: '37.5% tổng NCR' },
+    { id: 'k4', label: 'Chờ xác minh', value: '18', icon: 'fact_check', tone: 'warning', hint: '14.1% tổng NCR' },
+    { id: 'k5', label: 'Đã đóng', value: '28', icon: 'task_alt', tone: 'success', hint: '21.9% tổng NCR' },
+    { id: 'k6', label: 'Hiệu quả CAPA', value: '86.4%', icon: 'trending_up', tone: 'ai', trend: { direction: 'up', value: '8.3%', label: 'so với tháng trước' } },
+  ],
+  filters: [PROJECT_FILTER, { id: 'type', label: 'Loại NCR', options: [{ value: 'all', label: 'Loại NCR: Tất cả' }] }, { id: 'severity', label: 'Mức độ nghiêm trọng', options: [{ value: 'all', label: 'Mức độ: Tất cả' }] }, STATUS_FILTER],
+  table: {
+    title: 'Danh sách NCR',
+    total: '128',
+    pages: 13,
+    columns: [
+      { key: 'code', header: 'Mã NCR', type: 'code', width: '160px' },
+      { key: 'name', header: 'Tiêu đề' },
+      { key: 'area', header: 'Dự án / Khu vực', width: '160px' },
+      { key: 'type', header: 'Loại NCR', width: '120px' },
+      { key: 'severity', header: 'Mức độ', width: '110px', type: 'badge' },
+      { key: 'status', header: 'Trạng thái', width: '130px', type: 'badge' },
+      { key: 'owner', header: 'Người phụ trách', width: '150px', type: 'avatar' },
+      { key: 'due', header: 'Hạn xử lý', width: '120px' },
+    ],
+    rows: [
+      { id: 1, code: 'NCR-2024-00128', name: 'Lỗi đổ bê tông không đạt cường độ yêu cầu', area: 'The Nexus Tower · Sàn 15', type: 'Chất lượng', severity: 'Cao', status: 'Đang xử lý', owner: 'Trần Văn B', due: '23/05/2024' },
+      { id: 2, code: 'NCR-2024-00127', name: 'Sai kích thước cốt thép dầm D2', area: 'The Nexus Tower · Zone B', type: 'Chất lượng', severity: 'Trung bình', status: 'Mở', owner: 'Phạm Văn D', due: '27/05/2024' },
+      { id: 3, code: 'NCR-2024-00126', name: 'Thiếu biện pháp ATLĐ tại khu vực giàn giáo', area: 'Sunrise Riverside · Block A', type: 'An toàn', severity: 'Cao', status: 'Chờ xác minh', owner: 'Lê Minh C', due: '22/05/2024' },
+      { id: 4, code: 'NCR-2024-00125', name: 'Vật liệu thép không đúng chủng loại', area: 'Green City Villa · Lot 12', type: 'Vật liệu', severity: 'Trung bình', status: 'Đang xử lý', owner: 'Nguyễn Văn A', due: '24/05/2024' },
+      { id: 5, code: 'NCR-2024-00124', name: 'Bề mặt hoàn thiện tường bị rỗ, không phẳng', area: 'The Nexus Tower · Sàn 8', type: 'Chất lượng', severity: 'Thấp', status: 'Mở', owner: 'Hoàng Văn E', due: '25/05/2024' },
+      { id: 6, code: 'NCR-2024-00123', name: 'Rò rỉ nước tại tầng 5 khu A', area: 'The Nexus Tower · Tầng 5', type: 'An toàn', severity: 'Cao', status: 'Đang xử lý', owner: 'Trần Thị B', due: '21/05/2024' },
+      { id: 7, code: 'NCR-2024-00122', name: 'Không tuân thủ quy trình kiểm tra mối hàn', area: 'Văn phòng ERPcons · Xưởng cơ khí', type: 'Quy trình', severity: 'Trung bình', status: 'Đã đóng', owner: 'Đỗ Thị H', due: '18/05/2024' },
+      { id: 8, code: 'NCR-2024-00121', name: 'Thiếu hồ sơ nghiệm thu vật liệu đầu vào', area: 'Sunrise Riverside · Block B', type: 'Hồ sơ', severity: 'Thấp', status: 'Đã đóng', owner: 'Nguyễn Văn A', due: '17/05/2024' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Phân bố NCR theo mức độ', kind: 'donut',
+      donut: {
+        center: '128', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Cao', value: 34, color: 'var(--danger)', note: '34', extra: '26.6%' },
+          { label: 'Trung bình', value: 48, color: 'var(--warning)', note: '48', extra: '37.5%' },
+          { label: 'Thấp', value: 26, color: 'var(--success)', note: '26', extra: '20.3%' },
+          { label: 'Không xác định', value: 20, color: 'var(--slate-300)', note: '20', extra: '15.6%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'NCR theo trạng thái', kind: 'donut',
+      donut: {
+        center: '128', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Mở', value: 34, color: 'var(--info)', note: '34', extra: '26.6%' },
+          { label: 'Đang xử lý', value: 48, color: 'var(--warning)', note: '48', extra: '37.5%' },
+          { label: 'Chờ xác minh', value: 18, color: '#f97316', note: '18', extra: '14.1%' },
+          { label: 'Đã đóng', value: 28, color: 'var(--success)', note: '28', extra: '21.9%' },
+        ],
+      },
+    },
+    {
+      id: 'a3', title: 'Xu hướng NCR theo tháng', kind: 'bar',
+      bar: {
+        labels: ['12/23', '01/24', '02/24', '03/24', '04/24', '05/24'],
+        series: [
+          { name: 'Cao', color: 'var(--danger)', values: [18, 22, 20, 26, 30, 34] },
+          { name: 'Trung bình', color: 'var(--warning)', values: [26, 30, 34, 38, 44, 48] },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Hiệu quả CAPA', kind: 'metric',
+      metric: { value: '86.4%', caption: 'Hiệu quả hành động khắc phục', sub: '▲ 8.3% so với tháng trước' },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tạo NCR mới', icon: 'add_circle' },
+    { id: 'q2', label: 'NCR của tôi', icon: 'person' },
+    { id: 'q3', label: 'NCR quá hạn', icon: 'schedule' },
+    { id: 'q4', label: 'Báo cáo NCR', icon: 'lab_profile' },
+    { id: 'q5', label: 'Hiệu quả CAPA', icon: 'trending_up' },
+    { id: 'q6', label: 'Thư viện nguyên nhân', icon: 'menu_book' },
+  ],
+  detail: {
+    code: 'NCR-2024-00128',
+    title: 'Rò rỉ nước tại tầng 5 khu A',
+    badges: [{ label: 'Cao', tone: 'danger' }, { label: 'Đang xử lý', tone: 'warning' }],
+    tabs: ['Thông tin', 'Nguyên nhân', 'Hành động (CAPA)', 'Tệp đính kèm (4)', 'Nhật ký'],
+    props: [
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Người phụ trách', value: 'Trần Văn B', icon: 'person' },
+      { label: 'Vị trí', value: 'Tầng 5 - Khu A', icon: 'location_on' },
+      { label: 'Ngày tạo', value: '20/05/2024', icon: 'event' },
+      { label: 'Loại NCR', value: 'An toàn', icon: 'category' },
+      { label: 'Hạn xử lý', value: '21/05/2024 (Quá hạn 1 ngày)', icon: 'event_busy' },
+      { label: 'Mức độ', value: 'Cao', icon: 'priority_high', tone: 'danger' },
+      { label: 'Người tạo', value: 'Trần Thị B', icon: 'edit' },
+    ],
+    description: {
+      label: 'Mô tả',
+      text: 'Phát hiện hiện tượng rò rỉ nước từ trần khu vực phòng kỹ thuật tầng 5, ảnh hưởng đến trần thạch cao và hệ thống điện.',
+    },
+    photos: 3,
+    actions: [
+      { label: 'Chỉnh sửa', icon: 'edit' },
+      { label: 'Tạo CAPA', icon: 'build', primary: true },
+    ],
+  },
+}
+
+/* ================================================================== */
+/* 4 · RFI                                                             */
+/* ================================================================== */
+const rfi: WorkspaceConfig = {
+  id: 'rfi',
+  route: '/lam-viec/rfi',
+  title: 'Yêu cầu thông tin (RFI)',
+  subtitle: 'Quản lý Request For Information — yêu cầu thông tin và phản hồi',
+  createLabel: 'Tạo RFI',
+  searchPlaceholder: 'Tìm kiếm RFI, mã, tiêu đề, dự án, người tạo...',
+  kpis: [
+    { id: 'k1', label: 'Tổng số RFI', value: '156', icon: 'help_center', tone: 'info', trend: { direction: 'up', value: '18.4%', label: 'so với tháng trước' } },
+    { id: 'k2', label: 'Mở', value: '38', icon: 'lock_open', tone: 'info', hint: '24.4% tổng RFI' },
+    { id: 'k3', label: 'Chờ phản hồi', value: '42', icon: 'hourglass_top', tone: 'warning', hint: '26.9% tổng RFI' },
+    { id: 'k4', label: 'Đã phản hồi', value: '64', icon: 'mark_email_read', tone: 'success', hint: '41.0% tổng RFI' },
+    { id: 'k5', label: 'Quá hạn', value: '12', icon: 'schedule', tone: 'danger', hint: '7.7% tổng RFI' },
+    { id: 'k6', label: 'Thời gian phản hồi TB', value: '2.6', unit: 'ngày', icon: 'timer', tone: 'ai', trend: { direction: 'down', value: '0.6 ngày', label: 'so với tháng trước' } },
+  ],
+  filters: [PROJECT_FILTER, STATUS_FILTER, { id: 'requester', label: 'Người yêu cầu', options: [{ value: 'all', label: 'Người yêu cầu: Tất cả' }] }, { id: 'discipline', label: 'Discipline', options: [{ value: 'all', label: 'Discipline: Tất cả' }, { value: 'str', label: 'Kết cấu' }, { value: 'arc', label: 'Kiến trúc' }, { value: 'mep', label: 'MEP' }] }],
+  table: {
+    title: 'Danh sách RFI',
+    total: '156',
+    pages: 16,
+    columns: [
+      { key: 'code', header: 'Mã RFI', type: 'code', width: '150px' },
+      { key: 'name', header: 'Tiêu đề' },
+      { key: 'project', header: 'Dự án', width: '150px' },
+      { key: 'discipline', header: 'Chuyên ngành', width: '130px' },
+      { key: 'requester', header: 'Người yêu cầu', width: '150px', type: 'avatar' },
+      { key: 'status', header: 'Trạng thái', width: '130px', type: 'badge' },
+      { key: 'sent', header: 'Ngày gửi', width: '110px' },
+      { key: 'due', header: 'Hạn phản hồi', width: '120px' },
+    ],
+    rows: [
+      { id: 1, code: 'RFI-2024-0087', name: 'Thông tin về kết cấu móng M2', project: 'The Nexus Tower', discipline: 'Kết cấu', requester: 'Nguyễn Văn A', status: 'Chờ phản hồi', sent: '20/05/2024', due: '23/05/2024' },
+      { id: 2, code: 'RFI-2024-0086', name: 'Thông số kỹ thuật cửa kính', project: 'Sunrise Riverside', discipline: 'Kiến trúc', requester: 'Trần Thị B', status: 'Mở', sent: '20/05/2024', due: '27/05/2024' },
+      { id: 3, code: 'RFI-2024-0085', name: 'Chi tiết hệ thống PCCC khu A', project: 'The Nexus Tower', discipline: 'MEP', requester: 'Phạm Văn D', status: 'Đã phản hồi', sent: '19/05/2024', due: '21/05/2024' },
+      { id: 4, code: 'RFI-2024-0084', name: 'Vật liệu hoàn thiện tường ngoài', project: 'Green City Villa', discipline: 'Kiến trúc', requester: 'Lê Minh C', status: 'Đã phản hồi', sent: '19/05/2024', due: '22/05/2024' },
+      { id: 5, code: 'RFI-2024-0083', name: 'Cao độ đáy hố thang máy', project: 'The Nexus Tower', discipline: 'Kết cấu', requester: 'Nguyễn Văn A', status: 'Quá hạn', sent: '18/05/2024', due: '19/05/2024' },
+      { id: 6, code: 'RFI-2024-0082', name: 'Chủng loại ống HVAC', project: 'Văn phòng ERPcons', discipline: 'MEP', requester: 'Hoàng Văn E', status: 'Chờ phản hồi', sent: '18/05/2024', due: '21/05/2024' },
+      { id: 7, code: 'RFI-2024-0081', name: 'Kích thước dầm D5', project: 'Sunrise Riverside', discipline: 'Kết cấu', requester: 'Trần Thị B', status: 'Đã phản hồi', sent: '17/05/2024', due: '20/05/2024' },
+      { id: 8, code: 'RFI-2024-0080', name: 'Bản vẽ chi tiết WC điển hình', project: 'Green City Villa', discipline: 'Kiến trúc', requester: 'Lê Minh C', status: 'Mở', sent: '17/05/2024', due: '24/05/2024' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Phân bố RFI theo trạng thái', kind: 'donut',
+      donut: {
+        center: '156', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Mở', value: 38, color: 'var(--info)', note: '38', extra: '24.4%' },
+          { label: 'Chờ phản hồi', value: 42, color: 'var(--warning)', note: '42', extra: '26.9%' },
+          { label: 'Đã phản hồi', value: 64, color: 'var(--success)', note: '64', extra: '41.0%' },
+          { label: 'Quá hạn', value: 12, color: 'var(--danger)', note: '12', extra: '7.7%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'RFI theo mức độ ưu tiên', kind: 'bar',
+      bar: {
+        labels: ['Cao', 'Trung bình', 'Thấp'],
+        series: [{ name: 'Số lượng', color: 'var(--warning)', values: [54, 62, 40] }],
+      },
+    },
+    {
+      id: 'a3', title: 'Thời gian phản hồi trung bình', kind: 'metric',
+      metric: { value: '2.6', unit: 'ngày', caption: 'Cao 2.1 · Trung bình 2.8 · Thấp 3.2', sub: '▼ 0.6 ngày so với tháng trước' },
+    },
+    {
+      id: 'a4', title: 'RFI theo chuyên ngành', kind: 'donut',
+      donut: {
+        center: '156', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Kết cấu', value: 48, color: 'var(--info)', note: '48', extra: '30.8%' },
+          { label: 'Kiến trúc', value: 46, color: 'var(--success)', note: '46', extra: '29.5%' },
+          { label: 'MEP', value: 40, color: 'var(--warning)', note: '40', extra: '25.6%' },
+          { label: 'Khác', value: 22, color: 'var(--automation)', note: '22', extra: '14.1%' },
+        ],
+      },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tạo RFI mới', icon: 'add_circle' },
+    { id: 'q2', label: 'Danh sách RFI', icon: 'list' },
+    { id: 'q3', label: 'RFI của tôi', icon: 'person' },
+    { id: 'q4', label: 'RFI quá hạn', icon: 'schedule' },
+    { id: 'q5', label: 'Báo cáo RFI', icon: 'monitoring' },
+    { id: 'q6', label: 'Thiết lập mẫu RFI', icon: 'dashboard_customize' },
+  ],
+  detail: {
+    code: 'RFI-2024-0087',
+    title: 'Thông tin về kết cấu móng M2',
+    badges: [{ label: 'Cao', tone: 'danger' }, { label: 'Chờ phản hồi', tone: 'warning' }],
+    tabs: ['Thông tin', 'Trao đổi (4)', 'Tệp đính kèm (3)', 'Lịch sử'],
+    props: [
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Người yêu cầu', value: 'Nguyễn Văn A', icon: 'person' },
+      { label: 'Vị trí', value: 'Tầng 5 - Khu A', icon: 'location_on' },
+      { label: 'Ngày gửi', value: '20/05/2024', icon: 'event' },
+      { label: 'Chuyên ngành', value: 'Kết cấu', icon: 'architecture' },
+      { label: 'Hạn phản hồi', value: '23/05/2024 (Quá hạn 2 ngày)', icon: 'event_busy' },
+      { label: 'Mức độ ưu tiên', value: 'Cao', icon: 'priority_high', tone: 'danger' },
+      { label: 'Người phụ trách', value: 'Trần Văn B', icon: 'engineering' },
+    ],
+    description: {
+      label: 'Mô tả',
+      text: 'Vui lòng cung cấp thông tin chi tiết về kích thước, cao độ và loại bê tông của móng M2 theo bản vẽ kết cấu mới nhất.',
+    },
+    actions: [
+      { label: 'Chỉnh sửa', icon: 'edit' },
+      { label: 'Gửi nhắc nhở', icon: 'notifications_active', primary: true },
+    ],
+  },
+}
+
+/* ================================================================== */
+/* 5 · BẢN VẼ                                                          */
+/* ================================================================== */
+const drawings: WorkspaceConfig = {
+  id: 'drawings',
+  route: '/lam-viec/ban-ve',
+  title: 'Bản vẽ',
+  subtitle: 'Quản lý, kiểm soát và phát hành bản vẽ dự án',
+  createLabel: 'Tải lên bản vẽ',
+  searchPlaceholder: 'Tìm kiếm bản vẽ, mã vẽ, tiêu đề, dự án, sheet...',
+  kpis: [
+    { id: 'k1', label: 'Tổng số bản vẽ', value: '2,458', icon: 'architecture', tone: 'info', trend: { direction: 'up', value: '12.6%', label: 'so với tháng trước' } },
+    { id: 'k2', label: 'Đã phát hành', value: '1,685', icon: 'check_circle', tone: 'success', hint: '68.6% tổng bản vẽ' },
+    { id: 'k3', label: 'Chờ phát hành', value: '312', icon: 'hourglass_top', tone: 'warning', hint: '12.7% tổng bản vẽ' },
+    { id: 'k4', label: 'Đã lỗi thời', value: '241', icon: 'history', tone: 'danger', hint: '9.8% tổng bản vẽ' },
+    { id: 'k5', label: 'Đã thu hồi', value: '88', icon: 'block', tone: 'neutral', hint: '3.6% tổng bản vẽ' },
+    { id: 'k6', label: 'Bản vẽ tham chiếu', value: '1,245', icon: 'link', tone: 'automation', hint: 'được sử dụng' },
+  ],
+  filters: [PROJECT_FILTER, { id: 'discipline', label: 'Discipline', options: [{ value: 'all', label: 'Discipline: Tất cả' }] }, { id: 'type', label: 'Loại bản vẽ', options: [{ value: 'all', label: 'Loại bản vẽ: Tất cả' }] }, STATUS_FILTER],
+  table: {
+    title: 'Danh sách bản vẽ',
+    total: '2,458',
+    pages: 246,
+    columns: [
+      { key: 'code', header: 'Mã bản vẽ', type: 'code', width: '140px' },
+      { key: 'name', header: 'Tiêu đề bản vẽ' },
+      { key: 'project', header: 'Dự án', width: '150px' },
+      { key: 'discipline', header: 'Chuyên ngành', width: '130px' },
+      { key: 'version', header: 'Phiên bản', width: '100px', align: 'center' },
+      { key: 'status', header: 'Trạng thái', width: '140px', type: 'badge' },
+      { key: 'size', header: 'Kích thước', width: '100px', align: 'center' },
+      { key: 'updated', header: 'Cập nhật', width: '120px' },
+    ],
+    rows: [
+      { id: 1, code: 'A-AR-01-0001', name: 'Mặt bằng tầng 1', project: 'The Nexus Tower', discipline: 'Kiến trúc', version: 'V3', status: 'Đã phát hành', size: 'A1', updated: '20/05/2024' },
+      { id: 2, code: 'S-ST-02-0101', name: 'Mặt bằng kết cấu móng M2', project: 'The Nexus Tower', discipline: 'Kết cấu', version: 'V2', status: 'Đã phát hành', size: 'A1', updated: '20/05/2024' },
+      { id: 3, code: 'M-ME-03-0501', name: 'Sơ đồ hệ thống điều hòa tầng 5', project: 'Sunrise Riverside', discipline: 'MEP', version: 'V1', status: 'Chờ phát hành', size: 'A1', updated: '19/05/2024' },
+      { id: 4, code: 'E-EL-04-0701', name: 'Sơ đồ nguyên lý tủ điện DB-1', project: 'Green City Villa', discipline: 'Điện', version: 'V2', status: 'Chờ phát hành', size: 'A3', updated: '19/05/2024' },
+      { id: 5, code: 'A-AR-01-0002', name: 'Mặt bằng tầng 2', project: 'The Nexus Tower', discipline: 'Kiến trúc', version: 'V2', status: 'Đã lỗi thời', size: 'A1', updated: '18/05/2024' },
+      { id: 6, code: 'S-ST-02-0102', name: 'Chi tiết dầm D2', project: 'The Nexus Tower', discipline: 'Kết cấu', version: 'V1', status: 'Đã phát hành', size: 'A3', updated: '18/05/2024' },
+      { id: 7, code: 'M-ME-03-0502', name: 'Chi tiết AHU-01', project: 'Sunrise Riverside', discipline: 'MEP', version: 'V1', status: 'Đã thu hồi', size: 'A3', updated: '17/05/2024' },
+      { id: 8, code: 'A-AR-01-0003', name: 'Mặt cắt A-A', project: 'Green City Villa', discipline: 'Kiến trúc', version: 'V1', status: 'Đã phát hành', size: 'A1', updated: '17/05/2024' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Bản vẽ theo chuyên ngành', kind: 'donut',
+      donut: {
+        center: '2,458', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Kiến trúc', value: 1024, color: 'var(--info)', note: '1,024', extra: '41.7%' },
+          { label: 'Kết cấu', value: 642, color: 'var(--warning)', note: '642', extra: '26.1%' },
+          { label: 'MEP', value: 512, color: '#f97316', note: '512', extra: '20.8%' },
+          { label: 'Điện', value: 186, color: 'var(--success)', note: '186', extra: '7.6%' },
+          { label: 'Khác', value: 94, color: 'var(--slate-300)', note: '94', extra: '3.8%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Bản vẽ theo trạng thái', kind: 'bar',
+      bar: {
+        labels: ['Đã phát hành', 'Chờ phát hành', 'Đã lỗi thời', 'Đã thu hồi'],
+        series: [{ name: 'Số lượng', color: 'var(--success)', values: [1685, 312, 241, 88] }],
+      },
+    },
+    {
+      id: 'a3', title: 'Hoạt động gần đây', kind: 'list',
+      list: {
+        rows: [
+          { id: 'l1', label: 'Trần Văn B đã phát hành A-AR-01-0001 – V3', sub: '20/05/2024 10:30' },
+          { id: 'l2', label: 'Phạm Văn D đã upload M-ME-03-0501 – V1', sub: '19/05/2024 16:45' },
+          { id: 'l3', label: 'Lê Minh C đã lỗi thời A-AR-01-0002 – V2', sub: '18/05/2024 11:05' },
+          { id: 'l4', label: 'Nguyễn Văn A đã thu hồi M-ME-03-0502 – V1', sub: '17/05/2024 14:10' },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Bản vẽ tham chiếu nhiều nhất', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 'd1', label: 'A-AR-01-0001', value: '128', rate: 92 },
+          { id: 'd2', label: 'S-ST-02-0101', value: '96', rate: 74 },
+          { id: 'd3', label: 'M-ME-03-0501', value: '72', rate: 56 },
+          { id: 'd4', label: 'E-EL-04-0701', value: '48', rate: 38 },
+        ],
+      },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tải lên bản vẽ', icon: 'upload' },
+    { id: 'q2', label: 'Yêu cầu phát hành', icon: 'send' },
+    { id: 'q3', label: 'Bản vẽ lỗi thời', icon: 'history' },
+    { id: 'q4', label: 'Bản vẽ thu hồi', icon: 'block' },
+    { id: 'q5', label: 'So sánh bản vẽ', icon: 'compare' },
+    { id: 'q6', label: 'Danh mục chuyên ngành', icon: 'category' },
+  ],
+  detail: {
+    code: 'A-AR-01-0001',
+    title: 'Mặt bằng tầng 1',
+    badges: [{ label: 'Đã phát hành', tone: 'success' }],
+    tabs: ['Thông tin', 'Lịch sử (5)', 'Tệp đính kèm (3)', 'Liên quan (8)', 'Nhật ký'],
+    props: [
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Chuyên ngành', value: 'Kiến trúc', icon: 'architecture' },
+      { label: 'Loại bản vẽ', value: 'Mặt bằng', icon: 'category' },
+      { label: 'Khu vực / Hạng mục', value: 'Tháp 5 - Khu A', icon: 'location_on' },
+      { label: 'Phiên bản', value: 'V3', icon: 'history' },
+      { label: 'Trạng thái', value: 'Đã phát hành', icon: 'check_circle', tone: 'success' },
+      { label: 'Ngày phát hành', value: '20/05/2024', icon: 'event' },
+      { label: 'Người phát hành', value: 'Trần Văn B', icon: 'person' },
+      { label: 'Kích thước', value: 'A1 (594 x 841 mm)', icon: 'aspect_ratio' },
+      { label: 'Tỉ lệ', value: '1:100', icon: 'straighten' },
+    ],
+    description: {
+      label: 'Mô tả',
+      text: 'Mặt bằng bố trí nội thất và tường xây tầng 1. Tệp: A-AR-01-0001-V3.pdf (16.5 MB)',
+    },
+    actions: [
+      { label: 'Tải xuống', icon: 'download' },
+      { label: 'Xem & So sánh', icon: 'compare', primary: true },
+    ],
+  },
+}
+
+/* ================================================================== */
+/* 6 · CUỘC HỌP                                                        */
+/* ================================================================== */
+const meetings: WorkspaceConfig = {
+  id: 'meetings',
+  route: '/lam-viec/cuoc-hop',
+  title: 'Cuộc họp',
+  subtitle: 'Quản lý cuộc họp, biên bản và theo dõi việc thực hiện',
+  createLabel: 'Tạo cuộc họp',
+  searchPlaceholder: 'Tìm kiếm cuộc họp, nội dung, người tham dự...',
+  kpis: [
+    { id: 'k1', label: 'Tổng cuộc họp', value: '128', icon: 'groups_3', tone: 'info', trend: { direction: 'up', value: '18.2%', label: 'so với tháng trước' } },
+    { id: 'k2', label: 'Đã hoàn thành', value: '86', icon: 'check_circle', tone: 'success', hint: '67.2% tổng cuộc họp' },
+    { id: 'k3', label: 'Đang diễn ra', value: '12', icon: 'play_circle', tone: 'info', hint: '9.4% tổng cuộc họp' },
+    { id: 'k4', label: 'Sắp diễn ra', value: '18', icon: 'upcoming', tone: 'warning', hint: '14.1% tổng cuộc họp' },
+    { id: 'k5', label: 'Quá hạn biên bản', value: '9', icon: 'assignment_late', tone: 'danger', hint: '7.0% tổng cuộc họp' },
+    { id: 'k6', label: 'Việc cần theo dõi', value: '56', icon: 'checklist', tone: 'automation', trend: { direction: 'up', value: '12.5%', label: 'so với tháng trước' } },
+  ],
+  filters: [PROJECT_FILTER, { id: 'type', label: 'Loại cuộc họp', options: [{ value: 'all', label: 'Loại cuộc họp: Tất cả' }] }, STATUS_FILTER, { id: 'time', label: 'Thời gian', options: [{ value: 'all', label: 'Thời gian: Tất cả' }] }],
+  tabs: [
+    { id: 'all', label: 'Tất cả' },
+    { id: 'running', label: 'Đang diễn ra' },
+    { id: 'upcoming', label: 'Sắp diễn ra' },
+    { id: 'overdue', label: 'Quá hạn' },
+    { id: 'done', label: 'Đã hoàn thành' },
+    { id: 'mine', label: 'Tôi tham dự' },
+  ],
+  table: {
+    title: 'Danh sách cuộc họp',
+    total: '128',
+    pages: 13,
+    columns: [
+      { key: 'code', header: 'Mã cuộc họp', type: 'code', width: '150px' },
+      { key: 'name', header: 'Tiêu đề' },
+      { key: 'project', header: 'Dự án / Nội bộ', width: '150px' },
+      { key: 'type', header: 'Loại cuộc họp', width: '140px' },
+      { key: 'time', header: 'Thời gian', width: '170px' },
+      { key: 'status', header: 'Trạng thái', width: '140px', type: 'badge' },
+      { key: 'chair', header: 'Chủ trì', width: '150px', type: 'avatar' },
+    ],
+    rows: [
+      { id: 1, code: 'MTG-2024-0052', name: 'Họp giao ban tiến độ tuần 21', project: 'The Nexus Tower', type: 'Giao ban tiến độ', time: '20/05/2024 09:00 - 10:00', status: 'Đã hoàn thành', chair: 'Nguyễn Văn A' },
+      { id: 2, code: 'MTG-2024-0051', name: 'Họp nghiệm thu khối lượng T5', project: 'The Nexus Tower', type: 'Nghiệm thu', time: '20/05/2024 14:00 - 15:30', status: 'Đang diễn ra', chair: 'Trần Văn B' },
+      { id: 3, code: 'MTG-2024-0050', name: 'Họp triển khai thiết kế MEP', project: 'The Nexus Tower', type: 'Triển khai', time: '21/05/2024 09:00 - 11:00', status: 'Sắp diễn ra', chair: 'Phạm Văn D' },
+      { id: 4, code: 'MTG-2024-0049', name: 'Họp với Chủ đầu tư', project: 'Green City Villa', type: 'Họp với CĐT', time: '21/05/2024 14:00 - 15:30', status: 'Sắp diễn ra', chair: 'Lê Minh C' },
+      { id: 5, code: 'MTG-2024-0048', name: 'Họp xử lý phát sinh #125', project: 'Sunrise Riverside', type: 'Xử lý vấn đề', time: '18/05/2024 10:00 - 11:00', status: 'Quá hạn', chair: 'Hoàng Văn E' },
+      { id: 6, code: 'MTG-2024-0047', name: 'Họp an toàn lao động định kỳ', project: 'The Nexus Tower', type: 'An toàn', time: '17/05/2024 08:30 - 09:30', status: 'Đã hoàn thành', chair: 'Nguyễn Văn A' },
+      { id: 7, code: 'MTG-2024-0046', name: 'Họp bàn giải pháp chống thấm', project: 'Green City Villa', type: 'Kỹ thuật', time: '16/05/2024 14:00 - 15:00', status: 'Đã hoàn thành', chair: 'Trần Thị B' },
+      { id: 8, code: 'MTG-2024-0045', name: 'Họp Kick-off dự án', project: 'Green City Villa', type: 'Kick-off', time: '15/05/2024 09:00 - 11:00', status: 'Đã hoàn thành', chair: 'Nguyễn Văn A' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Cuộc họp theo trạng thái', kind: 'donut',
+      donut: {
+        center: '128', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Đã hoàn thành', value: 86, color: 'var(--success)', note: '86', extra: '67.2%' },
+          { label: 'Đang diễn ra', value: 12, color: 'var(--info)', note: '12', extra: '9.4%' },
+          { label: 'Sắp diễn ra', value: 18, color: 'var(--warning)', note: '18', extra: '14.1%' },
+          { label: 'Quá hạn', value: 9, color: 'var(--danger)', note: '9', extra: '7.0%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Cuộc họp theo loại', kind: 'donut',
+      donut: {
+        center: '128', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Giao ban tiến độ', value: 48, color: 'var(--info)', note: '48', extra: '37.5%' },
+          { label: 'Nghiệm thu', value: 24, color: 'var(--warning)', note: '24', extra: '18.8%' },
+          { label: 'Họp với CĐT', value: 16, color: '#f97316', note: '16', extra: '12.5%' },
+          { label: 'Kỹ thuật', value: 14, color: 'var(--success)', note: '14', extra: '10.9%' },
+          { label: 'An toàn', value: 12, color: 'var(--automation)', note: '12', extra: '9.4%' },
+          { label: 'Khác', value: 14, color: 'var(--slate-300)', note: '14', extra: '10.9%' },
+        ],
+      },
+    },
+    {
+      id: 'a3', title: 'Xu hướng theo tháng', kind: 'bar',
+      bar: {
+        labels: ['12/23', '01/24', '02/24', '03/24', '04/24', '05/24'],
+        series: [
+          { name: 'Tổng cuộc họp', color: 'var(--info)', values: [28, 34, 30, 42, 38, 46] },
+          { name: 'Đã hoàn thành', color: 'var(--success)', values: [20, 26, 22, 32, 28, 34] },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Việc cần theo dõi', kind: 'metric',
+      metric: { value: '56', caption: 'việc cần theo dõi', sub: 'Đúng hạn 48 (85.7%) · Quá hạn 8 (14.3%)' },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tạo cuộc họp', icon: 'add_circle' },
+    { id: 'q2', label: 'Lịch của tôi', icon: 'event' },
+    { id: 'q3', label: 'Biên bản của tôi', icon: 'description' },
+    { id: 'q4', label: 'Việc cần theo dõi', icon: 'checklist' },
+    { id: 'q5', label: 'Báo cáo cuộc họp', icon: 'monitoring' },
+    { id: 'q6', label: 'Mẫu biên bản', icon: 'dashboard_customize' },
+  ],
+  detail: {
+    code: 'MTG-2024-0052',
+    title: 'Họp giao ban tiến độ tuần 21',
+    badges: [{ label: 'Đã hoàn thành', tone: 'success' }],
+    tabs: ['Thông tin', 'Nội dung', 'Biên bản (1)', 'Việc theo dõi (6)', 'Tệp đính kèm (4)'],
+    props: [
+      { label: 'Thời gian', value: '20/05/2024 · 09:00 - 10:00', icon: 'schedule' },
+      { label: 'Địa điểm', value: 'Phòng họp A - Tầng 5', icon: 'location_on' },
+      { label: 'Loại cuộc họp', value: 'Giao ban tiến độ', icon: 'category' },
+      { label: 'Chủ trì', value: 'Nguyễn Văn A', icon: 'person' },
+      { label: 'Thư ký', value: 'Trần Thị B', icon: 'edit_note' },
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Trạng thái', value: 'Đã hoàn thành', icon: 'check_circle', tone: 'success' },
+      { label: 'Người tham dự', value: '12 người', icon: 'groups' },
+    ],
+    description: {
+      label: 'Nội dung chính',
+      text: 'Cập nhật tiến độ các hạng mục chính · Rà soát các vấn đề tồn tại · Kế hoạch và nguồn lực tuần tới · An toàn lao động.',
+    },
+    actions: [
+      { label: 'Chỉnh sửa', icon: 'edit' },
+      { label: 'Xem biên bản', icon: 'description', primary: true },
+    ],
+  },
+}
+
+/* ================================================================== */
+/* 7 · TÀI LIỆU                                                        */
+/* ================================================================== */
+const documents: WorkspaceConfig = {
+  id: 'documents',
+  route: '/lam-viec/tai-lieu',
+  title: 'Tài liệu',
+  subtitle: 'Quản lý và cộng tác toàn bộ tài liệu của doanh nghiệp',
+  createLabel: 'Tạo mới',
+  searchPlaceholder: 'Tìm kiếm tài liệu, thư mục, dự án, hợp đồng...',
+  kpis: [
+    { id: 'k1', label: 'Tổng tài liệu', value: '24,568', icon: 'folder_open', tone: 'info', trend: { direction: 'up', value: '12.6%', label: 'so với tháng trước' } },
+    { id: 'k2', label: 'Đang chờ duyệt', value: '156', icon: 'hourglass_top', tone: 'warning', trend: { direction: 'up', value: '8.3%', label: 'so với tháng trước' } },
+    { id: 'k3', label: 'Sắp hết hạn', value: '83', icon: 'event_busy', tone: 'danger', trend: { direction: 'up', value: '5.1%', label: 'so với tháng trước' } },
+    { id: 'k4', label: 'Đã ký số', value: '8,642', icon: 'draw', tone: 'success', trend: { direction: 'up', value: '18.2%', label: 'so với tháng trước' } },
+    { id: 'k5', label: 'Được chia sẻ', value: '1,248', icon: 'share', tone: 'automation', trend: { direction: 'up', value: '10.4%', label: 'so với tháng trước' } },
+    { id: 'k6', label: 'Dung lượng sử dụng', value: '128.6', unit: 'GB', icon: 'database', tone: 'neutral', hint: '25.7% / 500 GB' },
+  ],
+  filters: [{ id: 'type', label: 'Loại tài liệu', options: [{ value: 'all', label: 'Loại tài liệu: Tất cả' }] }, PROJECT_FILTER, STATUS_FILTER, { id: 'owner', label: 'Người sở hữu', options: [{ value: 'all', label: 'Người sở hữu: Tất cả' }] }],
+  table: {
+    title: 'Danh sách tài liệu',
+    total: '24,568',
+    pages: 2457,
+    columns: [
+      { key: 'name', header: 'Tên tài liệu' },
+      { key: 'type', header: 'Loại tài liệu', width: '130px' },
+      { key: 'project', header: 'Dự án / Thư mục', width: '160px' },
+      { key: 'owner', header: 'Chủ sở hữu', width: '150px', type: 'avatar' },
+      { key: 'status', header: 'Trạng thái', width: '120px', type: 'badge' },
+      { key: 'updated', header: 'Ngày cập nhật', width: '140px' },
+      { key: 'size', header: 'Kích thước', width: '110px', align: 'right' },
+    ],
+    rows: [
+      { id: 1, name: 'Hợp đồng thi công móng.pdf · v2.1', type: 'Hợp đồng', project: 'The Nexus Tower', owner: 'Nguyễn Văn A', status: 'Đã ký', updated: '20/05/2024 10:32', size: '2.45 MB' },
+      { id: 2, name: 'Biên bản nghiệm thu PCCC.docx · v1.0', type: 'Biên bản', project: 'The Nexus Tower', owner: 'Trần Thị B', status: 'Chờ duyệt', updated: '20/05/2024 09:15', size: '1.28 MB' },
+      { id: 3, name: 'Bảng tiến độ tổng thể.xlsx · v3.4', type: 'Báo cáo', project: 'The Nexus Tower', owner: 'Lê Minh C', status: 'Đã duyệt', updated: '19/05/2024 16:45', size: '3.67 MB' },
+      { id: 4, name: 'Mặt bằng tầng 1.dwg · v1.2', type: 'Bản vẽ', project: 'The Nexus Tower', owner: 'Phạm Văn D', status: 'Đã ký', updated: '19/05/2024 14:20', size: '8.92 MB' },
+      { id: 5, name: 'Hồ sơ năng lực công ty.pdf · v2.0', type: 'Hồ sơ', project: 'ERPcons', owner: 'Nguyễn Văn A', status: 'Đã duyệt', updated: '18/05/2024 11:05', size: '4.31 MB' },
+      { id: 6, name: 'Báo cáo tuần 20-05.pptx · v1.1', type: 'Báo cáo', project: 'LPC Project', owner: 'Trần Thị B', status: 'Đã duyệt', updated: '18/05/2024 09:30', size: '6.15 MB' },
+      { id: 7, name: 'Hồ sơ thiết kế kết cấu.zip · v1.0', type: 'Hồ sơ', project: 'Sunrise Riverside', owner: 'Lê Minh C', status: 'Đã ký', updated: '17/05/2024 17:20', size: '45.6 MB' },
+      { id: 8, name: 'Chứng chỉ ISO 9001.pdf · v1.0', type: 'Pháp lý', project: 'ERPcons', owner: 'Nguyễn Văn A', status: 'Đã duyệt', updated: '17/05/2024 15:10', size: '1.02 MB' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Thư mục truy cập nhanh', kind: 'list',
+      list: {
+        rows: [
+          { id: 'f1', label: '01. The Nexus Tower', value: '1,248 tài liệu' },
+          { id: 'f2', label: '02. Sunrise Riverside', value: '874 tài liệu' },
+          { id: 'f3', label: '03. Green City Villa', value: '642 tài liệu' },
+          { id: 'f4', label: '04. ERPcons', value: '1,024 tài liệu' },
+          { id: 'f5', label: '05. Pháp lý', value: '356 tài liệu' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Mẫu tài liệu phổ biến', kind: 'list',
+      list: {
+        rows: [
+          { id: 't1', label: 'Hợp đồng thi công', sub: 'DOCX' },
+          { id: 't2', label: 'Yêu cầu thanh toán', sub: 'DOCX', value: '5 ngày', tone: 'warning' },
+          { id: 't3', label: 'Biên bản nghiệm thu', sub: 'DOCX' },
+          { id: 't4', label: 'Đề nghị tạm ứng', sub: 'XLSX', value: '8 ngày', tone: 'warning' },
+          { id: 't5', label: 'Báo cáo tiến độ', sub: 'XLSX' },
+          { id: 't6', label: 'Phiếu giao nhận', sub: 'PDF', value: '13 ngày', tone: 'warning' },
+        ],
+      },
+    },
+    {
+      id: 'a3', title: 'Yêu cầu tài liệu', kind: 'list',
+      list: {
+        rows: [
+          { id: 'r1', label: 'Yêu cầu hồ sơ năng lực nhà thầu', sub: 'The Nexus Tower · Hạn 25/05/2024', value: 'Chờ cung cấp', tone: 'warning' },
+          { id: 'r2', label: 'Yêu cầu bản vẽ shopdrawing', sub: 'Sunrise Riverside · Hạn 22/05/2024', value: 'Đang xử lý', tone: 'info' },
+          { id: 'r3', label: 'Yêu cầu chứng chỉ vật liệu', sub: 'LPC Project · Hạn 18/05/2024', value: 'Quá hạn', tone: 'danger' },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Dung lượng lưu trữ', kind: 'metric',
+      metric: { value: '128.6', unit: 'GB', caption: 'Đã dùng / 500 GB', sub: '25.7% dung lượng' },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tải lên tài liệu', icon: 'upload' },
+    { id: 'q2', label: 'Tạo thư mục', icon: 'create_new_folder' },
+    { id: 'q3', label: 'Yêu cầu tài liệu', icon: 'assignment' },
+    { id: 'q4', label: 'Ký số & Phê duyệt', icon: 'draw' },
+    { id: 'q5', label: 'Files đã chia sẻ', icon: 'share' },
+    { id: 'q6', label: 'Quản lý dung lượng', icon: 'database' },
+  ],
+}
+
+/* ================================================================== */
+/* 8 · NGÂN SÁCH                                                       */
+/* ================================================================== */
+const budget: WorkspaceConfig = {
+  id: 'budget',
+  route: '/lam-viec/ngan-sach',
+  title: 'Ngân sách',
+  subtitle: 'Quản lý ngân sách, theo dõi thực chi và kiểm soát chi phí',
+  createLabel: 'Tạo ngân sách',
+  searchPlaceholder: 'Tìm kiếm ngân sách, dự án, hạng mục, mã ngân sách...',
+  kpis: [
+    { id: 'k1', label: 'Tổng ngân sách', value: '1,256.68', unit: 'tỷ', icon: 'account_balance_wallet', tone: 'info', trend: { direction: 'up', value: '12.6%', label: 'so với kỳ trước' } },
+    { id: 'k2', label: 'Đã cam kết (PO)', value: '856.34', unit: 'tỷ', icon: 'handshake', tone: 'success', hint: '68.1% trên ngân sách' },
+    { id: 'k3', label: 'Đã thực chi', value: '623.45', unit: 'tỷ', icon: 'payments', tone: 'warning', hint: '49.6% trên ngân sách' },
+    { id: 'k4', label: 'Còn lại', value: '633.23', unit: 'tỷ', icon: 'savings', tone: 'ai', hint: '50.4% còn lại' },
+    { id: 'k5', label: 'Dự báo cuối kỳ', value: '1,312.45', unit: 'tỷ', icon: 'query_stats', tone: 'automation', hint: '+4.4% so với ngân sách' },
+    { id: 'k6', label: 'Vượt ngân sách', value: '55.77', unit: 'tỷ', icon: 'error', tone: 'danger', hint: '4.4% vượt ngân sách' },
+  ],
+  filters: [PROJECT_FILTER, { id: 'year', label: 'Năm', options: [{ value: '2024', label: 'Năm: 2024' }, { value: '2023', label: 'Năm: 2023' }] }, { id: 'type', label: 'Loại ngân sách', options: [{ value: 'all', label: 'Loại ngân sách: Tất cả' }] }, STATUS_FILTER],
+  tabs: [
+    { id: 'all', label: 'Tổng quan' },
+    { id: 'project', label: 'Theo dự án' },
+    { id: 'item', label: 'Theo hạng mục' },
+    { id: 'cost', label: 'Theo chi phí' },
+    { id: 'source', label: 'Theo nguồn vốn' },
+  ],
+  table: {
+    title: 'Danh sách ngân sách',
+    total: '68',
+    pages: 7,
+    columns: [
+      { key: 'code', header: 'Mã ngân sách', type: 'code', width: '140px' },
+      { key: 'name', header: 'Tên ngân sách' },
+      { key: 'type', header: 'Loại ngân sách', width: '130px' },
+      { key: 'unit', header: 'Dự án / Đơn vị', width: '170px' },
+      { key: 'total', header: 'Tổng ngân sách (VND)', width: '170px', align: 'right', type: 'money' },
+      { key: 'spent', header: 'Đã thực chi', width: '150px', align: 'right', type: 'money' },
+      { key: 'status', header: 'Trạng thái', width: '140px', type: 'badge' },
+      { key: 'rate', header: '% Thực chi', width: '120px', type: 'progress' },
+    ],
+    rows: [
+      { id: 1, code: 'BUD-2024-001', name: 'Ngân sách tổng Công ty 2024', type: 'Tổng công ty', unit: 'Công ty CP Xây dựng The Nexus', total: '300,000,000,000', spent: '158,450,000,000', status: 'Đang thực hiện', rate: 53 },
+      { id: 2, code: 'BUD-2024-002', name: 'Dự án The Nexus Tower', type: 'Dự án', unit: 'The Nexus Tower', total: '150,000,000,000', spent: '89,250,000,000', status: 'Đang thực hiện', rate: 60 },
+      { id: 3, code: 'BUD-2024-003', name: 'Dự án Green City Villa', type: 'Dự án', unit: 'Green City Villa', total: '85,000,000,000', spent: '42,140,000,000', status: 'Đang thực hiện', rate: 50 },
+      { id: 4, code: 'BUD-2024-004', name: 'Dự án Sunrise Riverside', type: 'Dự án', unit: 'Sunrise Riverside', total: '65,000,000,000', spent: '33,120,000,000', status: 'Đang thực hiện', rate: 51 },
+      { id: 5, code: 'BUD-2024-005', name: 'Khối văn phòng & Hành chính', type: 'Phòng ban', unit: 'Khối Văn phòng', total: '22,000,000,000', spent: '11,260,000,000', status: 'Đang thực hiện', rate: 61 },
+      { id: 6, code: 'BUD-2024-006', name: 'Marketing & Sales', type: 'Phòng ban', unit: 'Phòng Marketing', total: '12,000,000,000', spent: '5,380,000,000', status: 'Đang thực hiện', rate: 45 },
+      { id: 7, code: 'BUD-2024-007', name: 'Đầu tư thiết bị', type: 'Đầu tư', unit: 'Công ty CP Xây dựng The Nexus', total: '48,000,000,000', spent: '27,750,000,000', status: 'Vượt ngân sách', rate: 58 },
+      { id: 8, code: 'BUD-2024-008', name: 'Dự phòng rủi ro', type: 'Dự phòng', unit: 'Công ty CP Xây dựng The Nexus', total: '10,000,000,000', spent: '1,150,000,000', status: 'Chưa sử dụng', rate: 12 },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Tổng quan ngân sách', kind: 'donut',
+      donut: {
+        center: '1,256.68', centerLabel: 'tỷ VND',
+        data: [
+          { label: 'Đã thực chi', value: 623.45, color: 'var(--danger)', note: '623.45 tỷ', extra: '49.6%' },
+          { label: 'Đã cam kết (PO)', value: 856.34, color: 'var(--warning)', note: '856.34 tỷ', extra: '68.1%' },
+          { label: 'Còn lại', value: 633.23, color: 'var(--success)', note: '633.23 tỷ', extra: '50.4%' },
+          { label: 'Vượt ngân sách', value: 55.77, color: 'var(--info)', note: '55.77 tỷ', extra: '4.4%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Thực chi theo tháng (tỷ VND)', kind: 'bar',
+      bar: {
+        labels: ['01/24', '02/24', '03/24', '04/24', '05/24', '06/24'],
+        series: [{ name: 'Thực chi', color: 'var(--info)', values: [62, 78, 104, 96, 128, 155] }],
+      },
+    },
+    {
+      id: 'a3', title: 'Top dự án theo % thực chi', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 'b1', label: 'Sunrise Riverside', value: '64.7%', rate: 65 },
+          { id: 'b2', label: 'The Nexus Tower', value: '59.5%', rate: 60 },
+          { id: 'b3', label: 'Green City Villa', value: '49.6%', rate: 50 },
+          { id: 'b4', label: 'Khu đô thị An Phú', value: '47.2%', rate: 47 },
+          { id: 'b5', label: 'Nhà máy Bình Dương', value: '45.1%', rate: 45 },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Dự báo vs Ngân sách', kind: 'metric',
+      metric: { value: '1,312.45', unit: 'tỷ', caption: 'Dự báo cuối kỳ / Ngân sách 1,256.68 tỷ', sub: 'Vượt ngân sách dự kiến 55.77 tỷ (4.4%)' },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tạo ngân sách', icon: 'add_circle' },
+    { id: 'q2', label: 'Phân bổ ngân sách', icon: 'account_tree' },
+    { id: 'q3', label: 'Đề xuất điều chỉnh', icon: 'edit_note' },
+    { id: 'q4', label: 'Theo dõi thực chi', icon: 'monitoring' },
+    { id: 'q5', label: 'So sánh ngân sách', icon: 'compare' },
+    { id: 'q6', label: 'Nhập từ Excel', icon: 'upload_file' },
+  ],
+  detail: {
+    code: 'BUD-2024-002',
+    title: 'Dự án The Nexus Tower',
+    badges: [{ label: 'Đang thực hiện', tone: 'info' }],
+    tabs: ['Thông tin', 'Phân bổ (8)', 'Thực chi (124)', 'Dự báo', 'Lịch sử'],
+    props: [
+      { label: 'Loại ngân sách', value: 'Dự án', icon: 'category' },
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Đơn vị chủ trì', value: 'Ban Quản lý dự án 1', icon: 'groups' },
+      { label: 'Năm ngân sách', value: '2024', icon: 'event' },
+      { label: 'Tổng ngân sách', value: '150,000,000,000 VND', icon: 'account_balance_wallet' },
+      { label: 'Đã cam kết (PO)', value: '52,300,000,000 VND (34.9%)', icon: 'handshake' },
+      { label: 'Đã thực chi', value: '89,250,000,000 VND (59.5%)', icon: 'payments' },
+      { label: 'Còn lại', value: '8,450,000,000 VND (5.6%)', icon: 'savings' },
+    ],
+    actions: [
+      { label: 'Chỉnh sửa', icon: 'edit' },
+      { label: 'Tạo đề xuất điều chỉnh', icon: 'edit_note', primary: true },
+    ],
+  },
+}
+
+/* ================================================================== */
+/* 9 · CHI PHÍ                                                         */
+/* ================================================================== */
+const cost: WorkspaceConfig = {
+  id: 'cost',
+  route: '/lam-viec/chi-phi',
+  title: 'Chi phí',
+  subtitle: 'Quản lý chi phí dự án theo CBS/WBS và theo dõi kiểm soát chi phí',
+  createLabel: 'Tạo chi phí',
+  searchPlaceholder: 'Tìm kiếm dự án, hạng mục, chi phí, chứng từ...',
+  kpis: [
+    { id: 'k1', label: 'Tổng chi phí', value: '856.34', unit: 'tỷ', icon: 'payments', tone: 'info', trend: { direction: 'up', value: '12.6%', label: 'so với kế hoạch' } },
+    { id: 'k2', label: 'Giá trị dự toán (BAC)', value: '1,250.00', unit: 'tỷ', icon: 'request_quote', tone: 'neutral' },
+    { id: 'k3', label: 'Giá trị đã phát sinh (AC)', value: '856.34', unit: 'tỷ', icon: 'receipt_long', tone: 'success', hint: '68.5% so với BAC' },
+    { id: 'k4', label: 'Giá trị công việc (EV)', value: '902.12', unit: 'tỷ', icon: 'engineering', tone: 'warning', hint: '72.2% so với BAC' },
+    { id: 'k5', label: 'CPI (Hiệu suất chi phí)', value: '1.05', icon: 'speed', tone: 'ai', hint: 'Hiệu quả' },
+    { id: 'k6', label: 'VAC (Chênh lệch hoàn thành)', value: '1,220.45', unit: 'tỷ', icon: 'trending_down', tone: 'danger', hint: '-2.4% so với BAC' },
+  ],
+  filters: [PROJECT_FILTER, { id: 'year', label: 'Năm', options: [{ value: '2024', label: 'Năm: 2024' }] }, { id: 'type', label: 'Loại chi phí', options: [{ value: 'all', label: 'Loại chi phí: Tất cả' }] }, STATUS_FILTER],
+  tabs: [
+    { id: 'cbs', label: 'Theo CBS/WBS' },
+    { id: 'type', label: 'Theo loại chi phí' },
+    { id: 'supplier', label: 'Theo nhà cung cấp' },
+    { id: 'package', label: 'Theo gói thầu' },
+    { id: 'time', label: 'Theo thời gian' },
+  ],
+  table: {
+    title: 'Danh sách hạng mục chi phí',
+    total: '56',
+    pages: 3,
+    columns: [
+      { key: 'code', header: 'Mã CBS', type: 'code', width: '110px' },
+      { key: 'name', header: 'Hạng mục chi phí' },
+      { key: 'bac', header: 'Dự toán (BAC)', width: '170px', align: 'right', type: 'money' },
+      { key: 'ac', header: 'Phát sinh (AC)', width: '170px', align: 'right', type: 'money' },
+      { key: 'ev', header: 'EV (Giá trị công việc)', width: '170px', align: 'right', type: 'money' },
+      { key: 'cpi', header: 'CPI', width: '80px', align: 'center' },
+      { key: 'rate', header: '% So với dự toán', width: '150px', type: 'progress' },
+      { key: 'status', header: 'Trạng thái', width: '140px', type: 'badge' },
+    ],
+    rows: [
+      { id: 1, code: '1', name: 'The Nexus Tower', bac: '1,250,000,000,000', ac: '856,340,000,000', ev: '902,120,000,000', cpi: '1.05', rate: 69, status: 'Đang thực hiện' },
+      { id: 2, code: '1.1', name: 'Chi phí trực tiếp', bac: '950,000,000,000', ac: '652,180,000,000', ev: '688,450,000,000', cpi: '1.06', rate: 69, status: 'Đang thực hiện' },
+      { id: 3, code: '1.1.1', name: 'Chi phí nhân công', bac: '220,000,000,000', ac: '158,600,000,000', ev: '168,900,000,000', cpi: '1.06', rate: 72, status: 'Đang thực hiện' },
+      { id: 4, code: '1.1.2', name: 'Chi phí vật liệu', bac: '480,000,000,000', ac: '325,400,000,000', ev: '343,800,000,000', cpi: '1.06', rate: 68, status: 'Đang thực hiện' },
+      { id: 5, code: '1.1.3', name: 'Chi phí máy thi công', bac: '150,000,000,000', ac: '98,250,000,000', ev: '104,100,000,000', cpi: '1.06', rate: 66, status: 'Đang thực hiện' },
+      { id: 6, code: '1.1.4', name: 'Chi phí thầu phụ', bac: '100,000,000,000', ac: '70,930,000,000', ev: '71,650,000,000', cpi: '1.01', rate: 71, status: 'Đang thực hiện' },
+      { id: 7, code: '1.2', name: 'Chi phí gián tiếp', bac: '180,000,000,000', ac: '126,160,000,000', ev: '128,900,000,000', cpi: '1.05', rate: 71, status: 'Đang thực hiện' },
+      { id: 8, code: '1.3', name: 'Chi phí khác', bac: '120,000,000,000', ac: '76,000,000,000', ev: '79,450,000,000', cpi: '1.05', rate: 63, status: 'Cảnh báo' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Cơ cấu chi phí', kind: 'donut',
+      donut: {
+        center: '856.34', centerLabel: 'tỷ VND',
+        data: [
+          { label: 'Chi phí nhân công', value: 158.6, color: 'var(--info)', note: '158.60 tỷ', extra: '18.5%' },
+          { label: 'Chi phí vật liệu', value: 325.4, color: 'var(--warning)', note: '325.40 tỷ', extra: '38.0%' },
+          { label: 'Chi phí máy thi công', value: 98.25, color: '#f97316', note: '98.25 tỷ', extra: '11.5%' },
+          { label: 'Chi phí thầu phụ', value: 70.93, color: 'var(--slate-300)', note: '70.93 tỷ', extra: '8.3%' },
+          { label: 'Chi phí gián tiếp', value: 128.16, color: 'var(--automation)', note: '128.16 tỷ', extra: '15.0%' },
+          { label: 'Chi phí khác', value: 76, color: 'var(--danger)', note: '76.00 tỷ', extra: '8.7%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Xu hướng chi phí (tỷ VND)', kind: 'bar',
+      bar: {
+        labels: ['01/24', '02/24', '03/24', '04/24', '05/24'],
+        series: [
+          { name: 'AC (Phát sinh)', color: 'var(--info)', values: [180, 340, 520, 700, 856] },
+          { name: 'EV (Giá trị công việc)', color: 'var(--success)', values: [190, 360, 550, 740, 902] },
+        ],
+      },
+    },
+    {
+      id: 'a3', title: 'Hiệu suất chi phí (CPI)', kind: 'metric',
+      metric: { value: '1.05', caption: 'Hiệu quả — CPI > 1', sub: 'SPI 1.10 · Tiến độ vượt kế hoạch' },
+    },
+    {
+      id: 'a4', title: 'Dự báo hoàn thành (EAC)', kind: 'metric',
+      metric: { value: '1,220.45', unit: 'tỷ', caption: 'BAC 1,250.00 tỷ · EAC 1,220.45 tỷ', sub: 'VAC -29.56 tỷ (tiết kiệm)' },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tạo chi phí mới', icon: 'add_circle' },
+    { id: 'q2', label: 'Nhập chi phí Excel', icon: 'upload_file' },
+    { id: 'q3', label: 'Phân bổ chi phí', icon: 'account_tree' },
+    { id: 'q4', label: 'Theo dõi cam kết', icon: 'handshake' },
+    { id: 'q5', label: 'Báo cáo chi phí', icon: 'monitoring' },
+    { id: 'q6', label: 'So sánh chi phí', icon: 'compare' },
+  ],
+  detail: {
+    code: 'CP-2024-000568',
+    title: 'Chi phí bê tông cột tầng 10',
+    badges: [{ label: 'Đã ghi nhận', tone: 'success' }],
+    tabs: ['Thông tin', 'Phân bổ (3)', 'Chứng từ (4)', 'Lịch sử'],
+    props: [
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Hạng mục (CBS)', value: '1.1.2 Chi phí vật liệu', icon: 'account_tree' },
+      { label: 'Loại chi phí', value: 'Vật liệu xây dựng', icon: 'category' },
+      { label: 'Nhà cung cấp', value: 'Công ty CP Thép Việt', icon: 'local_shipping' },
+      { label: 'Ngày chi phí', value: '20/05/2024', icon: 'event' },
+      { label: 'Số tiền (chưa VAT)', value: '125,000,000 VND', icon: 'payments' },
+      { label: 'VAT (10%)', value: '12,500,000 VND', icon: 'receipt' },
+      { label: 'Tổng (gồm VAT)', value: '137,500,000 VND', icon: 'account_balance_wallet' },
+    ],
+    description: {
+      label: 'Mô tả',
+      text: 'Chi phí bê tông cột C1 – C8 tầng 10, khu vực Tầng 10 - Khu A.',
+    },
+    actions: [
+      { label: 'Xem chi tiết', icon: 'visibility' },
+      { label: 'Phân bổ chi phí', icon: 'account_tree', primary: true },
+    ],
+  },
+}
+
+/* ================================================================== */
+/* 10 · HÓA ĐƠN                                                        */
+/* ================================================================== */
+const invoices: WorkspaceConfig = {
+  id: 'invoices',
+  route: '/lam-viec/hoa-don',
+  title: 'Hóa đơn',
+  subtitle: 'Quản lý hóa đơn bán hàng và công nợ',
+  createLabel: 'Tạo hóa đơn',
+  searchPlaceholder: 'Tìm kiếm hóa đơn, số HĐ, khách hàng, dự án...',
+  kpis: [
+    { id: 'k1', label: 'Tổng hóa đơn', value: '1,248', icon: 'receipt_long', tone: 'info', trend: { direction: 'up', value: '18.5%', label: 'so với tháng trước' } },
+    { id: 'k2', label: 'Doanh số (chưa VAT)', value: '125.68', unit: 'tỷ', icon: 'payments', tone: 'success', trend: { direction: 'up', value: '22.1%', label: 'so với tháng trước' } },
+    { id: 'k3', label: 'Đã thu', value: '89.34', unit: 'tỷ', icon: 'savings', tone: 'success', hint: '71.1% tổng doanh số' },
+    { id: 'k4', label: 'Còn phải thu', value: '36.34', unit: 'tỷ', icon: 'schedule', tone: 'warning', trend: { direction: 'down', value: '5.3%', label: 'so với tháng trước' } },
+    { id: 'k5', label: 'Quá hạn', value: '5.67', unit: 'tỷ', icon: 'error', tone: 'danger', hint: '14.0% tổng phải thu' },
+    { id: 'k6', label: 'Sắp đến hạn (7 ngày)', value: '2.15', unit: 'tỷ', icon: 'event_busy', tone: 'automation', hint: '5.3% tổng phải thu' },
+  ],
+  filters: [PROJECT_FILTER, { id: 'customer', label: 'Khách hàng', options: [{ value: 'all', label: 'Khách hàng: Tất cả' }] }, STATUS_FILTER],
+  tabs: [
+    { id: 'all', label: 'Tất cả', count: 1248 },
+    { id: 'draft', label: 'Chờ phát hành', count: 38 },
+    { id: 'issued', label: 'Đã phát hành', count: 962 },
+    { id: 'paid', label: 'Đã thanh toán', count: 656 },
+    { id: 'partial', label: 'Một phần', count: 306 },
+    { id: 'overdue', label: 'Quá hạn', count: 124 },
+    { id: 'void', label: 'Đã hủy', count: 24 },
+  ],
+  table: {
+    title: 'Danh sách hóa đơn',
+    total: '1,248',
+    pages: 63,
+    rangeLabel: '1 – 20 của 1,248',
+    columns: [
+      { key: 'code', header: 'Số hóa đơn', type: 'code', width: '150px' },
+      { key: 'customer', header: 'Khách hàng', width: '190px' },
+      { key: 'project', header: 'Dự án', width: '160px' },
+      { key: 'date', header: 'Ngày hóa đơn', width: '130px' },
+      { key: 'amount', header: 'Tổng tiền (VND)', width: '150px', align: 'right', type: 'money' },
+      { key: 'status', header: 'Trạng thái', width: '140px', type: 'badge' },
+      { key: 'paid', header: 'Thanh toán', width: '130px', type: 'progress' },
+      { key: 'due', header: 'Ngày đến hạn', width: '140px' },
+    ],
+    rows: [
+      { id: 1, code: 'INV-2024-0519', customer: 'Công ty CP Xây dựng An Phát', project: 'The Nexus Tower', date: '20/05/2024', amount: '385,000,000', status: 'Đã phát hành', paid: 0, due: '30/05/2024 (10 ngày)' },
+      { id: 2, code: 'INV-2024-0518', customer: 'Công ty TNHH Green City', project: 'Green City Villa', date: '19/05/2024', amount: '220,000,000', status: 'Một phần', paid: 60, due: '28/05/2024 (8 ngày)' },
+      { id: 3, code: 'INV-2024-0517', customer: 'Công ty CP Đầu tư Sunrise', project: 'Sunrise Riverside', date: '18/05/2024', amount: '440,000,000', status: 'Đã thanh toán', paid: 100, due: '-' },
+      { id: 4, code: 'INV-2024-0516', customer: 'Công ty TNHH Xây dựng Minh Anh', project: 'The Nexus Tower', date: '17/05/2024', amount: '165,000,000', status: 'Quá hạn', paid: 0, due: '17/05/2024 (Quá hạn 3 ngày)' },
+      { id: 5, code: 'INV-2024-0515', customer: 'Công ty CP Địa ốc Thành Công', project: 'Green City Villa', date: '16/05/2024', amount: '275,000,000', status: 'Một phần', paid: 30, due: '31/05/2024 (11 ngày)' },
+      { id: 6, code: 'INV-2024-0514', customer: 'Công ty TNHH Build Tech', project: 'The Nexus Tower', date: '15/05/2024', amount: '550,000,000', status: 'Đã phát hành', paid: 0, due: '25/05/2024 (5 ngày)' },
+      { id: 7, code: 'INV-2024-0513', customer: 'Công ty CP Đầu tư Phú Long', project: 'Sunrise Riverside', date: '14/05/2024', amount: '330,000,000', status: 'Một phần', paid: 75, due: '24/05/2024 (4 ngày)' },
+      { id: 8, code: 'INV-2024-0512', customer: 'Công ty TNHH An Khang', project: 'Green City Villa', date: '13/05/2024', amount: '187,000,000', status: 'Đã hủy', paid: 0, due: '-' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Doanh số theo trạng thái', kind: 'donut',
+      donut: {
+        center: '125.68', centerLabel: 'tỷ VND',
+        data: [
+          { label: 'Đã thanh toán', value: 89.34, color: 'var(--success)', note: '89.34 tỷ', extra: '71.1%' },
+          { label: 'Một phần', value: 25.67, color: 'var(--info)', note: '25.67 tỷ', extra: '20.4%' },
+          { label: 'Chưa thanh toán', value: 10.67, color: 'var(--warning)', note: '10.67 tỷ', extra: '8.5%' },
+          { label: 'Quá hạn', value: 5.67, color: 'var(--danger)', note: '5.67 tỷ', extra: '4.5%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Doanh số theo tháng (chưa VAT)', kind: 'bar',
+      bar: {
+        labels: ['12/23', '01/24', '02/24', '03/24', '04/24', '05/24'],
+        series: [{ name: 'Doanh số (tỷ VND)', color: 'var(--info)', values: [72, 78, 86, 104, 92, 126] }],
+      },
+    },
+    {
+      id: 'a3', title: 'Công nợ phải thu', kind: 'donut',
+      donut: {
+        center: '36.34', centerLabel: 'tỷ VND',
+        data: [
+          { label: 'Đến hạn', value: 30.67, color: 'var(--success)', note: '30.67 tỷ', extra: '84.4%' },
+          { label: 'Sắp đến hạn', value: 2.15, color: 'var(--warning)', note: '2.15 tỷ', extra: '5.9%' },
+          { label: 'Quá hạn', value: 5.67, color: 'var(--danger)', note: '5.67 tỷ', extra: '15.6%' },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Top khách hàng nợ nhiều', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 'c1', label: 'Công ty CP Xây dựng An Phát', value: '8.90 tỷ', rate: 100 },
+          { id: 'c2', label: 'Công ty TNHH Green City', value: '6.50 tỷ', rate: 73 },
+          { id: 'c3', label: 'Công ty CP Đầu tư SunRise', value: '5.20 tỷ', rate: 58 },
+          { id: 'c4', label: 'Công ty TNHH Build Tech', value: '4.80 tỷ', rate: 54 },
+          { id: 'c5', label: 'Công ty CP Địa ốc Thành Công', value: '3.90 tỷ', rate: 44 },
+        ],
+      },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tạo hóa đơn', icon: 'add_circle' },
+    { id: 'q2', label: 'Danh sách hóa đơn', icon: 'list' },
+    { id: 'q3', label: 'Lập hóa đơn từ hợp đồng', icon: 'contract' },
+    { id: 'q4', label: 'Hóa đơn định kỳ', icon: 'event_repeat' },
+    { id: 'q5', label: 'Báo cáo doanh số', icon: 'monitoring' },
+    { id: 'q6', label: 'Công nợ khách hàng', icon: 'account_balance' },
+  ],
+  detail: {
+    code: 'INV-2024-0519',
+    title: 'Công ty CP Xây dựng An Phát',
+    badges: [{ label: 'Đã phát hành', tone: 'info' }],
+    tabs: ['Thông tin', 'Chi tiết', 'Thanh toán (0)', 'Lịch sử', 'Tệp đính kèm (2)'],
+    props: [
+      { label: 'Khách hàng', value: 'Công ty CP Xây dựng An Phát', icon: 'handshake' },
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Ngày hóa đơn', value: '20/05/2024', icon: 'event' },
+      { label: 'Ngày đến hạn', value: '30/05/2024 (10 ngày)', icon: 'event_busy' },
+      { label: 'Tổng tiền (chưa VAT)', value: '350,000,000 VND', icon: 'payments' },
+      { label: 'VAT (10%)', value: '35,000,000 VND', icon: 'receipt' },
+      { label: 'Tổng tiền', value: '385,000,000 VND', icon: 'account_balance_wallet' },
+      { label: 'Người tạo', value: 'Nguyễn Văn A', icon: 'person' },
+    ],
+    description: {
+      label: 'Ghi chú',
+      text: 'Đợt thanh toán tiến độ tháng 5 theo HĐ số HD-2024-0321.',
+    },
+    actions: [
+      { label: 'Xem hóa đơn', icon: 'visibility' },
+      { label: 'Thêm thanh toán', icon: 'payments', primary: true },
+    ],
+  },
+}
+
+/* ================================================================== */
+/* 11 · ĐƠN MUA HÀNG                                                   */
+/* ================================================================== */
+const purchase: WorkspaceConfig = {
+  id: 'purchase',
+  route: '/lam-viec/don-mua-hang',
+  title: 'Đơn mua hàng',
+  subtitle: 'Quản lý đơn mua hàng và quy trình mua sắm',
+  createLabel: 'Tạo đơn mua hàng',
+  searchPlaceholder: 'Tìm kiếm PO, nhà cung cấp, dự án, vật tư, SKU...',
+  kpis: [
+    { id: 'k1', label: 'Tổng PO', value: '1,256', icon: 'shopping_cart', tone: 'info', trend: { direction: 'up', value: '18.4%', label: 'so với tháng trước' } },
+    { id: 'k2', label: 'Giá trị PO (chưa VAT)', value: '125.68', unit: 'tỷ', icon: 'payments', tone: 'success', trend: { direction: 'up', value: '22.1%', label: 'so với tháng trước' } },
+    { id: 'k3', label: 'Đã nhận hàng', value: '896', icon: 'inventory', tone: 'success', hint: '71.3% tổng PO' },
+    { id: 'k4', label: 'Đang giao hàng', value: '245', icon: 'local_shipping', tone: 'warning', hint: '19.5% tổng PO' },
+    { id: 'k5', label: 'Chờ phê duyệt', value: '68', icon: 'hourglass_top', tone: 'automation', hint: '5.4% tổng PO' },
+    { id: 'k6', label: 'Quá hạn', value: '47', icon: 'error', tone: 'danger', hint: '3.7% tổng PO' },
+  ],
+  filters: [PROJECT_FILTER, { id: 'supplier', label: 'Nhà cung cấp', options: [{ value: 'all', label: 'Nhà cung cấp: Tất cả' }] }, STATUS_FILTER],
+  tabs: [
+    { id: 'all', label: 'Tất cả', count: 1256 },
+    { id: 'pending', label: 'Chờ duyệt', count: 68 },
+    { id: 'approved', label: 'Đã duyệt', count: 1098 },
+    { id: 'shipping', label: 'Đang giao hàng', count: 245 },
+    { id: 'done', label: 'Đã hoàn thành', count: 896 },
+    { id: 'void', label: 'Đã hủy', count: 24 },
+  ],
+  table: {
+    title: 'Danh sách đơn mua hàng',
+    total: '1,256',
+    pages: 126,
+    columns: [
+      { key: 'code', header: 'Số PO', type: 'code', width: '150px' },
+      { key: 'supplier', header: 'Nhà cung cấp', width: '190px' },
+      { key: 'project', header: 'Dự án', width: '160px' },
+      { key: 'date', header: 'Ngày tạo', width: '120px' },
+      { key: 'amount', header: 'Giá trị (VND)', width: '150px', align: 'right', type: 'money' },
+      { key: 'status', header: 'Trạng thái', width: '140px', type: 'badge' },
+      { key: 'delivery', header: 'Giao hàng dự kiến', width: '150px' },
+      { key: 'received', header: '% nhận hàng', width: '130px', type: 'progress' },
+    ],
+    rows: [
+      { id: 1, code: 'PO-2024-0519', supplier: 'Công ty CP Thép Việt', project: 'The Nexus Tower', date: '20/05/2024', amount: '385,000,000', status: 'Đã duyệt', delivery: '25/05/2024', received: 60 },
+      { id: 2, code: 'PO-2024-0518', supplier: 'Công ty TNHH Thiết Bị Điện An Phát', project: 'Green City Villa', date: '19/05/2024', amount: '220,000,000', status: 'Đang giao hàng', delivery: '22/05/2024', received: 30 },
+      { id: 3, code: 'PO-2024-0517', supplier: 'Công ty CP Xi măng Hà Tiên 1', project: 'Sunrise Riverside', date: '18/05/2024', amount: '440,000,000', status: 'Đã duyệt', delivery: '20/05/2024', received: 100 },
+      { id: 4, code: 'PO-2024-0516', supplier: 'Công ty TNHH Nội Thất Hòa Bình', project: 'The Nexus Tower', date: '17/05/2024', amount: '165,000,000', status: 'Chờ duyệt', delivery: '24/05/2024', received: 0 },
+      { id: 5, code: 'PO-2024-0515', supplier: 'Công ty CP Vật liệu Xây dựng Sài Gòn', project: 'Green City Villa', date: '16/05/2024', amount: '275,000,000', status: 'Đang giao hàng', delivery: '21/05/2024', received: 75 },
+      { id: 6, code: 'PO-2024-0514', supplier: 'Công ty TNHH Điện Lực An Khang', project: 'The Nexus Tower', date: '15/05/2024', amount: '550,000,000', status: 'Đã duyệt', delivery: '20/05/2024', received: 100 },
+      { id: 7, code: 'PO-2024-0513', supplier: 'Công ty CP Ống Nhựa Bình Minh', project: 'Sunrise Riverside', date: '14/05/2024', amount: '330,000,000', status: 'Quá hạn', delivery: '16/05/2024 (4 ngày)', received: 40 },
+      { id: 8, code: 'PO-2024-0512', supplier: 'Công ty TNHH Sơn Jotun Việt Nam', project: 'Green City Villa', date: '13/05/2024', amount: '187,000,000', status: 'Đã hoàn thành', delivery: '15/05/2024', received: 100 },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Giá trị PO theo trạng thái', kind: 'donut',
+      donut: {
+        center: '125.68', centerLabel: 'tỷ VND',
+        data: [
+          { label: 'Đã duyệt', value: 65.2, color: 'var(--success)', note: '65.2 tỷ', extra: '51.9%' },
+          { label: 'Đang giao hàng', value: 24.5, color: 'var(--info)', note: '24.5 tỷ', extra: '19.5%' },
+          { label: 'Chờ duyệt', value: 12.1, color: 'var(--warning)', note: '12.1 tỷ', extra: '9.6%' },
+          { label: 'Đã hoàn thành', value: 20.8, color: 'var(--slate-300)', note: '20.8 tỷ', extra: '16.6%' },
+          { label: 'Quá hạn', value: 3.1, color: 'var(--danger)', note: '3.1 tỷ', extra: '2.4%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Giá trị PO theo tháng (chưa VAT)', kind: 'bar',
+      bar: {
+        labels: ['12/23', '01/24', '02/24', '03/24', '04/24', '05/24'],
+        series: [{ name: 'Giá trị (tỷ VND)', color: 'var(--info)', values: [78, 82, 96, 88, 94, 126] }],
+      },
+    },
+    {
+      id: 'a3', title: 'Top nhà cung cấp', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 's1', label: 'Công ty CP Thép Việt', value: '18.6 tỷ', rate: 100 },
+          { id: 's2', label: 'Công ty CP Xi măng Hà Tiên 1', value: '15.2 tỷ', rate: 82 },
+          { id: 's3', label: 'Công ty TNHH Thiết Bị Điện An Phát', value: '12.8 tỷ', rate: 69 },
+          { id: 's4', label: 'Công ty CP Vật liệu XD Sài Gòn', value: '11.3 tỷ', rate: 61 },
+          { id: 's5', label: 'Công ty TNHH Nội Thất Hòa Bình', value: '9.7 tỷ', rate: 52 },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'PO quá hạn', kind: 'metric',
+      metric: { value: '47', caption: 'đơn quá hạn', sub: 'Tổng giá trị quá hạn 3.1 tỷ VND' },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tạo PO mới', icon: 'add_circle' },
+    { id: 'q2', label: 'Danh sách PO', icon: 'list' },
+    { id: 'q3', label: 'Yêu cầu mua hàng', icon: 'assignment' },
+    { id: 'q4', label: 'Nhà cung cấp', icon: 'local_shipping' },
+    { id: 'q5', label: 'Bảng giá & Hợp đồng', icon: 'sell' },
+    { id: 'q6', label: 'Báo cáo PO', icon: 'monitoring' },
+  ],
+  detail: {
+    code: 'PO-2024-0519',
+    title: 'Công ty CP Thép Việt',
+    badges: [{ label: 'Đã duyệt', tone: 'success' }],
+    tabs: ['Thông tin', 'Chi tiết (6)', 'Lịch sử', 'Tệp đính kèm (3)', 'Phê duyệt'],
+    props: [
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Ngày tạo', value: '20/05/2024', icon: 'event' },
+      { label: 'Người tạo', value: 'Nguyễn Văn A', icon: 'person' },
+      { label: 'Nhà cung cấp', value: 'Công ty CP Thép Việt', icon: 'local_shipping' },
+      { label: 'Mã số thuế', value: '0101234567', icon: 'badge' },
+      { label: 'Giá trị (chưa VAT)', value: '385,000,000 VND', icon: 'payments' },
+      { label: 'VAT (10%)', value: '38,500,000 VND', icon: 'receipt' },
+      { label: 'Tổng giá trị', value: '423,500,000 VND', icon: 'account_balance_wallet' },
+      { label: 'Ngày giao hàng dự kiến', value: '25/05/2024', icon: 'local_shipping' },
+      { label: 'Điều khoản thanh toán', value: 'Chuyển khoản 30 ngày', icon: 'schedule' },
+    ],
+    description: {
+      label: 'Tiến độ nhận hàng',
+      text: 'Đã nhận 231,000,000 / 385,000,000 VND (60%). Giao thép sàn tầng 5 đến tầng 10.',
+    },
+    actions: [
+      { label: 'Tạo GRN', icon: 'inventory' },
+      { label: 'Tạo hóa đơn', icon: 'receipt_long', primary: true },
+    ],
+  },
+}
+
+/* ================================================================== */
+/* 12 · TÀI SẢN                                                        */
+/* ================================================================== */
+const assets: WorkspaceConfig = {
+  id: 'assets',
+  route: '/lam-viec/tai-san',
+  title: 'Tài sản',
+  subtitle: 'Tổng quan và quản lý toàn bộ tài sản của doanh nghiệp',
+  createLabel: 'Tạo mới',
+  searchPlaceholder: 'Tìm kiếm tài sản, mã tài sản, serial, vị trí, hợp đồng...',
+  kpis: [
+    { id: 'k1', label: 'Tổng tài sản', value: '2,458', icon: 'inventory', tone: 'ai', hint: 'Tổng số lượng tài sản' },
+    { id: 'k2', label: 'Giá trị nguyên giá', value: '125.68', unit: 'tỷ', icon: 'payments', tone: 'success', hint: 'Tổng nguyên giá tài sản' },
+    { id: 'k3', label: 'Giá trị còn lại', value: '78.32', unit: 'tỷ', icon: 'trending_up', tone: 'info', hint: 'Giá trị còn lại' },
+    { id: 'k4', label: 'Tài sản đang sử dụng', value: '2,102', icon: 'check_circle', tone: 'success', hint: '85.5% tổng tài sản' },
+    { id: 'k5', label: 'Tài sản cần bảo trì', value: '56', icon: 'build', tone: 'warning', hint: '2.3% tổng tài sản' },
+    { id: 'k6', label: 'Tài sản ngừng sử dụng', value: '78', icon: 'pause_circle', tone: 'neutral', hint: '3.2% tổng tài sản' },
+  ],
+  filters: [{ id: 'type', label: 'Loại tài sản', options: [{ value: 'all', label: 'Loại tài sản: Tất cả' }] }, STATUS_FILTER, { id: 'location', label: 'Vị trí', options: [{ value: 'all', label: 'Vị trí: Tất cả' }] }, { id: 'unit', label: 'Đơn vị sử dụng', options: [{ value: 'all', label: 'Đơn vị: Tất cả' }] }],
+  table: {
+    title: 'Danh sách tài sản',
+    total: '2,458',
+    pages: 246,
+    columns: [
+      { key: 'code', header: 'Mã tài sản', type: 'code', width: '150px' },
+      { key: 'name', header: 'Tên tài sản', type: 'object' },
+      { key: 'type', header: 'Loại tài sản', width: '140px' },
+      { key: 'location', header: 'Vị trí', width: '160px' },
+      { key: 'status', header: 'Trạng thái', width: '140px', type: 'badge' },
+      { key: 'value', header: 'Giá trị còn lại', width: '150px', align: 'right', type: 'money' },
+    ],
+    rows: [
+      { id: 1, code: 'AST-2024-000123', name: 'Máy đào KOMATSU PC200-8', nameSub: 'Serial: KMTPC2008123', type: 'Máy thi công', location: 'Dự án The Nexus · Site A', status: 'Đang sử dụng', value: '1,280,000,000' },
+      { id: 2, code: 'AST-2024-000124', name: 'Máy phát điện Cummins 250kVA', nameSub: 'Serial: CUMM250KVA124', type: 'Thiết bị điện', location: 'Kho thiết bị Hà Nội', status: 'Đang sử dụng', value: '450,000,000' },
+      { id: 3, code: 'AST-2024-000125', name: 'Xe tải HINO 15T', nameSub: 'Biển số: 29C-123.45', type: 'Phương tiện', location: 'Chi nhánh Đà Nẵng', status: 'Đang sử dụng', value: '680,000,000' },
+      { id: 4, code: 'AST-2024-000126', name: 'Máy nén khí Atlas Copco GA55', nameSub: 'Serial: ATLGA55126', type: 'Thiết bị cơ khí', location: 'Nhà máy Bình Dương', status: 'Bảo trì', value: '120,000,000' },
+      { id: 5, code: 'AST-2024-000127', name: 'Máy hàn Lincoln Invertec 400TP', nameSub: 'Serial: LIN400127', type: 'Dụng cụ điện', location: 'Dự án The Nexus · Site B', status: 'Nhàn rỗi', value: '18,000,000' },
+      { id: 6, code: 'AST-2024-000128', name: 'Cẩu tháp ZOOMLION TC6015-8', nameSub: 'Serial: ZML6015128', type: 'Thiết bị nâng', location: 'Dự án The Nexus · Site A', status: 'Đang sử dụng', value: '2,150,000,000' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Phân bổ theo loại tài sản', kind: 'donut',
+      donut: {
+        center: '2,458', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Máy thi công', value: 860, color: 'var(--info)', note: '860', extra: '35%' },
+          { label: 'Thiết bị cơ khí', value: 491, color: 'var(--warning)', note: '491', extra: '20%' },
+          { label: 'Phương tiện vận tải', value: 442, color: '#f97316', note: '442', extra: '18%' },
+          { label: 'Thiết bị điện', value: 369, color: 'var(--automation)', note: '369', extra: '15%' },
+          { label: 'Dụng cụ, dụng cụ', value: 172, color: 'var(--success)', note: '172', extra: '7%' },
+          { label: 'Khác', value: 124, color: 'var(--slate-300)', note: '124', extra: '5%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Giá trị tài sản theo đơn vị (tỷ VND)', kind: 'bar',
+      bar: {
+        labels: ['Hà Nội', 'Đà Nẵng', 'Hồ Chí Minh', 'Bình Dương', 'Khác'],
+        series: [{ name: 'Giá trị còn lại', color: 'var(--info)', values: [32.8, 18.7, 15.3, 8.6, 2.9] }],
+      },
+    },
+    {
+      id: 'a3', title: 'Tình trạng tài sản', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 't1', label: 'Đang sử dụng', value: '2,102 (85.5%)', rate: 86 },
+          { id: 't2', label: 'Nhàn rỗi', value: '186 (7.6%)', rate: 8 },
+          { id: 't3', label: 'Đang bảo trì', value: '98 (4.0%)', rate: 4 },
+          { id: 't4', label: 'Ngừng sử dụng', value: '72 (2.9%)', rate: 3 },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Khấu hao tài sản', kind: 'metric',
+      metric: { value: '47.36', unit: 'tỷ', caption: 'Khấu hao lũy kế · 37.6% nguyên giá', sub: 'Chi phí khấu hao tháng này 1.25 tỷ (▲5.3%)' },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Thêm tài sản', icon: 'add_circle' },
+    { id: 'q2', label: 'Nhập tài sản', icon: 'upload_file' },
+    { id: 'q3', label: 'Kiểm kê tài sản', icon: 'fact_check' },
+    { id: 'q4', label: 'Chuyển giao', icon: 'swap_horiz' },
+    { id: 'q5', label: 'Đề xuất thanh lý', icon: 'delete_sweep' },
+    { id: 'q6', label: 'Báo cáo khấu hao', icon: 'monitoring' },
+  ],
+}
+
+/* ================================================================== */
+/* 13 · THIẾT BỊ                                                       */
+/* ================================================================== */
+const equipment: WorkspaceConfig = {
+  id: 'equipment',
+  route: '/lam-viec/thiet-bi',
+  title: 'Thiết bị',
+  subtitle: 'Quản lý toàn bộ thiết bị, xe máy và công cụ của doanh nghiệp',
+  createLabel: 'Thêm thiết bị',
+  searchPlaceholder: 'Tìm kiếm thiết bị, mã thiết bị, serial, model, nhà cung cấp...',
+  kpis: [
+    { id: 'k1', label: 'Tổng số thiết bị', value: '248', icon: 'precision_manufacturing', tone: 'info', hint: 'Tất cả thiết bị' },
+    { id: 'k2', label: 'Đang sử dụng', value: '186', icon: 'check_circle', tone: 'success', hint: '75.0% tổng thiết bị' },
+    { id: 'k3', label: 'Đang bảo trì', value: '18', icon: 'build', tone: 'warning', hint: '7.3% tổng thiết bị' },
+    { id: 'k4', label: 'Ngừng sử dụng', value: '22', icon: 'pause_circle', tone: 'neutral', hint: '8.9% tổng thiết bị' },
+    { id: 'k5', label: 'Sắp đến hạn bảo trì', value: '16', icon: 'schedule', tone: 'danger', hint: 'Trong 30 ngày tới' },
+    { id: 'k6', label: 'Tổng giá trị còn lại', value: '78.32', unit: 'tỷ', icon: 'payments', tone: 'ai', hint: '24.6% so với nguyên giá' },
+  ],
+  filters: [{ id: 'type', label: 'Loại thiết bị', options: [{ value: 'all', label: 'Loại thiết bị: Tất cả' }] }, STATUS_FILTER, { id: 'location', label: 'Vị trí', options: [{ value: 'all', label: 'Vị trí: Tất cả' }] }, { id: 'supplier', label: 'Nhà cung cấp', options: [{ value: 'all', label: 'Nhà cung cấp: Tất cả' }] }],
+  table: {
+    title: 'Danh sách thiết bị',
+    total: '248',
+    pages: 25,
+    columns: [
+      { key: 'code', header: 'Mã thiết bị', type: 'code', width: '150px' },
+      { key: 'name', header: 'Tên thiết bị' },
+      { key: 'type', header: 'Loại thiết bị', width: '140px' },
+      { key: 'model', header: 'Model', width: '120px' },
+      { key: 'location', header: 'Vị trí hiện tại', width: '170px' },
+      { key: 'status', header: 'Trạng thái', width: '140px', type: 'badge' },
+      { key: 'hours', header: 'Giờ hoạt động', width: '130px', align: 'right' },
+      { key: 'value', header: 'Giá trị còn lại', width: '150px', align: 'right', type: 'money' },
+    ],
+    rows: [
+      { id: 1, code: 'EQP-2024-0001', name: 'Máy đào KOMATSU PC200-8', type: 'Máy thi công', model: 'PC200-8', location: 'Dự án The Nexus · Site A', status: 'Đang sử dụng', hours: '3,245 giờ', value: '1,280,000,000' },
+      { id: 2, code: 'EQP-2024-0002', name: 'Máy ủi CAT D6R XL', type: 'Máy thi công', model: 'D6R XL', location: 'Dự án Sunrise · Site B', status: 'Đang sử dụng', hours: '2,876 giờ', value: '950,000,000' },
+      { id: 3, code: 'EQP-2024-0003', name: 'Xe tải HINO 500 FL', type: 'Phương tiện', model: 'FL8JW7A', location: 'Chi nhánh Đà Nẵng', status: 'Đang sử dụng', hours: '48,560 km', value: '680,000,000' },
+      { id: 4, code: 'EQP-2024-0004', name: 'Máy phát điện Cummins 250kVA', type: 'Thiết bị điện', model: 'C250D5', location: 'Nhà máy Bình Dương', status: 'Đang bảo trì', hours: '1,850 giờ', value: '320,000,000' },
+      { id: 5, code: 'EQP-2024-0005', name: 'Cẩu tháp ZOOMLION TC6015-8', type: 'Thiết bị nâng', model: 'TC6015-8', location: 'Dự án The Nexus · Site A', status: 'Đang sử dụng', hours: '5,120 giờ', value: '2,150,000,000' },
+      { id: 6, code: 'EQP-2024-0006', name: 'Máy nén khí Atlas Copco GA75', type: 'Thiết bị cơ khí', model: 'GA75VSD+', location: 'Nhà xưởng Hà Nội', status: 'Ngừng sử dụng', hours: '6,230 giờ', value: '120,000,000' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Tình trạng thiết bị', kind: 'donut',
+      donut: {
+        center: '248', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Đang sử dụng', value: 186, color: 'var(--success)', note: '186', extra: '75.0%' },
+          { label: 'Đang bảo trì', value: 18, color: 'var(--warning)', note: '18', extra: '7.3%' },
+          { label: 'Ngừng sử dụng', value: 22, color: 'var(--slate-300)', note: '22', extra: '8.9%' },
+          { label: 'Hỏng / Chờ sửa', value: 12, color: 'var(--danger)', note: '12', extra: '4.8%' },
+          { label: 'Khác', value: 10, color: 'var(--info)', note: '10', extra: '4.0%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Hiệu suất hoạt động', kind: 'metric',
+      metric: { value: '1,842', unit: 'giờ', caption: 'Giờ hoạt động trung bình / thiết bị', sub: '▲ 12.5% so với tháng trước' },
+    },
+    {
+      id: 'a3', title: 'Chi phí vận hành tháng này', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 'c1', label: 'Nhiên liệu', value: '650.00 Tr', rate: 52 },
+          { id: 'c2', label: 'Bảo trì, sửa chữa', value: '320.00 Tr', rate: 26 },
+          { id: 'c3', label: 'Phụ tùng thay thế', value: '180.00 Tr', rate: 14 },
+          { id: 'c4', label: 'Khác', value: '100.00 Tr', rate: 8 },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Phân bố theo loại thiết bị', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 'e1', label: 'Máy thi công', value: '98 (39.5%)', rate: 40 },
+          { id: 'e2', label: 'Phương tiện', value: '62 (25.0%)', rate: 25 },
+          { id: 'e3', label: 'Thiết bị nâng', value: '34 (13.7%)', rate: 14 },
+          { id: 'e4', label: 'Thiết bị điện', value: '28 (11.3%)', rate: 11 },
+          { id: 'e5', label: 'Thiết bị cơ khí', value: '16 (6.5%)', rate: 7 },
+        ],
+      },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Tạo yêu cầu bảo trì', icon: 'build' },
+    { id: 'q2', label: 'Lịch bảo trì định kỳ', icon: 'event_repeat' },
+    { id: 'q3', label: 'Yêu cầu kiểm định', icon: 'fact_check' },
+    { id: 'q4', label: 'Điều chuyển thiết bị', icon: 'swap_horiz' },
+    { id: 'q5', label: 'Ghi nhận giờ hoạt động', icon: 'timer' },
+    { id: 'q6', label: 'Báo cáo hiệu suất', icon: 'monitoring' },
+  ],
+}
+
+/* ================================================================== */
+/* 14 · VẬT TƯ                                                         */
+/* ================================================================== */
+const materials: WorkspaceConfig = {
+  id: 'materials',
+  route: '/lam-viec/vat-tu',
+  title: 'Vật tư',
+  subtitle: 'Quản lý toàn bộ vật tư, nguyên vật liệu và vật liệu tiêu hao',
+  createLabel: 'Thêm vật tư',
+  searchPlaceholder: 'Tìm kiếm vật tư, mã vật tư, tên, quy cách, nhà cung cấp...',
+  kpis: [
+    { id: 'k1', label: 'Tổng số vật tư', value: '2,458', icon: 'inventory_2', tone: 'info', trend: { direction: 'up', value: '12.6%', label: 'so với tháng trước' } },
+    { id: 'k2', label: 'Tổng giá trị tồn kho', value: '78.32', unit: 'tỷ', icon: 'payments', tone: 'success', trend: { direction: 'up', value: '18.4%', label: 'so với tháng trước' } },
+    { id: 'k3', label: 'Vật tư sắp hết hàng', value: '56', icon: 'warning', tone: 'warning', hint: '3.2% tổng vật tư' },
+    { id: 'k4', label: 'Vật tư hết hàng', value: '18', icon: 'error', tone: 'danger', hint: '1.1% tổng vật tư' },
+    { id: 'k5', label: 'Đang đặt mua', value: '126', icon: 'shopping_cart', tone: 'automation', hint: 'Đơn hàng' },
+    { id: 'k6', label: 'Tổng giá trị đặt mua', value: '32.15', unit: 'tỷ', icon: 'account_balance_wallet', tone: 'ai', trend: { direction: 'up', value: '15.7%', label: 'so với tháng trước' } },
+  ],
+  filters: [{ id: 'group', label: 'Nhóm vật tư', options: [{ value: 'all', label: 'Nhóm vật tư: Tất cả' }] }, { id: 'type', label: 'Loại vật tư', options: [{ value: 'all', label: 'Loại vật tư: Tất cả' }] }, STATUS_FILTER, { id: 'warehouse', label: 'Kho', options: [{ value: 'all', label: 'Kho: Tất cả' }] }],
+  table: {
+    title: 'Danh sách vật tư',
+    total: '2,458',
+    pages: 246,
+    columns: [
+      { key: 'code', header: 'Mã vật tư', type: 'code', width: '140px' },
+      { key: 'name', header: 'Tên vật tư' },
+      { key: 'group', header: 'Nhóm vật tư', width: '130px' },
+      { key: 'unit', header: 'ĐVT', width: '90px', align: 'center' },
+      { key: 'stock', header: 'Tồn kho', width: '120px', align: 'right', type: 'money' },
+      { key: 'value', header: 'Giá trị tồn kho', width: '160px', align: 'right', type: 'money' },
+      { key: 'status', header: 'Trạng thái', width: '130px', type: 'badge' },
+    ],
+    rows: [
+      { id: 1, code: 'MAT-000123', name: 'Thép cây D16 - Hòa Phát', group: 'Thép', unit: 'kg', stock: '12,450', value: '156,240,000', status: 'Đủ hàng' },
+      { id: 2, code: 'CEM-000045', name: 'Xi măng PCB40 - Hà Tiên', group: 'Xi măng', unit: 'bao', stock: '8,250', value: '123,750,000', status: 'Đủ hàng' },
+      { id: 3, code: 'BRK-000067', name: 'Gạch đặc 200x100x60', group: 'Gạch', unit: 'viên', stock: '15,000', value: '37,500,000', status: 'Sắp hết' },
+      { id: 4, code: 'SAN-000089', name: 'Cát vàng hạt to', group: 'Cát', unit: 'm³', stock: '75', value: '11,250,000', status: 'Sắp hết' },
+      { id: 5, code: 'SND-000032', name: 'Đá 1x2 xanh', group: 'Đá', unit: 'm³', stock: '120', value: '18,000,000', status: 'Đủ hàng' },
+      { id: 6, code: 'PIP-000077', name: 'Ống PVC D114', group: 'Ống nước', unit: 'm', stock: '450', value: '22,500,000', status: 'Đủ hàng' },
+      { id: 7, code: 'WIR-000098', name: 'Dây điện Cadivi 2.5mm²', group: 'Điện', unit: 'm', stock: '320', value: '9,600,000', status: 'Sắp hết' },
+      { id: 8, code: 'PAI-000054', name: 'Sơn nước Jotun 18L', group: 'Sơn', unit: 'thùng', stock: '68', value: '17,680,000', status: 'Đủ hàng' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Cơ cấu giá trị tồn kho theo nhóm', kind: 'donut',
+      donut: {
+        center: '78.32', centerLabel: 'tỷ VND',
+        data: [
+          { label: 'Thép', value: 25.38, color: 'var(--info)', note: '25.38 tỷ', extra: '32.4%' },
+          { label: 'Xi măng', value: 14.65, color: 'var(--warning)', note: '14.65 tỷ', extra: '18.7%' },
+          { label: 'Cát, đá', value: 11.97, color: '#f97316', note: '11.97 tỷ', extra: '15.3%' },
+          { label: 'Gạch', value: 9.48, color: 'var(--success)', note: '9.48 tỷ', extra: '12.1%' },
+          { label: 'Ống nước', value: 6.18, color: 'var(--automation)', note: '6.18 tỷ', extra: '7.9%' },
+          { label: 'Khác', value: 10.66, color: 'var(--slate-300)', note: '10.66 tỷ', extra: '13.6%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Tình hình nhập - xuất - tồn (m³)', kind: 'bar',
+      bar: {
+        labels: ['01/05', '06/05', '11/05', '16/05', '21/05', '26/05', '31/05'],
+        series: [
+          { name: 'Nhập kho', color: 'var(--success)', values: [220, 260, 310, 280, 340, 300, 360] },
+          { name: 'Xuất kho', color: 'var(--warning)', values: [180, 210, 240, 230, 260, 250, 280] },
+        ],
+      },
+    },
+    {
+      id: 'a3', title: 'Tồn kho theo kho', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 'w1', label: 'Kho chính Hà Nội', value: '32.45 tỷ (41.4%)', rate: 41 },
+          { id: 'w2', label: 'Kho công trường The Nexus', value: '18.23 tỷ (23.3%)', rate: 23 },
+          { id: 'w3', label: 'Kho công trường Sunrise', value: '12.15 tỷ (15.5%)', rate: 16 },
+          { id: 'w4', label: 'Kho công trường Riverside', value: '9.24 tỷ (11.8%)', rate: 12 },
+          { id: 'w5', label: 'Kho công trường Green City', value: '6.25 tỷ (8.0%)', rate: 8 },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Vật tư theo dự án', kind: 'rank',
+      rank: {
+        rows: [
+          { id: 'p1', label: 'The Nexus Tower', value: '25.38 tỷ (32.4%)', rate: 32 },
+          { id: 'p2', label: 'Sunrise Riverside', value: '18.15 tỷ (23.2%)', rate: 23 },
+          { id: 'p3', label: 'Green City Villa', value: '12.36 tỷ (15.8%)', rate: 16 },
+          { id: 'p4', label: 'Harbor View Hotel', value: '9.85 tỷ (12.6%)', rate: 13 },
+          { id: 'p5', label: 'Factory An Phát', value: '6.58 tỷ (8.4%)', rate: 8 },
+        ],
+      },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Thêm vật tư', icon: 'add_circle' },
+    { id: 'q2', label: 'Nhập kho', icon: 'input' },
+    { id: 'q3', label: 'Xuất kho', icon: 'output' },
+    { id: 'q4', label: 'Chuyển kho', icon: 'swap_horiz' },
+    { id: 'q5', label: 'Kiểm kê kho', icon: 'fact_check' },
+    { id: 'q6', label: 'Đặt mua vật tư', icon: 'shopping_cart' },
+  ],
+}
+
+/* ================================================================== */
+/* 15 · KẾT QUẢ AI                                                     */
+/* ================================================================== */
+const aiResult: WorkspaceConfig = {
+  id: 'ai-result',
+  route: '/lam-viec/ket-qua-ai',
+  title: 'Kết quả AI',
+  subtitle: 'Kết quả phân tích và gợi ý từ AI trên toàn bộ dữ liệu dự án',
+  createLabel: 'Tạo phân tích',
+  searchPlaceholder: 'Tìm kiếm kết quả AI, dự án, tài liệu, hình ảnh...',
+  kpis: [
+    { id: 'k1', label: 'Tổng phân tích', value: '1,248', icon: 'auto_awesome', tone: 'ai', trend: { direction: 'up', value: '18.4%', label: 'so với 7 ngày trước' } },
+    { id: 'k2', label: 'Độ chính xác TB', value: '92.6%', icon: 'verified', tone: 'success', trend: { direction: 'up', value: '3.7%', label: 'so với 7 ngày trước' } },
+    { id: 'k3', label: 'Tiết kiệm ước tính', value: '28.75', unit: 'tỷ', icon: 'savings', tone: 'info', trend: { direction: 'up', value: '12.5%', label: 'trong tháng này' } },
+    { id: 'k4', label: 'Cảnh báo quan trọng', value: '18', icon: 'crisis_alert', tone: 'warning', trend: { direction: 'down', value: '5', label: 'so với 7 ngày trước' } },
+    { id: 'k5', label: 'Đã áp dụng', value: '256', icon: 'check_circle', tone: 'success', trend: { direction: 'up', value: '21.6%', label: 'trong tháng này' } },
+    { id: 'k6', label: 'Mô hình đang chạy', value: '12', icon: 'model_training', tone: 'automation', hint: 'ERPcons Vision · NLP · Forecast' },
+  ],
+  filters: [PROJECT_FILTER, { id: 'type', label: 'Loại phân tích', options: [{ value: 'all', label: 'Loại phân tích: Tất cả' }] }, { id: 'source', label: 'Nguồn dữ liệu', options: [{ value: 'all', label: 'Nguồn dữ liệu: Tất cả' }] }, { id: 'time', label: 'Thời gian', options: [{ value: '7d', label: 'Thời gian: 7 ngày qua' }] }],
+  tabs: [
+    { id: 'all', label: 'Tất cả', count: 1248 },
+    { id: 'forecast', label: 'Dự báo', count: 312 },
+    { id: 'vision', label: 'Nhận diện hình ảnh', count: 248 },
+    { id: 'nlp', label: 'Phân tích văn bản', count: 186 },
+    { id: 'compliance', label: 'Kiểm tra tuân thủ', count: 166 },
+    { id: 'compare', label: 'So sánh & đối chiếu', count: 114 },
+    { id: 'other', label: 'Khác', count: 232 },
+  ],
+  table: {
+    title: 'Danh sách kết quả AI',
+    total: '1,248',
+    pages: 125,
+    columns: [
+      { key: 'name', header: 'Kết quả AI' },
+      { key: 'type', header: 'Loại phân tích', width: '160px' },
+      { key: 'source', header: 'Dự án / Nguồn dữ liệu', width: '180px' },
+      { key: 'confidence', header: 'Độ tin cậy', width: '140px', type: 'progress' },
+      { key: 'level', header: 'Mức độ', width: '120px', type: 'badge' },
+      { key: 'created', header: 'Ngày tạo', width: '140px' },
+      { key: 'status', header: 'Trạng thái', width: '130px', type: 'badge' },
+    ],
+    rows: [
+      { id: 1, name: 'Phát hiện 3 công nhân không đeo mũ bảo hộ', type: 'Nhận diện hình ảnh', source: 'The Nexus Tower · Camera AI #01', confidence: 96, level: 'Cao', created: '20/05/2024 09:15', status: 'Đã áp dụng' },
+      { id: 2, name: 'Dự báo trễ tiến độ 7 ngày', type: 'Dự báo', source: 'The Nexus Tower · Lịch thi công', confidence: 89, level: 'Trung bình', created: '20/05/2024 08:45', status: 'Mới' },
+      { id: 3, name: 'Chênh lệch khối lượng bê tông +12.6 m³', type: 'So sánh & đối chiếu', source: 'The Nexus Tower · Báo cáo tuần #20', confidence: 93, level: 'Trung bình', created: '20/05/2024 08:20', status: 'Đã xem' },
+      { id: 4, name: 'Phát hiện điều khoản rủi ro trong hợp đồng', type: 'Phân tích văn bản', source: 'HD-2024-018 · Hợp đồng chính', confidence: 91, level: 'Cao', created: '19/05/2024 16:30', status: 'Đã áp dụng' },
+      { id: 5, name: 'Kiểm tra tuân thủ an toàn lao động', type: 'Kiểm tra tuân thủ', source: 'The Nexus Tower · Checklist ATLĐ', confidence: 87, level: 'Cao', created: '19/05/2024 15:10', status: 'Mới' },
+      { id: 6, name: 'Đề xuất tiết kiệm chi phí 2.45 tỷ VND', type: 'Dự báo', source: 'The Nexus Tower · Phân tích chi phí', confidence: 94, level: 'Thấp', created: '19/05/2024 11:05', status: 'Đã áp dụng' },
+      { id: 7, name: 'Kiểm tra xung đột bản vẽ (Clash) — 5 điểm', type: 'So sánh & đối chiếu', source: 'NT-STR-AR-MEP · BIM Models', confidence: 90, level: 'Trung bình', created: '19/05/2024 09:50', status: 'Đã xem' },
+      { id: 8, name: 'Trích xuất dữ liệu từ hóa đơn INV-2024-0521', type: 'Phân tích văn bản', source: 'INV-2024-0521.pdf · Hóa đơn', confidence: 98, level: 'Thấp', created: '18/05/2024 17:40', status: 'Đã áp dụng' },
+    ],
+  },
+  analytics: [
+    {
+      id: 'a1', title: 'Phân bổ theo loại phân tích', kind: 'donut',
+      donut: {
+        center: '1,248', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Dự báo', value: 312, color: 'var(--info)', note: '312', extra: '25%' },
+          { label: 'Nhận diện hình ảnh', value: 248, color: 'var(--automation)', note: '248', extra: '20%' },
+          { label: 'Phân tích văn bản', value: 186, color: 'var(--warning)', note: '186', extra: '15%' },
+          { label: 'Kiểm tra tuân thủ', value: 166, color: 'var(--success)', note: '166', extra: '13%' },
+          { label: 'So sánh & đối chiếu', value: 114, color: 'var(--ocr)', note: '114', extra: '9%' },
+          { label: 'Khác', value: 232, color: 'var(--slate-300)', note: '232', extra: '18%' },
+        ],
+      },
+    },
+    {
+      id: 'a2', title: 'Xu hướng kết quả AI (7 ngày)', kind: 'bar',
+      bar: {
+        labels: ['14/05', '15/05', '16/05', '17/05', '18/05', '19/05', '20/05'],
+        series: [
+          { name: 'Tổng phân tích', color: 'var(--info)', values: [210, 240, 268, 290, 320, 356, 380] },
+          { name: 'Đã áp dụng', color: 'var(--success)', values: [80, 96, 110, 128, 148, 170, 186] },
+        ],
+      },
+    },
+    {
+      id: 'a3', title: 'Mức độ kết quả', kind: 'donut',
+      donut: {
+        center: '1,248', centerLabel: 'Tổng số',
+        data: [
+          { label: 'Cao', value: 224, color: 'var(--danger)', note: '224', extra: '18%' },
+          { label: 'Trung bình', value: 524, color: 'var(--warning)', note: '524', extra: '42%' },
+          { label: 'Thấp', value: 349, color: 'var(--success)', note: '349', extra: '28%' },
+          { label: 'Thông tin', value: 151, color: 'var(--slate-300)', note: '151', extra: '12%' },
+        ],
+      },
+    },
+    {
+      id: 'a4', title: 'Tiết kiệm ước tính (VND)', kind: 'metric',
+      metric: { value: '28.75', unit: 'tỷ', caption: 'Đã hiện thực 9.32 tỷ · Đang theo dõi 19.43 tỷ', sub: '▲ 12.5% so với tháng trước' },
+    },
+  ],
+  quickActions: [
+    { id: 'q1', label: 'Chạy phân tích mới', icon: 'play_circle' },
+    { id: 'q2', label: 'Kết quả của tôi', icon: 'person' },
+    { id: 'q3', label: 'Cảnh báo quan trọng', icon: 'crisis_alert' },
+    { id: 'q4', label: 'Mô hình AI', icon: 'model_training' },
+    { id: 'q5', label: 'Thư viện prompt', icon: 'menu_book' },
+    { id: 'q6', label: 'Cấu hình nguồn dữ liệu', icon: 'database' },
+  ],
+  detail: {
+    code: 'AI-2024-001248',
+    title: 'Phát hiện 3 công nhân không đeo mũ bảo hộ',
+    badges: [{ label: 'Cao', tone: 'danger' }, { label: 'Đã áp dụng', tone: 'success' }],
+    tabs: ['Tổng quan', 'Chi tiết', 'Bằng chứng', 'Phân tích', 'Hành động'],
+    props: [
+      { label: 'Loại phân tích', value: 'Nhận diện hình ảnh', icon: 'image_search' },
+      { label: 'Nguồn dữ liệu', value: 'Camera AI - Camera 01', icon: 'videocam' },
+      { label: 'Dự án', value: 'The Nexus Tower', icon: 'domain' },
+      { label: 'Vị trí', value: 'Tầng 10 - Khu vực A', icon: 'location_on' },
+      { label: 'Thời gian phát hiện', value: '20/05/2024 09:15:22', icon: 'schedule' },
+      { label: 'Độ tin cậy', value: '96%', icon: 'verified' },
+      { label: 'AI Model', value: 'ERPcons Vision v2.3', icon: 'model_training' },
+      { label: 'Trạng thái', value: 'Đã áp dụng', icon: 'check_circle', tone: 'success' },
+    ],
+    description: {
+      label: 'Đề xuất của AI',
+      text: 'Yêu cầu nhắc nhở và kiểm tra lại công tác an toàn lao động tại khu vực này. Ưu tiên: Cao.',
+    },
+    photos: 3,
+    actions: [
+      { label: 'Tải báo cáo', icon: 'download' },
+      { label: 'Xem bằng chứng', icon: 'visibility', primary: true },
+    ],
+  },
+}
+
+/** Toàn bộ workspace, tra cứu theo id */
+export const WORKSPACES: Record<string, WorkspaceConfig> = {
+  tasks,
+  issues,
+  ncr,
+  rfi,
+  drawings,
+  meetings,
+  documents,
+  budget,
+  cost,
+  invoices,
+  purchase,
+  assets,
+  equipment,
+  materials,
+  'ai-result': aiResult,
+}
+
+export const WORKSPACE_LIST = Object.values(WORKSPACES)

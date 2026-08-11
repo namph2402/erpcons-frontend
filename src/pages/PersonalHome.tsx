@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
+
 import { AppLayout } from "../components/layout";
+
 import {
   Avatar,
   Badge,
@@ -12,6 +14,7 @@ import {
   Select,
   Tabs,
 } from "../components/ui";
+
 import {
   AlertList,
   DocumentList,
@@ -22,7 +25,9 @@ import {
   ScheduleTimeline,
   TaskList,
 } from "../components/widgets";
+
 import { personalFooterNav, personalNav } from "../data/navigation";
+
 import {
   notifications,
   personalDocuments,
@@ -30,7 +35,9 @@ import {
   personalTasks,
   personalUser,
 } from "../data/mock";
+
 import type { TaskItem } from "../types";
+
 import "./pages.css";
 
 const LEAVE_SPLIT = [
@@ -140,7 +147,7 @@ export default function PersonalHome() {
     <AppLayout
       navGroups={personalNav}
       sidebarFooterItems={personalFooterNav}
-      activeId="home"
+      activeId="personal"
       user={personalUser}
       notificationCount={12}
       searchPlaceholder="Tìm kiếm (Công việc, tài liệu, đồng nghiệp...)"

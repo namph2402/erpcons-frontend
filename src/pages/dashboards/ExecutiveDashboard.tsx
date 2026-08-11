@@ -9,7 +9,6 @@ import {
   StatCard,
 } from '../../components/ui'
 import { CountRowList } from '../../components/widgets'
-import { dashboardUtilityNav, executiveNav } from '../../data/dashboardNav'
 import {
   ceoUser,
   departmentKpis,
@@ -30,12 +29,9 @@ const RATING_TONE = { Tốt: 'success', Khá: 'warning', 'Trung bình': 'danger'
 export default function ExecutiveDashboard() {
   return (
     <DashboardShell
-      navGroups={executiveNav}
-      activeId="exec"
+      activeId="dashboard-exec"
       user={ceoUser}
-      sidebarFooterItems={dashboardUtilityNav}
-      index="54."
-      title="Executive Dashboard"
+      title="Điều hành tổng thể"
       subtitle="Tổng quan toàn bộ hoạt động doanh nghiệp"
       dateRange="01/05/2024 - 31/05/2024"
       utilityIcons={[{ icon: 'more_vert', label: 'Thao tác khác' }]}

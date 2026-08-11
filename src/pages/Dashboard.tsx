@@ -15,13 +15,16 @@ import {
   Tabs,
 } from "../components/ui";
 import type { Column } from "../components/ui";
+
 import {
   InsightStrip,
   NotificationDrawer,
   ScheduleTimeline,
   TaskList,
 } from "../components/widgets";
-import { mainNav } from "../data/navigation";
+
+import { appNav } from "../data/navigation";
+
 import {
   currentUser,
   meetings,
@@ -29,7 +32,9 @@ import {
   notifications,
   projects,
 } from "../data/mock";
+
 import type { Project, TaskItem } from "../types";
+
 import "./pages.css";
 
 const CASHFLOW_IN = [92, 101, 96, 118, 112, 128, 121, 134, 128.6];
@@ -160,8 +165,8 @@ export default function Dashboard({
 
   return (
     <AppLayout
-      navGroups={mainNav}
-      activeId="home"
+      navGroups={appNav}
+      activeId="dashboard"
       user={currentUser}
       notificationCount={12}
       searchPlaceholder="Tìm kiếm nhanh (Dự án, Công việc, Hợp đồng, Tài liệu...)"
