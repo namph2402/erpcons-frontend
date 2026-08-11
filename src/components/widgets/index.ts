@@ -38,8 +38,8 @@ export type { AlertListProps, AlertItem } from './AlertList'
 export { default as ProfileCard } from './ProfileCard'
 export type { ProfileCardProps, ProfileStat } from './ProfileCard'
 
-export { default as DashboardHeader, ProjectSelector } from './DashboardHeader'
-export type { DashboardHeaderProps } from './DashboardHeader'
+export { default as DashboardControls, ProjectSelector } from './DashboardControls'
+export type { DashboardControlsProps } from './DashboardControls'
 
 export { default as CountRowList } from './CountRowList'
 export type { CountRowListProps, CountRow } from './CountRowList'
@@ -49,3 +49,15 @@ export type { KnowledgeGraphViewProps, GraphNode } from './KnowledgeGraphView'
 
 export { default as DeviceMap } from './DeviceMap'
 export type { DeviceMapProps, MapMarker } from './DeviceMap'
+
+export { default as TaskBoard } from './TaskBoard'
+export type { TaskBoardProps, BoardColumn, BoardTone } from './TaskBoard'
+
+export { default as TaskFormModal } from './TaskFormModal'
+export type { TaskFormModalProps, TaskFormValue } from './TaskFormModal'
+
+export { default as TaskDetailModal } from './TaskDetailModal'
+export type { TaskDetailModalProps } from './TaskDetailModal'
+
+export { default as RichTextEditor } from './RichTextEditor'
+export type { RichTextEditorProps } from './RichTextEditor'

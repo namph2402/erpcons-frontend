@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { MobileShell } from '../../components/mobile'
 import { GaugeChart, Icon } from '../../components/ui'
-import { mainNav, personalFooterNav } from '../../data/navigation'
 import { currentUser } from '../../data/mock'
+import { appFooterNav, appNav } from '../../data/navigation'
 import './mobile.css'
 
 const SYNC_ITEMS = [
@@ -24,8 +24,8 @@ export default function OfflineSync() {
   return (
     <MobileShell
       user={currentUser}
-      navGroups={mainNav}
-      drawerFooterItems={personalFooterNav}
+      navGroups={appNav}
+      drawerFooterItems={appFooterNav}
       navActiveId="more"
       hideNavBar
       header={{

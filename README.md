@@ -40,6 +40,23 @@ src/
 └─ dev/ScreenSwitcher.tsx # Chỉ dùng khi review giao diện
 ```
 
+## Quy tắc bất biến: MỘT menu — MỘT header
+
+Toàn bộ màn hình (desktop · dashboard · workspace · đối tác · mobile) dùng **đúng một**
+bộ menu tiếng Việt và **đúng một** header:
+
+- Menu: [`appNav`](src/data/navigation.ts) — 5 nhóm (Điều hành · Thi công & Chất lượng ·
+  Tài chính & Mua sắm · Nguồn lực · Phân tích & Hệ thống). Không màn hình nào được
+  định nghĩa menu riêng; `mainNav` / `enterpriseNav` / `personalNav` và các menu dashboard
+  chỉ còn là **bí danh trỏ về `appNav`** để import cũ không vỡ.
+- Header: [`Topbar`](src/components/layout/Topbar.tsx) — global search, ngôn ngữ, chuông,
+  tin nhắn, trợ giúp, user menu.
+- Phần điều khiển riêng của từng trang (khoảng thời gian, kỳ so sánh, "Thêm widget",
+  "Tạo mới"…) nằm trong `actions` của [`PageHeader`](src/components/layout/PageHeader.tsx),
+  **không** tạo thanh header thứ hai.
+
+Kiểm tra nhanh: `grep -rn "navGroups={" src/pages/ | grep -v appNav` phải không trả về kết quả.
+
 ## Tầng kế thừa
 
 ### 1. Layout (`components/layout`)
@@ -66,7 +83,8 @@ Ba bộ menu có sẵn trong `data/navigation.ts`: `enterpriseNav`, `mainNav`, `
 `Icon` (Material Symbols Rounded) · `Button` (primary/brand/secondary/ghost/danger × sm/md/lg) ·
 `Card` · `Badge` + `STATUS_TONE` · `StatCard` · `ProgressBar` · `Avatar` / `AvatarGroup` ·
 `Tabs` (underline/pill) · `DataTable` (generic theo `Column<T>`) · `SearchInput` · `Select` ·
-`Checkbox` · `DonutChart` · `LineChart` · `EmptyState`.
+`Checkbox` · `DonutChart` · `LineChart` · `EmptyState` · `Modal` (dialog chuẩn, Esc để đóng) ·
+`Field` + `TextInput` / `TextArea` (05.3 Data Entry Form) · `Rating` (thang sao ưu tiên).
 
 Tất cả import gọn qua barrel:
 
@@ -78,7 +96,13 @@ import { Card, StatCard, Badge, DataTable } from '../components/ui'
 
 `WelcomeBanner` · `TaskList` · `ActivityFeed` · `NotificationDrawer` · `ScheduleTimeline` ·
 `MiniCalendar` · `AiCopilotPanel` · `QuickAccess` · `InsightStrip` · `GanttChart` ·
-`DocumentList` · `AlertList` · `ProfileCard`.
+`DocumentList` · `AlertList` · `ProfileCard` · `TaskBoard` (Kanban, kéo thả) ·
+`TaskFormModal` · `TaskDetailModal` · `RichTextEditor`.
+
+Màn hình **Tác vụ cá nhân** chỉ dựng phần nội dung: menu (`personalNav`) và header (`Topbar`)
+kế thừa nguyên `AppLayout`. Trạng thái cột ánh xạ theo 03.8 Status System —
+Danh sách (Slate) · Cần thực hiện (Warning) · Đang thực hiện (Info) · Hoàn thành (Success);
+hai chế độ xem Bảng / Danh sách theo 03.10 View Modes.
 
 Ví dụ `TaskList` được dùng lại ở cả 4 màn hình qua prop `variant`:
 `default` (dashboard) · `schedule` (công việc hôm nay) · `detailed` (có nhãn ưu tiên).
@@ -94,6 +118,7 @@ Ví dụ `TaskList` được dùng lại ở cả 4 màn hình qua prop `variant
 | `#/dashboard/thong-bao` | `Dashboard` (drawer mở) | Dashboard + Notification Center |
 | `#/du-an/:code` | `ProjectWorkspace` | Workspace chi tiết dự án + Gantt |
 | `#/ca-nhan` | `PersonalHome` | Trang chủ cá nhân (Employee Self-Service) |
+| `#/ca-nhan/cong-viec` · `#/tac-vu` | `TaskBoardPage` | Tác vụ cá nhân — bảng Kanban + popup thêm/sửa + popup chi tiết |
 
 **Nhóm Dashboard 54–60** (`src/pages/dashboards`)
 
@@ -123,6 +148,26 @@ thời gian + kỳ so sánh + "Thêm widget"). Menu riêng của từng dashboar
   {/* chỉ còn phần widget của riêng dashboard */}
 </DashboardShell>
 ```
+
+**Nhóm Object Workspace** (`src/pages/workspaces`) — 15 màn hình từ `Erpcons/page`
+
+Cả 15 workspace (Công việc, Vấn đề, NCR, RFI, Bản vẽ, Cuộc họp, Tài liệu, Ngân sách,
+Chi phí, Hóa đơn, Đơn mua hàng, Tài sản, Thiết bị, Vật tư, Kết quả AI) dùng **chung một
+component** [`WorkspacePage`](src/pages/workspaces/WorkspacePage.tsx) +
+[`WorkspaceShell`](src/pages/workspaces/WorkspaceShell.tsx); mỗi màn hình chỉ là một
+`WorkspaceConfig` trong [`data/workspaces.ts`](src/data/workspaces.ts) gồm KPI, bộ lọc,
+tab, cột bảng, dữ liệu, widget phân tích, panel chi tiết và thao tác nhanh. Thêm workspace
+mới = thêm một object, route tự sinh trong `App.tsx`.
+
+**Nhóm Đối tác & Cộng tác** (`src/pages/partners`)
+
+| Route | Page | Ảnh nguồn |
+|---|---|---|
+| `#/lam-viec/hop-dong` | `ContractDetail` | Hợp đồng.jpg |
+| `#/doi-tac/nha-cung-cap` | `SupplierPortal` | nhà cung cấp.jpg |
+| `#/doi-tac/khach-hang` | `CustomerDetail` | khách hàng.jpg |
+| `#/doi-tac/cong-khach-hang` | `CustomerPortal` | dashboard-khách hàng.jpg |
+| `#/cong-tac` | `Collaboration` | level5.jpg |
 
 **Nhóm Mobile 61–65** (`src/pages/mobile`)
 

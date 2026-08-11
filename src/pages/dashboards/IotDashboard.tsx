@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import DashboardShell from './DashboardShell'
+import { COMPARE_OPTIONS } from '../../data/dashboardNav'
 import {
   Badge,
   Card,
@@ -13,7 +14,6 @@ import {
   StatCard,
 } from '../../components/ui'
 import { DeviceMap } from '../../components/widgets'
-import { COMPARE_OPTIONS, iotNav } from '../../data/dashboardNav'
 import {
   gateways,
   iotAlarmHistory,
@@ -69,11 +69,9 @@ export default function IotDashboard() {
 
   return (
     <DashboardShell
-      navGroups={iotNav}
-      activeId="iot"
+      activeId="dashboard-iot"
       user={iotUser}
-      index="59."
-      title="IoT Dashboard"
+      title="Thiết bị IoT"
       tag={{ label: 'IoT', tone: 'info' }}
       subtitle="Tổng quan hệ thống thiết bị & cảm biến"
       dateRange="01/05/2024 - 31/05/2024"

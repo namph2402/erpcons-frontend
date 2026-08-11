@@ -16,7 +16,6 @@ import {
   NotificationDrawer,
   TaskList,
 } from '../components/widgets'
-import { mainNav, projectTabs } from '../data/navigation'
 import {
   currentUser,
   ganttColumns,
@@ -28,6 +27,7 @@ import {
   projects,
 } from '../data/mock'
 import type { TaskItem } from '../types'
+import { appNav, projectTabs } from '../data/navigation'
 import './pages.css'
 
 const RISKS = [
@@ -85,7 +85,7 @@ export default function ProjectWorkspace() {
 
   return (
     <AppLayout
-      navGroups={mainNav}
+      navGroups={appNav}
       activeId="projects"
       user={currentUser}
       notificationCount={12}

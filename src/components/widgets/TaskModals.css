@@ -1,0 +1,323 @@
+/* ============ 05.3 · DATA ENTRY FORM — bổ sung control riêng của Tác vụ ============ */
+
+/* Thời lượng: [-] n ngày · n giờ · n phút [+] */
+.duration {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 4px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+}
+
+.duration__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: var(--r-sm);
+  color: var(--text-secondary);
+  background: var(--bg-muted);
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+.duration__step:hover {
+  background: var(--slate-200);
+  color: var(--text-primary);
+}
+
+.duration__unit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-caption-1);
+  color: var(--text-tertiary);
+  min-width: 0;
+}
+
+.duration__num {
+  width: 42px;
+  padding: 4px 6px;
+  font-size: var(--fs-body-3);
+  font-weight: 600;
+  text-align: right;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+}
+.duration__num:hover {
+  border-color: var(--border);
+}
+.duration__num:focus {
+  outline: none;
+  border-color: var(--info);
+  background: var(--bg-surface);
+}
+
+/* Thanh trượt khối lượng hoàn thành */
+.slider {
+  --pct: 0%;
+  width: 100%;
+  height: 8px;
+  appearance: none;
+  border-radius: var(--r-pill);
+  background: linear-gradient(
+    to right,
+    var(--success) var(--pct),
+    var(--slate-200) var(--pct)
+  );
+  cursor: pointer;
+}
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  border: 2px solid var(--success);
+  box-shadow: var(--shadow-sm);
+}
+.slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--success);
+  border-radius: var(--r-pill);
+  background: var(--white);
+}
+.slider:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+/* ============ 03.6 · SIDE PANEL (DETAIL) — popup chi tiết tác vụ ============ */
+.tdetail {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(320px, 1fr);
+  flex: 1;
+  min-height: 0;
+}
+
+.tdetail__main {
+  padding: var(--sp-5);
+  overflow-y: auto;
+  min-width: 0;
+}
+
+.tdetail__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-4);
+  margin: 0 0 var(--sp-5);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.tdetail__cell {
+  min-width: 0;
+}
+.tdetail__cell dt {
+  font-size: var(--fs-caption-2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-tertiary);
+}
+.tdetail__cell dd {
+  margin: 4px 0 0;
+  font-size: var(--fs-body-3);
+  font-weight: 500;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+.tdetail__cell dd.is-overdue {
+  color: var(--danger);
+}
+
+.tdetail__bar {
+  margin-top: 4px;
+}
+
+.tdetail__person {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.tdetail__flag {
+  display: inline-block;
+  margin-left: var(--sp-2);
+  padding: 1px var(--sp-2);
+  font-size: var(--fs-caption-2);
+  font-weight: 600;
+  color: var(--danger);
+  background: var(--danger-soft);
+  border-radius: var(--r-pill);
+}
+.tdetail__flag.is-ok {
+  color: var(--success);
+  background: var(--success-soft);
+}
+
+.tdetail__tabs {
+  margin-bottom: var(--sp-3);
+}
+
+.tdetail__content {
+  font-size: var(--fs-body-3);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.tdetail__files {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.tfile {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  background: var(--bg-surface);
+}
+
+.tfile__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--r-sm);
+  color: var(--info);
+  background: var(--info-soft);
+}
+
+.tfile__name {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tfile__meta {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.tfile .tcard__act {
+  margin-left: auto;
+}
+
+.tdetail__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-6) var(--sp-4);
+  text-align: center;
+  color: var(--text-tertiary);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-input);
+  background: var(--bg-subtle);
+}
+.tdetail__dropzone p {
+  font-size: var(--fs-body-3);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* ---- Cột trao đổi ---- */
+.tdetail__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  min-width: 0;
+  border-left: 1px solid var(--border);
+  background: var(--bg-subtle);
+}
+
+.tdetail__side-title {
+  font-size: var(--fs-caption-1);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-secondary);
+}
+
+.tdetail__comments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  flex: 1;
+  min-height: 120px;
+  overflow-y: auto;
+}
+
+.tcomment {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.tcomment__body {
+  min-width: 0;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+}
+
+.tcomment__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.tcomment__author {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tcomment__time {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.tcomment__text {
+  margin-top: 2px;
+  font-size: var(--fs-caption-1);
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1023px) {
+  .tdetail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tdetail__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .tdetail__side {
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+}
+
+@media (max-width: 767px) {
+  .tdetail__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-3);
+  }
+  .tdetail__main,
+  .tdetail__side {
+    padding: var(--sp-4);
+  }
+}

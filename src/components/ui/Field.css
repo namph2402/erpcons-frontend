@@ -1,0 +1,89 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  min-width: 0;
+}
+
+.field__label {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.field__req {
+  margin-left: 2px;
+  color: var(--danger);
+}
+
+.field__hint {
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.field__error {
+  font-size: var(--fs-caption-2);
+  color: var(--danger);
+}
+
+/* ---- 05.4 · INPUT ---- */
+.input {
+  width: 100%;
+  min-width: 0;
+  padding: 9px var(--sp-3);
+  font-size: var(--fs-body-3);
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  transition:
+    border-color var(--dur-fast) var(--ease-standard),
+    box-shadow var(--dur-fast) var(--ease-standard);
+}
+.input::placeholder {
+  color: var(--slate-400);
+}
+.input:hover {
+  border-color: var(--border-strong);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--info);
+  box-shadow: var(--ring-focus);
+}
+.input:disabled {
+  background: var(--bg-muted);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+.input--area {
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.field.is-error .input {
+  border-color: var(--danger);
+}
+.field.is-error .input:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+/* ---- Lưới form 05.3 ---- */
+.form-grid {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.form-grid--1 {
+  grid-template-columns: minmax(0, 1fr);
+}
+.form-grid__full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 767px) {
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

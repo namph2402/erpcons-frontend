@@ -14,7 +14,6 @@ import {
   CountRowList,
   ProjectSelector,
 } from '../../components/widgets'
-import { projectDashboardNav } from '../../data/dashboardNav'
 import {
   pmUser,
   projectBudgetSplit,
@@ -42,13 +41,11 @@ export default function ProjectDashboard() {
 
   return (
     <DashboardShell
-      navGroups={projectDashboardNav}
-      activeId="project"
+      activeId="dashboard-project"
       user={pmUser}
-      index="55."
-      title="Project Dashboard"
+      title="Tổng quan dự án"
       subtitle="Tổng quan dự án theo thời gian thực"
-      breadcrumbs={[{ label: 'Projects', href: '#/du-an' }, { label: 'The Nexus Tower' }]}
+      breadcrumbs={[{ label: 'Dự án', href: '#/du-an' }, { label: 'The Nexus Tower' }]}
       selector={<ProjectSelector name="The Nexus Tower" />}
       dateRange="01/05/2024 - 31/05/2024"
       utilityIcons={[

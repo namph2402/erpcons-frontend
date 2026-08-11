@@ -1,0 +1,83 @@
+/* Màn hình Tác vụ cá nhân — chỉ phần nội dung, menu & header dùng khung chuẩn */
+
+.tboard-card {
+  overflow: hidden;
+}
+
+.tboard-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+
+.tboard-toolbar__search {
+  flex: 1 1 280px;
+  max-width: 420px;
+}
+
+/* 03.10 · VIEW MODES — chuyển Bảng / Danh sách */
+.viewswitch {
+  display: inline-flex;
+  padding: 2px;
+  gap: 2px;
+  background: var(--bg-muted);
+  border-radius: var(--r-button);
+}
+.viewswitch button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px var(--sp-3);
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  border-radius: var(--r-sm);
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard);
+}
+.viewswitch button:hover {
+  color: var(--text-primary);
+}
+.viewswitch button.is-active {
+  color: var(--info);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.tboard-canvas {
+  padding: var(--sp-4);
+  background: var(--bg-app);
+}
+
+/* ---- List view ---- */
+.tlist__name {
+  font-size: var(--fs-body-3);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tlist__code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption-2);
+  color: var(--text-tertiary);
+}
+
+.tlist__person {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+@media (max-width: 767px) {
+  .tboard-toolbar__search {
+    max-width: none;
+  }
+  .tboard-canvas {
+    padding: var(--sp-3);
+  }
+}
