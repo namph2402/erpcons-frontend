@@ -117,8 +117,8 @@ export default function Sidebar({
       <nav className="sidebar__nav scroll-y" aria-label="Điều hướng chính">
         {groups.map((group) => (
           <div className="sidenav__group" key={group.id}>
-            {group.title && !collapsed && (
-              <p className="sidenav__group-title">{group.title}</p>
+            {group.label && !collapsed && (
+              <p className="sidenav__group-title">{group.label}</p>
             )}
             <ul>{group.items.map(renderItem)}</ul>
           </div>
