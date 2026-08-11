@@ -91,7 +91,11 @@ export default function AppLayout({
           activeId={activeId}
           onNavigate={(item) => {
             setMobileOpen(false);
-            onNavigate?.(item);
+            if (onNavigate) {
+              onNavigate(item);
+            } else if (item.hash || item.path) {
+              window.location.hash = item.hash || `#${item.path}`;
+            }
           }}
           user={user}
           footerItems={sidebarFooterItems}
