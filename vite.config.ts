@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
  * Đích Drupal khi chạy dev. Đổi bằng biến môi trường nếu máy bạn khác:
  *   VITE_DRUPAL_ORIGIN=http://erp.local npm run dev
  */
-const DRUPAL = process.env.VITE_DRUPAL_ORIGIN ?? 'http://erpcons.localhost'
+const DRUPAL = process.env.VITE_DRUPAL_ORIGIN ?? 'https://lpc.vn/erpcons'
 
 // https://vite.dev/config/
 export default defineConfig({
