@@ -124,21 +124,14 @@ export default function TaskFormModal({
     <Modal
       open={open}
       onClose={onClose}
-      size="lg"
+      size="md"
+      className="task-form-modal"
       title={task ? 'Sửa nội dung Tác vụ' : 'Thêm nội dung Tác vụ'}
       subtitle="Trường có dấu * là bắt buộc"
       footer={
-        <>
-          <Button variant="ghost" onClick={onClose}>
-            Huỷ
-          </Button>
-          <Button variant="secondary" icon="save" onClick={submit}>
-            Lưu nháp
-          </Button>
-          <Button variant="primary" icon="check" onClick={submit}>
-            Lưu
-          </Button>
-        </>
+        <Button variant="primary" onClick={submit}>
+          Lưu
+        </Button>
       }
     >
       <div className="form-grid">
@@ -178,6 +171,7 @@ export default function TaskFormModal({
         </Field>
 
         <Field
+          className="form-grid__full"
           label="Dự án"
           required
           error={touched && !form.project ? 'Vui lòng chọn dự án' : undefined}
@@ -189,7 +183,7 @@ export default function TaskFormModal({
           />
         </Field>
 
-        <Field label="Liên kết với Dplan">
+        <Field className="form-grid__full" label="Liên kết với Dplan">
           <Select
             options={toOptions(dplans)}
             value={form.dplan}
@@ -293,7 +287,7 @@ export default function TaskFormModal({
           />
         </Field>
 
-        <Field label="Người phụ trách">
+        <Field className="form-grid__full" label="Người phụ trách">
           <Select
             options={toOptions(people, '- Chọn người -')}
             value={form.owner}
@@ -301,7 +295,7 @@ export default function TaskFormModal({
           />
         </Field>
 
-        <Field label="Người thực hiện">
+        <Field className="form-grid__full" label="Người thực hiện">
           <Select
             options={toOptions(people, '- Chọn người -')}
             value={form.assignee}
@@ -309,7 +303,7 @@ export default function TaskFormModal({
           />
         </Field>
 
-        <Field label="Người giám sát">
+        <Field className="form-grid__full" label="Người giám sát">
           <Select
             options={toOptions(people, '- Chọn người -')}
             value={form.supervisor}
