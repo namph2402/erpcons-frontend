@@ -21,7 +21,7 @@
   transition: color var(--dur-fast) var(--ease-standard);
 }
 .tabs__item:disabled {
-  color: var(--slate-300);
+  color: var(--text-disabled);
   cursor: not-allowed;
 }
 .tabs__item:hover:not(:disabled) {

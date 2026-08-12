@@ -67,5 +67,5 @@
   outline: none;
 }
 .rte__area::placeholder {
-  color: var(--slate-400);
+  color: var(--text-disabled);
 }

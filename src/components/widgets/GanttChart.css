@@ -21,7 +21,7 @@
   font-size: var(--fs-caption-1);
   font-weight: 600;
   color: var(--text-tertiary);
-  background: var(--slate-50);
+  background: var(--bg-subtle);
   border-bottom: 1px solid var(--border);
 }
 .gantt__period {
@@ -65,7 +65,7 @@
   color: var(--info);
 }
 .gantt__check--plan {
-  color: var(--slate-300);
+  color: var(--text-disabled);
 }
 
 .gantt__name {
@@ -92,7 +92,7 @@
   background: var(--info);
 }
 .gantt__flag--plan {
-  background: var(--slate-200);
+  background: var(--chart-track);
 }
 
 /* ---- vùng phải: trục thời gian ---- */
@@ -105,7 +105,7 @@
 .gantt__cols {
   display: grid;
   border-bottom: 1px solid var(--border);
-  background: var(--slate-50);
+  background: var(--bg-subtle);
 }
 
 .gantt__col-label {
@@ -123,7 +123,7 @@
   height: 22px;
   border-radius: var(--r-pill);
   background: var(--info);
-  color: var(--white);
+  color: var(--text-on-accent);
   font-size: 11px;
 }
 
@@ -135,7 +135,7 @@
 
 .gantt__gridline {
   grid-row: 1;
-  border-left: 1px solid var(--slate-100);
+  border-left: 1px solid var(--bg-muted);
 }
 .gantt__gridline.is-today {
   border-left: 2px solid var(--info);
@@ -147,7 +147,7 @@
   height: 20px;
   margin: 0 2px;
   border-radius: var(--r-pill);
-  background: var(--slate-200);
+  background: var(--chart-track);
   overflow: visible;
 }
 .gantt__bar-fill {
@@ -162,7 +162,7 @@
   background: var(--info);
 }
 .gantt__bar.is-plan .gantt__bar-fill {
-  background: var(--slate-300);
+  background: var(--border-strong);
 }
 
 .gantt__milestone {
@@ -202,7 +202,7 @@
   background: var(--info);
 }
 .gantt-legend .is-plan {
-  background: var(--slate-300);
+  background: var(--border-strong);
 }
 .gantt-legend .is-milestone {
   width: 10px;

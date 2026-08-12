@@ -27,7 +27,7 @@ export default function DocumentList({ items, variant = 'list' }: DocumentListPr
       {items.map((doc) => {
         const style = EXT_STYLE[doc.ext.toLowerCase()] ?? {
           icon: 'draft',
-          color: 'var(--slate-500)',
+          color: 'var(--disabled)',
         }
         return (
           <li key={doc.id} className="doc">

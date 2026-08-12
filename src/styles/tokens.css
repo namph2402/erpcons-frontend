@@ -1,77 +1,132 @@
 /* =========================================================================
-   ERPCONS DESIGN SYSTEM 2026 — Theme 01 · Foundation
-   Nguồn: Erpcons/Custorm (Design Guideline + Design System)
-   Mọi component chỉ được dùng biến trong file này, không hard-code màu.
+   ERPCONS DESIGN SYSTEM 2026 — Foundation Tokens
+   Tầng màu tuân theo: COLOR GUIDELINE 2026–2036 · "GRAPHITE & CRIMSON"
+   (Erpcons/Custom · Erpcons/standards — Theme 01 Foundation cho phần còn lại)
+
+   KIẾN TRÚC 2 TẦNG — component chỉ dùng token TẦNG 2 (role),
+   không dùng thẳng primitive và tuyệt đối không hard-code màu.
+
+     TẦNG 1 · PRIMITIVE  — bảng màu gốc, GIỐNG NHAU ở Light và Dark
+     TẦNG 2 · ROLE       — vai trò giao diện (nền, chữ, viền, bóng…),
+                           ĐỔI GIÁ TRỊ theo `data-theme` trên <html>
+
+   TỶ LỆ DÙNG MÀU (mục 04) — 72% Neutral/Surface · 24% Structure/Secondary ·
+   4% Brand/Accent · Semantic chỉ khi cần. Crimson KHÔNG dùng cho trạng thái.
+
+   TIẾP CẬN (mục 07) — WCAG 2.2 AA: chữ thường ≥ 4.5:1 · chữ lớn ≥ 3:1 ·
+   thành phần UI ≥ 3:1. Vì vậy mỗi họ màu có 2 biến thể: `-600` cho nền SÁNG
+   và `-300` cho nền TỐI; token role tự chọn biến thể đúng theo theme.
+
+   Chuyển theme: <html data-theme="light" | "dark">  (xem src/theme/)
+   Quy định công tắc: Theme 02 · Navigation — 02.9 User Menu (Light/Dark/System)
    ========================================================================= */
 
+/* =========================================================================
+   TẦNG 1 · PRIMITIVE — không phụ thuộc theme
+   ========================================================================= */
 :root {
-  /* ---------- 01 · BRAND ---------- */
-  --erp-red: #d62839;
-  --erp-red-hover: #b91f2f;
-  --erp-red-pressed: #9c1926;
-  --erp-red-soft: #fdecee;
+  /* ---------- 01 · BRAND — CRIMSON IDENTITY -----------------------------
+     Nhận diện thương hiệu, logo, điểm nhấn chính. Giới hạn ~4% diện tích. */
+  --crimson-700: #8a0a1f;
+  --crimson-600: #a80d26;
+  --crimson-500: #c8102e; /* Crimson Identity — màu gốc */
+  --crimson-300: #ff6b7f; /* dùng làm CHỮ trên nền tối */
+  --crimson-100: #fdecef;
+  --crimson-950: #2c0a11; /* nền mềm trên theme tối */
 
-  /* ---------- 02 · SYSTEM SEMANTIC ---------- */
-  --success: #12b76a;
-  --warning: #f59e0b;
-  --danger: #dc2626;
-  --info: #2563eb;
-  --disabled: #64748b;
-
-  --success-soft: #e7f8f0;
-  --warning-soft: #fef4e6;
-  --danger-soft: #fdeaea;
-  --info-soft: #e8f0fe;
-
-  /* Biến đậm — dùng khi đặt chữ trắng lên nền màu (đạt tương phản 4.5:1 · 11.4) */
-  --success-strong: #047857;
-  --warning-strong: #b45309;
-
-  /* ---------- 02b · TECHNOLOGY SEMANTIC ---------- */
-  --ai: #6366f1;
-  --ocr: #0ea5a4;
-  --iot: #06b6d4;
-  --automation: #7c3aed;
-  --analytics: #2563eb;
-  --digital-twin: #0d1b2a;
-
-  --ai-soft: #eef0fe;
-  --automation-soft: #f2ecfd;
-
-  /* ---------- 02c · NEUTRAL PALETTE ---------- */
+  /* ---------- 02 · ENTERPRISE FOUNDATION — nền tảng giao diện ------------ */
+  --carbon: #081220; /* Carbon — nền ứng dụng theme tối */
+  --carbon-800: #111a27; /* bề mặt chính (dark) */
+  --carbon-700: #162333; /* bề mặt phụ (dark) */
+  --carbon-600: #263445; /* đường viền (dark) */
+  --carbon-500: #35455a; /* viền nhấn (dark) */
+  --graphite: #242a32; /* Graphite — cấu trúc, khối đặc */
+  --ink: #101828; /* Text Primary trên nền sáng */
+  --steel: #475467; /* Steel — đường viền, phân tách, chữ phụ */
+  --neutral-500: #667085; /* Neutral — trung tính, chưa xác định */
+  --neutral-400: #98a2b3;
+  --concrete: #d9dee5; /* Concrete — viền trên nền sáng */
+  --concrete-400: #bfc8d4;
+  --mist-100: #f0f3f6; /* bề mặt phụ (light) */
+  --mist: #f5f7f9; /* Mist — nền sáng */
   --white: #ffffff;
-  --slate-50: #f8fafc;
-  --slate-100: #f1f5f9;
-  --slate-200: #e2e8f0;
-  --slate-300: #cbd5e1;
-  --slate-400: #94a3b8;
-  --slate-500: #64748b;
-  --slate-700: #334155;
-  --slate-900: #0f172a;
+  --paper: #f2f4f7; /* Text Primary trên nền tối */
 
-  /* ---------- Surface / Text roles ---------- */
-  --bg-app: #f4f7fb;
-  --bg-surface: var(--white);
-  --bg-subtle: var(--slate-50);
-  --bg-muted: var(--slate-100);
+  /* ---------- 02b · ACCENT — 4 họ theo ngữ cảnh nghiệp vụ ---------------
+     Digital · Intelligence · ESG · Construction. Mỗi họ: -600 cho nền sáng,
+     -300 cho nền tối, -soft/-soft-dark cho nền mềm của chip & khối. */
 
-  --text-primary: var(--slate-900);
-  --text-secondary: var(--slate-700);
-  --text-tertiary: var(--slate-500);
-  --text-invert: var(--white);
+  /* DIGITAL – DATA · Steel Blue: thông tin, dữ liệu, CDE, BIM, báo cáo */
+  --digital-700: #1f3d74;
+  --digital-600: #2e5aac;
+  --digital-300: #6c97e0;
+  --digital-soft: #e8eef9;
+  --digital-soft-dark: #12203a;
+  --digital-border: #c7d6ee;
+  --digital-border-dark: #29406b;
 
-  --border: var(--slate-200);
-  --border-strong: var(--slate-300);
+  /* INTELLIGENCE – AI & IOT · Construction Teal: AI, camera, cảm biến */
+  --intel-700: #10645f;
+  --intel-600: #147d78;
+  --intel-300: #3fb3ac;
+  --intel-soft: #e3f2f1;
+  --intel-soft-dark: #0b2b2a;
+  --intel-border: #bfe0dd;
+  --intel-border-dark: #1c4a47;
 
-  /* Navigation surface (sidebar tối) */
-  --nav-bg: #0b2545;
-  --nav-bg-2: #071a33;
-  --nav-text: #cdd9ea;
-  --nav-text-muted: #8ba3c2;
-  --nav-active-bg: #2563eb;
-  --nav-hover-bg: rgba(255, 255, 255, 0.07);
+  /* SUSTAINABILITY – ESG · Green: carbon, năng lượng, nước, vật liệu xanh */
+  --esg-700: #23603f;
+  --esg-600: #2f7d55;
+  --esg-300: #57b583;
+  --esg-soft: #e6f2eb;
+  --esg-soft-dark: #10281c;
 
-  /* ---------- 03 · TYPOGRAPHY (Inter) ---------- */
+  /* PHYSICAL – CONSTRUCTION · Copper: vật liệu, thiết bị, khối lượng */
+  --copper-700: #8a5730;
+  --copper-600: #a86f3d;
+  --copper-300: #d09a63;
+  --copper-soft: #f6ede4;
+  --copper-soft-dark: #2a1d11;
+
+  /* ---------- 03 · SEMANTIC — chỉ dùng cho TRẠNG THÁI -------------------
+     Không dùng cho nhận diện thương hiệu. Luôn kèm icon + chữ, không
+     truyền đạt ý nghĩa chỉ bằng màu (mục 05 · 07). */
+  --success-600: #168a5a;
+  --success-700: #0f6b45; /* đủ 4.5:1 khi làm chữ trên nền sáng */
+  --success-300: #3ebe8a;
+  --success-soft-light: #e4f3ec;
+  --success-soft-dark: #0b2a1d;
+
+  --warning-600: #b7791f;
+  --warning-700: #8a5a12;
+  --warning-300: #e0a73f;
+  --warning-soft-light: #fbf0de;
+  --warning-soft-dark: #2c1f08;
+
+  --danger-600: #c4320a;
+  --danger-700: #a32a08;
+  --danger-300: #f2683f;
+  --danger-soft-light: #fbe9e2;
+  --danger-soft-dark: #2e1108;
+
+  --info-600: var(--digital-600);
+  --info-700: var(--digital-700);
+  --info-300: var(--digital-300);
+
+  --neutral-soft-light: var(--mist-100);
+  --neutral-soft-dark: var(--carbon-700);
+
+  /* ---------- 02e · "ON DARK" — bề mặt LUÔN TỐI ở cả hai theme -----------
+     (banner chào, khung ngắm camera, ảnh phủ tối) → giá trị bất biến. */
+  --on-dark-strong: rgba(255, 255, 255, 0.85);
+  --on-dark-muted: rgba(255, 255, 255, 0.7);
+  --glass-soft: rgba(255, 255, 255, 0.12);
+  --glass-mid: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --viewfinder-1: var(--graphite);
+  --viewfinder-2: var(--carbon);
+
+  /* ---------- 04 · TYPOGRAPHY (Inter) ----------------------------------- */
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
 
@@ -90,7 +145,7 @@
   --fs-caption-1: 13px;
   --fs-caption-2: 12px;
 
-  /* ---------- 06 · SPACING SCALE ---------- */
+  /* ---------- 05 · SPACING SCALE ---------------------------------------- */
   --sp-1: 4px;
   --sp-2: 8px;
   --sp-3: 12px;
@@ -100,7 +155,7 @@
   --sp-7: 48px;
   --sp-8: 64px;
 
-  /* ---------- 05 · RADIUS ---------- */
+  /* ---------- 06 · RADIUS ----------------------------------------------- */
   --r-xs: 4px;
   --r-sm: 8px;
   --r-input: 12px;
@@ -109,14 +164,7 @@
   --r-lg: 24px;
   --r-pill: 999px;
 
-  /* ---------- 07 · SHADOW & BORDER ---------- */
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.06);
-  --shadow-pop: 0 8px 24px rgba(15, 23, 42, 0.1);
-  --ring-focus: 0 0 0 3px rgba(37, 99, 235, 0.18);
-
-  /* ---------- 08 · MOTION ---------- */
+  /* ---------- 07 · MOTION ----------------------------------------------- */
   --dur-instant: 0ms;
   --dur-fast: 150ms;
   --dur-normal: 300ms;
@@ -125,10 +173,320 @@
   --ease-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
   --ease-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
 
-  /* ---------- 09 · LAYOUT ---------- */
+  /* ---------- 08 · LAYOUT ----------------------------------------------- */
   --sidebar-w: 232px;
   --sidebar-w-collapsed: 76px;
   --topbar-h: 64px;
   --container-max: 1440px;
   --drawer-w: 420px;
+}
+
+/* =========================================================================
+   TẦNG 2 · ROLE — LIGHT MODE
+   Bảng bề mặt & chữ lấy nguyên mục 06 · LIGHT & DARK MODE:
+     Background #F5F7F9 · Surface #FFFFFF · Surface Secondary #F0F3F6
+     Border #D9DEE5 · Text #101828 / #475467 / #98A2B3
+   ========================================================================= */
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* ---------- Thương hiệu ----------------------------------------------- */
+  --erp-red: var(--crimson-500);
+  --erp-red-hover: var(--crimson-600);
+  --erp-red-pressed: var(--crimson-700);
+  --erp-red-soft: var(--crimson-100);
+  --brand-text: var(--crimson-500); /* 4.9:1 trên nền trắng */
+
+  /* ---------- Semantic đang hiệu lực ------------------------------------ */
+  --success: var(--success-600);
+  --warning: var(--warning-600);
+  --danger: var(--danger-600);
+  --info: var(--info-600);
+  --disabled: var(--neutral-500);
+
+  --info-hover: #274c90;
+  --info-pressed: var(--info-700);
+
+  --success-soft: var(--success-soft-light);
+  --warning-soft: var(--warning-soft-light);
+  --danger-soft: var(--danger-soft-light);
+  --info-soft: var(--digital-soft);
+  --neutral-soft: var(--neutral-soft-light);
+
+  /* Chữ trên nền mềm — biến thể -700 để đạt ≥ 4.5:1 */
+  --success-text: var(--success-700);
+  --warning-text: var(--warning-700);
+  --danger-text: var(--danger-700);
+  --info-text: var(--info-700);
+
+  /* Nền đặc + chữ trắng */
+  --success-strong: var(--success-700);
+  --warning-strong: var(--warning-700);
+
+  /* ---------- Accent theo ngữ cảnh -------------------------------------- */
+  --digital: var(--digital-600);
+  --intelligence: var(--intel-600);
+  --esg: var(--esg-600);
+  --construction: var(--copper-600);
+
+  /* Bí danh giữ tương thích với code cũ (AI · OCR · IoT · Automation…) */
+  --ai: var(--intel-600);
+  --ocr: var(--intel-600);
+  --iot: var(--intel-600);
+  --automation: var(--digital-600);
+  --analytics: var(--digital-600);
+  --digital-twin: var(--carbon);
+
+  --ai-soft: var(--intel-soft);
+  --ai-border: var(--intel-border);
+  --iot-soft: var(--intel-soft);
+  --automation-soft: var(--digital-soft);
+  --esg-tint: var(--esg-soft);
+  --construction-tint: var(--copper-soft);
+
+  --accent-teal: var(--intel-600);
+  --accent-blue-soft: var(--digital-soft);
+  --accent-blue-text: var(--digital-600);
+
+  /* ---------- Bề mặt (mục 06) ------------------------------------------- */
+  --bg-app: var(--mist);
+  --bg-surface: var(--white);
+  --bg-elevated: var(--white); /* popover, dropdown, modal */
+  --bg-subtle: var(--mist-100);
+  --bg-muted: var(--mist-100);
+  --bg-hover: var(--mist-100);
+  --bg-active: var(--concrete);
+  --bg-inset: var(--mist);
+  --skeleton: var(--concrete);
+
+  /* ---------- Chữ (mục 06) ---------------------------------------------- */
+  --text-primary: var(--ink);
+  --text-secondary: var(--steel);
+  --text-tertiary: var(--neutral-500);
+  --text-disabled: var(--neutral-400);
+  --text-invert: var(--white);
+  --text-on-accent: var(--white);
+
+  /* ---------- Viền (mục 06) --------------------------------------------- */
+  --border: var(--concrete);
+  --border-strong: var(--concrete-400);
+  --border-subtle: var(--mist-100);
+
+  /* ---------- Điều hướng — thanh Carbon trên nền sáng ------------------- */
+  --nav-bg: var(--carbon);
+  --nav-bg-2: #050b14;
+  --nav-text: #c3cbd6;
+  --nav-text-muted: var(--neutral-400);
+  --nav-text-strong: var(--white);
+  --nav-active-bg: var(--digital-600);
+  --nav-active-shadow: 0 4px 12px rgba(46, 90, 172, 0.35);
+  --nav-hover-bg: rgba(255, 255, 255, 0.07);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --nav-divider: rgba(255, 255, 255, 0.12);
+  --nav-link: var(--digital-300);
+
+  /* ---------- Lớp phủ --------------------------------------------------- */
+  --overlay: rgba(8, 18, 32, 0.5);
+  --overlay-soft: rgba(8, 18, 32, 0.4);
+  --glass: rgba(255, 255, 255, 0.22);
+  --glass-strong: rgba(255, 255, 255, 0.94);
+
+  /* ---------- Shadow & focus ring --------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-card: 0 2px 8px rgba(16, 24, 40, 0.05);
+  --shadow-md: 0 4px 16px rgba(16, 24, 40, 0.07);
+  --shadow-pop: 0 8px 24px rgba(16, 24, 40, 0.12);
+  --shadow-up: 0 -2px 12px rgba(16, 24, 40, 0.06);
+  --ring-focus: 0 0 0 3px rgba(46, 90, 172, 0.2);
+  --ring-danger: 0 0 0 3px rgba(196, 50, 10, 0.18);
+  --ring-ai: 0 0 0 3px rgba(20, 125, 120, 0.18);
+  --fab-shadow: 0 6px 16px rgba(46, 90, 172, 0.36);
+
+  /* ---------- Biểu đồ & sơ đồ (mục 08 · Chart example) ------------------ */
+  --chart-1: var(--digital-600); /* Digital */
+  --chart-2: var(--intel-600); /* Intelligence */
+  --chart-3: var(--esg-600); /* ESG */
+  --chart-4: var(--copper-600); /* Construction */
+  --chart-5: var(--neutral-500); /* Other */
+  --chart-grid: rgba(71, 84, 103, 0.16);
+  --chart-axis: var(--neutral-400);
+  --chart-track: #e4e8ee;
+  --map-bg: linear-gradient(160deg, var(--mist-100) 0%, #e8edf3 100%);
+  --map-blob-1: #e2eeea;
+  --map-blob-2: #e2e9f5;
+  --map-grid: rgba(71, 84, 103, 0.09);
+
+  /* ---------- Khối trang trí -------------------------------------------- */
+  --banner-1: var(--carbon); /* WelcomeBanner — Carbon → Digital */
+  --banner-2: #16233a;
+  --banner-3: var(--digital-700);
+  --banner-scrim: 8, 18, 32; /* RGB Carbon để pha alpha */
+  --banner-accent: var(--copper-300);
+  --placeholder-1: var(--concrete);
+  --placeholder-2: var(--concrete-400);
+  --placeholder-3: #a7b2c1;
+  --device-frame: var(--carbon);
+  --scroll-thumb: var(--concrete-400);
+}
+
+/* =========================================================================
+   TẦNG 2 · ROLE — DARK MODE
+   Bảng bề mặt & chữ lấy nguyên mục 06 · LIGHT & DARK MODE:
+     Background #081220 · Surface #111A27 · Surface Secondary #162333
+     Border #263445 · Text #F2F4F7 / #98A2B3 / #667085
+   Nguyên tắc: độ nổi thể hiện bằng NỀN SÁNG DẦN, không bằng bóng đổ;
+   mọi họ màu chuyển sang biến thể -300 để giữ tương phản ≥ 4.5:1.
+   ========================================================================= */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* ---------- Thương hiệu ----------------------------------------------- */
+  --erp-red: var(--crimson-500); /* nền đặc: giữ nguyên màu nhận diện */
+  --erp-red-hover: #d92742;
+  --erp-red-pressed: var(--crimson-600);
+  --erp-red-soft: var(--crimson-950);
+  --brand-text: var(--crimson-300); /* #C8102E không đủ tương phản khi làm chữ */
+
+  /* ---------- Semantic đang hiệu lực ------------------------------------ */
+  --success: var(--success-300);
+  --warning: var(--warning-300);
+  --danger: var(--danger-300);
+  --info: var(--info-300);
+  --disabled: var(--neutral-400);
+
+  --info-hover: #4e7dd1;
+  --info-pressed: var(--digital-600);
+
+  --success-soft: var(--success-soft-dark);
+  --warning-soft: var(--warning-soft-dark);
+  --danger-soft: var(--danger-soft-dark);
+  --info-soft: var(--digital-soft-dark);
+  --neutral-soft: var(--neutral-soft-dark);
+
+  --success-text: var(--success-300);
+  --warning-text: var(--warning-300);
+  --danger-text: var(--danger-300);
+  --info-text: var(--info-300);
+
+  --success-strong: var(--success-600);
+  --warning-strong: var(--warning-600);
+
+  /* ---------- Accent theo ngữ cảnh -------------------------------------- */
+  --digital: var(--digital-300);
+  --intelligence: var(--intel-300);
+  --esg: var(--esg-300);
+  --construction: var(--copper-300);
+
+  --ai: var(--intel-300);
+  --ocr: var(--intel-300);
+  --iot: var(--intel-300);
+  --automation: var(--digital-300);
+  --analytics: var(--digital-300);
+  --digital-twin: var(--carbon);
+
+  --ai-soft: var(--intel-soft-dark);
+  --ai-border: var(--intel-border-dark);
+  --iot-soft: var(--intel-soft-dark);
+  --automation-soft: var(--digital-soft-dark);
+  --esg-tint: var(--esg-soft-dark);
+  --construction-tint: var(--copper-soft-dark);
+
+  --accent-teal: var(--intel-300);
+  --accent-blue-soft: var(--digital-soft-dark);
+  --accent-blue-text: var(--digital-300);
+
+  /* ---------- Bề mặt (mục 06) ------------------------------------------- */
+  --bg-app: var(--carbon);
+  --bg-surface: var(--carbon-800);
+  --bg-elevated: var(--carbon-700);
+  --bg-subtle: #0d1725;
+  --bg-muted: var(--carbon-700);
+  --bg-hover: var(--carbon-700);
+  --bg-active: var(--carbon-600);
+  --bg-inset: #0d1725;
+  --skeleton: var(--carbon-600);
+
+  /* ---------- Chữ (mục 06) ---------------------------------------------- */
+  --text-primary: var(--paper);
+  --text-secondary: var(--neutral-400);
+  --text-tertiary: #7d8899;
+  --text-disabled: var(--neutral-500);
+  --text-invert: var(--carbon);
+  --text-on-accent: var(--white);
+
+  /* ---------- Viền (mục 06) --------------------------------------------- */
+  --border: var(--carbon-600);
+  --border-strong: var(--carbon-500);
+  --border-subtle: var(--carbon-700);
+
+  /* ---------- Điều hướng — tối hơn nền app để giữ phân tầng ------------- */
+  --nav-bg: #050d18;
+  --nav-bg-2: #03080f;
+  --nav-text: #b8c2cf;
+  --nav-text-muted: #7d8899;
+  --nav-text-strong: var(--white);
+  --nav-active-bg: var(--digital-600);
+  --nav-active-shadow: 0 4px 12px rgba(46, 90, 172, 0.45);
+  --nav-hover-bg: rgba(255, 255, 255, 0.06);
+  --nav-border: rgba(255, 255, 255, 0.07);
+  --nav-divider: rgba(255, 255, 255, 0.1);
+  --nav-link: var(--digital-300);
+
+  /* ---------- Lớp phủ --------------------------------------------------- */
+  --overlay: rgba(2, 6, 12, 0.72);
+  --overlay-soft: rgba(2, 6, 12, 0.6);
+  --glass: rgba(255, 255, 255, 0.1);
+  --glass-strong: rgba(17, 26, 39, 0.94);
+
+  /* ---------- Shadow & focus ring --------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-up: 0 -2px 12px rgba(0, 0, 0, 0.5);
+  --ring-focus: 0 0 0 3px rgba(108, 151, 224, 0.35);
+  --ring-danger: 0 0 0 3px rgba(242, 104, 63, 0.3);
+  --ring-ai: 0 0 0 3px rgba(63, 179, 172, 0.3);
+  --fab-shadow: 0 6px 16px rgba(46, 90, 172, 0.5);
+
+  /* ---------- Biểu đồ & sơ đồ ------------------------------------------- */
+  --chart-1: var(--digital-300);
+  --chart-2: var(--intel-300);
+  --chart-3: var(--esg-300);
+  --chart-4: var(--copper-300);
+  --chart-5: var(--neutral-400);
+  --chart-grid: rgba(152, 162, 179, 0.18);
+  --chart-axis: var(--neutral-500);
+  --chart-track: var(--carbon-600);
+  --map-bg: linear-gradient(160deg, #0c1723 0%, #101c2c 100%);
+  --map-blob-1: #102b28;
+  --map-blob-2: #13233c;
+  --map-grid: rgba(152, 162, 179, 0.1);
+
+  /* ---------- Khối trang trí -------------------------------------------- */
+  --banner-1: #050d18;
+  --banner-2: #0e1a2c;
+  --banner-3: var(--digital-700);
+  --banner-scrim: 5, 13, 24;
+  --banner-accent: var(--copper-300);
+  --placeholder-1: #1b2634;
+  --placeholder-2: #243043;
+  --placeholder-3: #2e3c52;
+  --device-frame: #000407;
+  --scroll-thumb: var(--carbon-500);
+}
+
+/* =========================================================================
+   Chuyển theme mượt — chỉ bật ~250ms lúc đổi, do ThemeProvider gắn cờ.
+   Tự vô hiệu khi người dùng bật "giảm chuyển động" (xem global.css).
+   ========================================================================= */
+:root[data-theme-switching] *,
+:root[data-theme-switching] *::before,
+:root[data-theme-switching] *::after {
+  transition:
+    background-color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard),
+    fill var(--dur-fast) var(--ease-standard) !important;
 }

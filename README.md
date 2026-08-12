@@ -198,16 +198,41 @@ của dashboard mà không phá biến thể `inline` đang dùng ở các màn 
 
 ## Design token (bắt buộc dùng, không hard-code màu)
 
+Tầng màu theo **COLOR GUIDELINE 2026–2036 · "Graphite & Crimson"**, có đủ **Light
+và Dark mode**. Chi tiết đầy đủ: [docs/DESIGN-TOKENS.md](docs/DESIGN-TOKENS.md).
+
 | Nhóm | Token |
 |---|---|
-| Brand | `--erp-red #D62839` — chỉ cho logo & CTA thương hiệu |
-| Semantic | `--success #12B76A` `--warning #F59E0B` `--danger #DC2626` `--info #2563EB` `--disabled #64748B` |
-| Technology | `--ai #6366F1` `--ocr #0EA5A4` `--iot #06B6D4` `--automation #7C3AED` `--analytics #2563EB` |
-| Neutral | `--slate-50 … --slate-900` |
+| Brand | `--erp-red #C8102E` (Crimson Identity) — logo & CTA chính, giới hạn ~4% diện tích. Làm chữ thì dùng `--brand-text` |
+| Semantic | `--success #168A5A` `--warning #B7791F` `--danger #C4320A` `--info #2E5AAC` `--disabled #667085` — chỉ cho **trạng thái**, không cho nhận diện |
+| Accent | `--digital #2E5AAC` (dữ liệu · CDE · BIM) · `--intelligence #147D78` (AI · IoT) · `--esg #2F7D55` (bền vững) · `--construction #A86F3D` (vật tư · thi công) |
+| Neutral | Carbon `#081220` · Graphite `#242A32` · Steel `#475467` · Concrete `#D9DEE5` · Mist `#F5F7F9` · White |
+| Bề mặt / chữ | Dùng **role token** (`--bg-app` `--bg-surface` `--bg-elevated` `--text-primary` `--border`…) — chúng tự đổi giá trị theo theme |
+| Biểu đồ | `--chart-1 … --chart-5` (Digital · Intelligence · ESG · Construction · Other) |
 | Typography | Inter (Display 48/40/36 · Heading 32/28/24/20 · Title 18/16 · Body 16/15/14 · Caption 13/12), số dùng JetBrains Mono cho mã |
 | Radius | Card 16 · Input/Button 12 · Chip 999 |
 | Spacing | 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 |
 | Breakpoint | Desktop ≥1440 · Laptop 1024–1439 · Tablet 768–1023 · Mobile ≤767 |
+
+Tỷ lệ dùng màu (mục 04): **72% Neutral/Surface · 24% Structure/Secondary · 4% Brand/Accent**,
+Semantic chỉ khi cần. Tiếp cận (mục 07): WCAG 2.2 AA — chữ thường ≥ 4.5:1, chữ lớn ≥ 3:1, UI ≥ 3:1.
+
+## Light & Dark mode
+
+Công tắc **Sáng / Tối / Theo hệ thống** nằm trong User Menu trên Topbar (đúng 02.9),
+kèm nút đảo nhanh cạnh chuông thông báo. Lựa chọn lưu ở `localStorage` và đồng bộ giữa các tab.
+
+```tsx
+import { useTheme } from './theme'
+
+const { choice, resolved, setTheme, toggleTheme } = useTheme()
+// choice   : 'light' | 'dark' | 'system'  — lựa chọn của người dùng
+// resolved : 'light' | 'dark'             — giá trị đang hiển thị thật sự
+```
+
+Quy tắc khi viết component mới: **chỉ dùng role token**, không dùng primitive
+(`--carbon`, `--mist`, `--crimson-500`…) và không hard-code màu — làm vậy thì màn hình
+tự chạy đúng ở cả hai theme mà không phải viết thêm CSS nào cho dark.
 
 ## Bước tiếp theo khi tích hợp backend
 

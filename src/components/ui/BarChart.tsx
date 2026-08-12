@@ -85,7 +85,7 @@ export default function BarChart({
                 y1={yy}
                 x2={W - padR}
                 y2={yy}
-                stroke="var(--slate-200)"
+                stroke="var(--chart-grid)"
                 strokeWidth="1"
                 strokeDasharray={v === 0 ? undefined : '3 4'}
               />

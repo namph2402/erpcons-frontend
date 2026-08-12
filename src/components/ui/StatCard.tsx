@@ -59,7 +59,7 @@ const TONE_COLOR: Record<StatTone, string> = {
   danger: 'var(--danger)',
   ai: 'var(--ai)',
   brand: 'var(--erp-red)',
-  neutral: 'var(--slate-500)',
+  neutral: 'var(--disabled)',
   automation: 'var(--automation)',
   iot: 'var(--iot)',
 }
@@ -168,7 +168,7 @@ function RingProgress({ value, color }: { value: number; color: string }) {
   const pct = Math.max(0, Math.min(100, value))
   return (
     <svg className="stat-card__ring" width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--slate-100)" strokeWidth={stroke} />
+      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--chart-track)" strokeWidth={stroke} />
       <circle
         cx={size / 2}
         cy={size / 2}

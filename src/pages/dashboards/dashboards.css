@@ -79,7 +79,7 @@
   padding: var(--sp-3);
   border: 1px solid var(--border);
   border-radius: var(--r-input);
-  background: var(--slate-50);
+  background: var(--bg-subtle);
   min-width: 0;
 }
 .metric-tile__label {
@@ -125,7 +125,7 @@
 .summary-box {
   border: 1px solid var(--border);
   border-radius: var(--r-input);
-  background: var(--slate-50);
+  background: var(--bg-subtle);
   padding: var(--sp-3);
   min-width: 180px;
 }
@@ -188,7 +188,7 @@
 .factor-bar {
   height: 8px;
   border-radius: var(--r-pill);
-  background: var(--slate-100);
+  background: var(--bg-muted);
   overflow: hidden;
   position: relative;
 }
@@ -262,7 +262,7 @@
 .signal i {
   width: 3px;
   border-radius: 1px;
-  background: var(--slate-200);
+  background: var(--chart-track);
 }
 .signal i:nth-child(1) { height: 4px; }
 .signal i:nth-child(2) { height: 7px; }
@@ -334,10 +334,10 @@
 .site-photo {
   aspect-ratio: 4 / 3;
   border-radius: var(--r-sm);
-  background: linear-gradient(140deg, #d7e3f0 0%, #b9cbdf 60%, #9fb6ce 100%);
+  background: linear-gradient(140deg, var(--placeholder-1) 0%, var(--placeholder-2) 60%, var(--placeholder-3) 100%);
   display: grid;
   place-items: center;
-  color: var(--slate-500);
+  color: var(--text-tertiary);
   overflow: hidden;
 }
 

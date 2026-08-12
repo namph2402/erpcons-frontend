@@ -43,7 +43,7 @@
   color: var(--text-tertiary);
 }
 .notif__icon-btn:hover {
-  background: var(--slate-100);
+  background: var(--bg-muted);
   color: var(--text-primary);
 }
 
@@ -59,7 +59,7 @@
   white-space: nowrap;
 }
 .notif__mark:hover {
-  background: var(--slate-100);
+  background: var(--bg-muted);
 }
 
 .notif__tabs {
@@ -89,7 +89,7 @@
   cursor: pointer;
 }
 .notif__item:hover {
-  background: var(--slate-50);
+  background: var(--bg-subtle);
 }
 
 .notif__unread-dot {
@@ -127,8 +127,8 @@
   color: var(--danger);
 }
 .notif__icon--neutral {
-  background: var(--slate-100);
-  color: var(--slate-500);
+  background: var(--bg-muted);
+  color: var(--text-tertiary);
 }
 
 .notif__body {

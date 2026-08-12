@@ -60,6 +60,6 @@
   font-size: var(--fs-caption-2);
 }
 .quick--grid .quick__icon {
-  background: var(--slate-100);
+  background: var(--bg-muted);
   color: var(--text-secondary);
 }

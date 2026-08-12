@@ -329,7 +329,7 @@ export default function CustomerPortal() {
               },
               {
                 name: "So với kỳ trước",
-                color: "var(--slate-400)",
+                color: "var(--text-disabled)",
                 points: SPENDING.previous,
                 dashed: true,
               },

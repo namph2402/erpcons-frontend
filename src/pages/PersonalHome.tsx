@@ -44,7 +44,7 @@ const LEAVE_SPLIT = [
   { label: "Đã dùng", value: 11.5, color: "var(--success)", note: "11.5 ngày" },
   { label: "Đã duyệt", value: 0.001, color: "var(--info)", note: "0 ngày" },
   { label: "Chờ duyệt", value: 0.001, color: "var(--warning)", note: "0 ngày" },
-  { label: "Còn lại", value: 8.5, color: "var(--slate-200)", note: "8.5 ngày" },
+  { label: "Còn lại", value: 8.5, color: "var(--chart-track)", note: "8.5 ngày" },
 ];
 
 const GOALS = [

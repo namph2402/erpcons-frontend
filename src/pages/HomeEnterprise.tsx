@@ -27,10 +27,10 @@ import { appNav } from '../data/navigation'
 import './pages.css'
 
 const BUDGET_SPLIT = [
-  { label: 'Vật tư', value: 42, color: 'var(--info)' },
-  { label: 'Nhân công', value: 28, color: 'var(--success)' },
-  { label: 'Thiết bị', value: 15, color: 'var(--warning)' },
-  { label: 'Khác', value: 15, color: '#c084fc' },
+  { label: 'Vật tư', value: 42, color: 'var(--chart-4)' },
+  { label: 'Nhân công', value: 28, color: 'var(--chart-1)' },
+  { label: 'Thiết bị', value: 15, color: 'var(--chart-2)' },
+  { label: 'Khác', value: 15, color: 'var(--chart-5)' },
 ]
 
 const PARTNERS = [

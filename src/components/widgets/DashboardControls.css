@@ -15,7 +15,7 @@
   border-color: var(--border-strong);
 }
 .dash-range .material-symbols-rounded {
-  color: var(--slate-400);
+  color: var(--text-disabled);
 }
 
 .dash-selector {
@@ -40,8 +40,8 @@
   width: 28px;
   height: 28px;
   border-radius: var(--r-sm);
-  background: var(--slate-100);
-  color: var(--slate-500);
+  background: var(--bg-muted);
+  color: var(--text-tertiary);
   flex-shrink: 0;
 }
 .dash-selector__name {

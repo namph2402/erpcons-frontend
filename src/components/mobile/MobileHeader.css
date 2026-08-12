@@ -31,10 +31,10 @@
   flex-shrink: 0;
 }
 .mheader__icon-btn:active {
-  background: var(--slate-100);
+  background: var(--bg-muted);
 }
 .mheader--overlay .mheader__icon-btn {
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 
 .mheader__logo {
@@ -58,7 +58,7 @@
   color: var(--text-primary);
 }
 .mheader--overlay .mheader__title {
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 
 .mheader__badge {
@@ -72,7 +72,7 @@
   place-items: center;
   border-radius: var(--r-pill);
   background: var(--erp-red);
-  color: var(--white);
+  color: var(--text-on-accent);
   font-size: 10px;
   font-weight: 700;
   border: 2px solid var(--bg-surface);

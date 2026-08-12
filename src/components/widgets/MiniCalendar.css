@@ -13,7 +13,7 @@
   color: var(--text-tertiary);
 }
 .mini-cal__nav button:hover {
-  background: var(--slate-100);
+  background: var(--bg-muted);
   color: var(--text-primary);
 }
 
@@ -48,15 +48,15 @@
   transition: background var(--dur-fast) var(--ease-standard);
 }
 .mini-cal__day:hover:not(.is-muted) {
-  background: var(--slate-100);
+  background: var(--bg-muted);
 }
 .mini-cal__day.is-muted {
-  color: var(--slate-300);
+  color: var(--text-disabled);
   cursor: default;
 }
 .mini-cal__day.is-selected {
   background: var(--info);
-  color: var(--white);
+  color: var(--text-on-accent);
   font-weight: 700;
 }
 .mini-cal__day.is-marked::after {
@@ -69,5 +69,5 @@
   background: var(--info);
 }
 .mini-cal__day.is-selected.is-marked::after {
-  background: var(--white);
+  background: var(--bg-surface);
 }

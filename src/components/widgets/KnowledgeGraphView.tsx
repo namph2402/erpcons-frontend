@@ -53,7 +53,7 @@ export default function KnowledgeGraphView({
                 y1={cy}
                 x2={p.x}
                 y2={p.y}
-                stroke="var(--slate-200)"
+                stroke="var(--chart-grid)"
                 strokeWidth="1.5"
               />
               {nodes[i].edgeLabel && (

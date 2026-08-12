@@ -160,7 +160,7 @@
   padding: var(--sp-3);
   border: 1px solid var(--border);
   border-radius: var(--r-input);
-  background: var(--slate-50);
+  background: var(--bg-subtle);
   min-width: 0;
 }
 .mini-stat__label {
@@ -308,7 +308,7 @@
   width: 32px;
   height: 32px;
   border-radius: var(--r-sm);
-  background: var(--slate-100);
+  background: var(--bg-muted);
   color: var(--text-secondary);
   flex-shrink: 0;
 }

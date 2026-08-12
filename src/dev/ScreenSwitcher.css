@@ -16,7 +16,7 @@
   place-items: center;
   border-radius: var(--r-pill);
   background: var(--erp-red);
-  color: var(--white);
+  color: var(--text-on-accent);
   box-shadow: var(--shadow-pop);
   transition: background var(--dur-fast) var(--ease-standard);
 }
@@ -59,7 +59,7 @@
   color: var(--text-secondary);
 }
 .screen-switcher__list a:hover {
-  background: var(--slate-100);
+  background: var(--bg-muted);
 }
 .screen-switcher__list a.is-active {
   background: var(--info-soft);

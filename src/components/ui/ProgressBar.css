@@ -7,7 +7,7 @@
 
 .progress__track {
   flex: 1;
-  background: var(--slate-100);
+  background: var(--bg-muted);
   border-radius: var(--r-pill);
   overflow: hidden;
   min-width: 40px;

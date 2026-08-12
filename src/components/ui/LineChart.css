@@ -11,7 +11,7 @@
 
 .linechart__axis {
   font-size: 9px;
-  fill: var(--slate-400);
+  fill: var(--chart-axis);
   font-family: var(--font-sans);
 }
 

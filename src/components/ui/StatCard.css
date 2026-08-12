@@ -80,7 +80,7 @@
 }
 .stat-card__trend--flat strong,
 .stat-card__trend--flat .material-symbols-rounded {
-  color: var(--slate-500);
+  color: var(--text-tertiary);
 }
 
 .stat-card__hint {
@@ -115,15 +115,15 @@
   color: var(--erp-red);
 }
 .stat-card--neutral .stat-card__icon {
-  background: var(--slate-100);
-  color: var(--slate-500);
+  background: var(--bg-muted);
+  color: var(--text-tertiary);
 }
 .stat-card--automation .stat-card__icon {
   background: var(--automation-soft);
   color: var(--automation);
 }
 .stat-card--iot .stat-card__icon {
-  background: #e2f7fb;
+  background: var(--iot-soft);
   color: var(--iot);
 }
 

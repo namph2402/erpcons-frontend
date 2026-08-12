@@ -96,7 +96,7 @@ export default function AiInsightDashboard() {
         <Card
           title="Các yếu tố ảnh hưởng lớn nhất (AI)"
           icon="info"
-          iconColor="var(--slate-400)"
+          iconColor="var(--text-disabled)"
         >
           <div className="factor-row" style={{ color: 'var(--text-tertiary)' }}>
             <span />

@@ -63,7 +63,7 @@ const PHASES: PhaseRow[] = [
 const PAYMENT_SPLIT = [
   { label: 'Đã thanh toán', value: 18.32, color: 'var(--success)', note: '18.32 tỷ', extra: '40.0%' },
   { label: 'Đang tạm ứng', value: 2.2, color: 'var(--warning)', note: '2.20 tỷ', extra: '4.8%' },
-  { label: 'Chưa thanh toán', value: 25.28, color: 'var(--slate-300)', note: '25.28 tỷ', extra: '55.2%' },
+  { label: 'Chưa thanh toán', value: 25.28, color: 'var(--chart-track)', note: '25.28 tỷ', extra: '55.2%' },
 ]
 
 const UPCOMING = [

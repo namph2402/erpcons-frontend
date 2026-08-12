@@ -13,7 +13,7 @@
 }
 
 .ws-star {
-  color: var(--slate-300);
+  color: var(--text-disabled);
   display: grid;
   place-items: center;
 }
@@ -150,15 +150,15 @@
 .ws-thumb {
   aspect-ratio: 1;
   border-radius: var(--r-sm);
-  background: linear-gradient(140deg, #d9e2ec 0%, #b8c6d4 100%);
+  background: linear-gradient(140deg, var(--placeholder-1) 0%, var(--placeholder-2) 100%);
   display: grid;
   place-items: center;
-  color: var(--slate-500);
+  color: var(--text-tertiary);
 }
 .ws-thumb--add {
-  background: var(--slate-50);
+  background: var(--bg-subtle);
   border: 1px dashed var(--border-strong);
-  color: var(--slate-400);
+  color: var(--text-disabled);
 }
 
 /* ---- phân trang ---- */
@@ -195,11 +195,11 @@
   font-weight: 500;
 }
 .ws-pagination__pages button:hover {
-  background: var(--slate-100);
+  background: var(--bg-muted);
 }
 .ws-pagination__pages button.is-active {
   background: var(--info);
-  color: var(--white);
+  color: var(--text-on-accent);
   font-weight: 700;
 }
 

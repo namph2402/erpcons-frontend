@@ -22,7 +22,7 @@
   position: absolute;
   inset: 0;
   z-index: 65;
-  background: rgba(15, 23, 42, 0.45);
+  background: var(--overlay);
   animation: mdrawer-fade var(--dur-fast) var(--ease-standard);
 }
 
@@ -70,7 +70,7 @@
 .mdrawer__user-name {
   font-size: var(--fs-body-3);
   font-weight: 600;
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 .mdrawer__user-role {
   font-size: var(--fs-caption-2);
@@ -85,7 +85,7 @@
 .mdrawer__group + .mdrawer__group {
   margin-top: var(--sp-3);
   padding-top: var(--sp-3);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--nav-border);
 }
 
 .mdrawer__group-title {
@@ -114,7 +114,7 @@
 }
 .mdrawer__item.is-active {
   background: var(--nav-active-bg);
-  color: var(--white);
+  color: var(--text-on-accent);
   font-weight: 600;
 }
 
@@ -129,7 +129,7 @@
   padding: 2px 6px;
   border-radius: var(--r-pill);
   background: var(--success);
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 
 .mdrawer__count {
@@ -140,7 +140,7 @@
   place-items: center;
   border-radius: var(--r-pill);
   background: var(--erp-red);
-  color: var(--white);
+  color: var(--text-on-accent);
   font-size: var(--fs-caption-2);
   font-weight: 700;
 }
@@ -148,5 +148,5 @@
 .mdrawer__footer {
   padding: var(--sp-2) var(--sp-3);
   padding-bottom: calc(var(--sp-3) + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--nav-border);
 }

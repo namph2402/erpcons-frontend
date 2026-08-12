@@ -3,9 +3,8 @@ import Avatar from "../ui/Avatar";
 import Icon from "../ui/Icon";
 import SearchInput from "../ui/SearchInput";
 import type { User } from "../../types";
+import { ThemeSegmented, ThemeToggleButton } from "../../theme";
 import "./Topbar.css";
-import { useNavigate } from "react-router-dom";
-import "../../pages/PersonalHome";
 
 export interface TopbarProps {
   user: User;
@@ -105,6 +104,8 @@ export default function Topbar({
           <Icon name="help" size={20} />
         </button>
 
+        <ThemeToggleButton className="topbar__icon-btn" />
+
         <div
           className="topbar__user-container"
           style={{ position: "relative" }}
@@ -155,6 +156,9 @@ export default function Topbar({
                   <Icon name="dashboard" size={20} />
                   <span>Trang dashboard</span>
                 </div>
+                <hr className="topbar__dropdown-divider" />
+                {/* 02.9 · User Menu — Theme: Light / Dark / System */}
+                <ThemeSegmented />
                 <hr className="topbar__dropdown-divider" />
                 <div
                   className="topbar__dropdown-item logout"

@@ -14,5 +14,5 @@
   transition: background var(--dur-fast) var(--ease-standard);
 }
 .wordcloud__word:hover {
-  background: var(--slate-100);
+  background: var(--bg-muted);
 }

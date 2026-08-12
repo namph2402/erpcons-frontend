@@ -50,7 +50,7 @@ const PROJECT_STATUS = [
   },
   { label: "Chậm tiến độ", value: 6, color: "var(--danger)", note: "6 (25%)" },
   { label: "Đang triển khai", value: 4, color: "var(--info)", note: "4 (17%)" },
-  { label: "Chuẩn bị", value: 2, color: "var(--slate-300)", note: "2 (8%)" },
+  { label: "Chuẩn bị", value: 2, color: "var(--chart-track)", note: "2 (8%)" },
 ];
 
 const INSIGHTS = [

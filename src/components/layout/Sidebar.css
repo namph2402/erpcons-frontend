@@ -49,7 +49,7 @@
 .sidenav__group + .sidenav__group {
   margin-top: var(--sp-3);
   padding-top: var(--sp-3);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--nav-border);
 }
 
 .sidenav__group-title {
@@ -83,14 +83,14 @@
 
 .sidenav__item:hover {
   background: var(--nav-hover-bg);
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 
 .sidenav__item.is-active {
   background: var(--nav-active-bg);
-  color: var(--white);
+  color: var(--text-on-accent);
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  box-shadow: var(--nav-active-shadow);
 }
 
 .sidenav__label {
@@ -105,7 +105,7 @@
   padding: 2px 6px;
   border-radius: var(--r-pill);
   background: var(--success);
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 
 .sidenav__count {
@@ -116,7 +116,7 @@
   place-items: center;
   border-radius: var(--r-pill);
   background: var(--erp-red);
-  color: var(--white);
+  color: var(--text-on-accent);
   font-size: var(--fs-caption-2);
   font-weight: 700;
 }
@@ -130,7 +130,7 @@
 
 .sidenav__sub {
   margin: 2px 0 var(--sp-2) 34px;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 1px solid var(--nav-divider);
 }
 .sidenav__subitem {
   display: block;
@@ -140,18 +140,18 @@
   border-radius: 0 var(--r-sm) var(--r-sm) 0;
 }
 .sidenav__subitem:hover {
-  color: var(--white);
+  color: var(--text-on-accent);
   background: var(--nav-hover-bg);
 }
 .sidenav__subitem.is-active {
-  color: var(--white);
+  color: var(--text-on-accent);
   font-weight: 600;
 }
 
 /* ---- nhóm mục cố định dưới đáy ---- */
 .sidebar__footer-nav {
   padding: var(--sp-2) var(--_pad);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--nav-border);
 }
 
 /* ---- user card ---- */
@@ -160,7 +160,7 @@
   align-items: center;
   gap: var(--sp-3);
   padding: var(--sp-3) var(--sp-4);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--nav-border);
   cursor: pointer;
   transition: background var(--dur-fast) var(--ease-standard);
 }
@@ -179,7 +179,7 @@
 .sidebar__user-name {
   font-size: var(--fs-caption-1);
   font-weight: 600;
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 .sidebar__user-role,
 .sidebar__user-org {
@@ -199,10 +199,10 @@
   padding: var(--sp-3) var(--sp-4);
   color: var(--nav-text-muted);
   font-size: var(--fs-caption-1);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--nav-border);
 }
 .sidebar__collapse:hover {
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 .sidebar--collapsed .sidebar__collapse {
   justify-content: center;
@@ -213,7 +213,7 @@
 .sidenav__extra {
   margin-top: var(--sp-4);
   padding-top: var(--sp-3);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--nav-border);
 }
 .sidenav__extra-title {
   padding: 0 var(--sp-3) var(--sp-2);
@@ -235,7 +235,7 @@
   width: 28px;
   height: 28px;
   border-radius: var(--r-sm);
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--nav-divider);
   display: grid;
   place-items: center;
   color: var(--nav-text-muted);
@@ -244,7 +244,7 @@
 .sidenav__project-name {
   font-size: var(--fs-caption-1);
   font-weight: 500;
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 .sidenav__project-code {
   font-size: 11px;
@@ -256,7 +256,7 @@
   padding: var(--sp-2) var(--sp-3);
   font-size: var(--fs-caption-1);
   font-weight: 600;
-  color: #7fb0ff;
+  color: var(--nav-link);
 }
 
 /*

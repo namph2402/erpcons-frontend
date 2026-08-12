@@ -41,7 +41,7 @@
     box-shadow var(--dur-fast) var(--ease-standard);
 }
 .input::placeholder {
-  color: var(--slate-400);
+  color: var(--text-disabled);
 }
 .input:hover {
   border-color: var(--border-strong);
@@ -66,7 +66,7 @@
   border-color: var(--danger);
 }
 .field.is-error .input:focus {
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+  box-shadow: var(--ring-danger);
 }
 
 /* ---- Lưới form 05.3 ---- */

@@ -152,7 +152,7 @@ export default function ConstructionDashboard() {
           </ul>
 
           <div className="site-photo" style={{ aspectRatio: '16 / 6', marginTop: 'var(--sp-3)' }}>
-            <span className="row" style={{ color: 'var(--white)' }}>
+            <span className="row" style={{ color: 'var(--text-on-accent)' }}>
               <Icon name="videocam" size={20} />
               Camera AI · 12 camera online
             </span>

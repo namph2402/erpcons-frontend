@@ -13,8 +13,8 @@
   width: 64px;
   height: 64px;
   border-radius: var(--r-card);
-  background: var(--slate-100);
-  color: var(--slate-400);
+  background: var(--bg-muted);
+  color: var(--text-disabled);
   margin-bottom: var(--sp-1);
 }
 

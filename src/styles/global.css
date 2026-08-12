@@ -105,14 +105,14 @@ table {
 .scroll-y {
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--slate-300) transparent;
+  scrollbar-color: var(--scroll-thumb) transparent;
 }
 .scroll-y::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 .scroll-y::-webkit-scrollbar-thumb {
-  background: var(--slate-300);
+  background: var(--scroll-thumb);
   border-radius: var(--r-pill);
 }
 .scroll-y::-webkit-scrollbar-track {

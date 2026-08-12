@@ -76,7 +76,7 @@ export default function LineChart({
                   y1={yy}
                   x2={W - padR}
                   y2={yy}
-                  stroke="var(--slate-200)"
+                  stroke="var(--chart-grid)"
                   strokeWidth="1"
                   strokeDasharray="3 4"
                 />

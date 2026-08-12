@@ -67,7 +67,7 @@
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: rgba(15, 23, 42, 0.4);
+  background: var(--overlay-soft);
 }
 
 /* ---- Responsive ---- */
@@ -86,7 +86,7 @@
     position: fixed;
     inset: 0;
     z-index: 65;
-    background: rgba(15, 23, 42, 0.4);
+    background: var(--overlay-soft);
   }
 }
 
