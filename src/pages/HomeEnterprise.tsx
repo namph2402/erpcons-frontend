@@ -24,6 +24,8 @@ import {
 } from '../data/mock'
 import type { TaskItem } from '../types'
 import { appNav } from '../data/navigation'
+import LogoutButton from '../auth/LogoutButton'
+import { useUiUser } from '../auth/useUiUser'
 import './pages.css'
 
 const BUDGET_SPLIT = [
@@ -66,6 +68,7 @@ const AI_SUGGESTIONS = [
 
 /** View 01 — Trang chủ Enterprise (banner chào mừng + tổng quan toàn công ty) */
 export default function HomeEnterprise() {
+  const sessionUser = useUiUser()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [tasks, setTasks] = useState<TaskItem[]>(todayTasks)
 
@@ -78,7 +81,10 @@ export default function HomeEnterprise() {
     <AppLayout
       navGroups={appNav}
       activeId="home"
-      user={enterpriseUser}
+      // Tài khoản thật từ phiên; còn `enterpriseUser` chỉ là mock dự phòng cho
+      // lúc chạy giao diện mà chưa có backend.
+      user={sessionUser ?? enterpriseUser}
+      topbarActions={<LogoutButton />}
       notificationCount={12}
       drawerOpen={drawerOpen}
       onOpenDrawer={() => setDrawerOpen(true)}

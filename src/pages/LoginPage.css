@@ -1,0 +1,235 @@
+/* =========================================================================
+   Trang đăng nhập — chỉ dùng biến trong styles/tokens.css, không hard-code màu.
+   ========================================================================= */
+
+.login {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  background: var(--bg-surface);
+}
+
+/* ---------- Cột thương hiệu ---------- */
+
+.login__brand {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px;
+  color: var(--text-invert);
+  background: linear-gradient(150deg, var(--erp-red) 0%, var(--erp-red-pressed) 100%);
+  overflow: hidden;
+}
+
+/* Hoa văn nền — thuần trang trí, đặt aria-hidden ở JSX */
+.login__brand::after {
+  content: '';
+  position: absolute;
+  right: -140px;
+  bottom: -160px;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.login__brand-top,
+.login__brand-body,
+.login__brand-foot {
+  position: relative;
+  z-index: 1;
+}
+
+.login__tagline {
+  margin: 0 0 12px;
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 700;
+  max-width: 15ch;
+}
+
+.login__sub {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 42ch;
+}
+
+.login__points {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.login__points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.login__brand-foot {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- Cột biểu mẫu ---------- */
+
+.login__panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+}
+
+.login__form {
+  width: 100%;
+  max-width: 380px;
+}
+
+.login__title {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.login__hint {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+
+/* Logo chỉ hiện ở cột form khi màn hình hẹp (cột brand bị ẩn) */
+.login__mobile-logo {
+  display: none;
+  margin-bottom: 24px;
+}
+
+/* Băng lỗi cấp form — lỗi theo từng ô do <Field error> lo */
+.login__alert {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  padding: 10px 12px;
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.login__pass-wrap {
+  position: relative;
+}
+
+/* Chừa chỗ cho nút hiện/ẩn mật khẩu */
+.login__pass-wrap .input {
+  padding-right: 40px;
+}
+
+.login__eye {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  display: inline-flex;
+  padding: 4px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+}
+
+.login__eye:hover {
+  color: var(--text-secondary);
+  background: var(--bg-muted);
+}
+
+.login__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0 20px;
+}
+
+.login__link {
+  font-size: 13px;
+  color: var(--erp-red);
+  text-decoration: none;
+}
+
+.login__link:hover {
+  text-decoration: underline;
+}
+
+.login__foot {
+  margin-top: 22px;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+/* ---------- Splash khi đang kiểm tra phiên ---------- */
+
+.login-splash {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  gap: 16px;
+  background: var(--bg-app);
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.login-splash__inner {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.login-splash__spinner {
+  width: 26px;
+  height: 26px;
+  border: 3px solid var(--border);
+  border-top-color: var(--erp-red);
+  border-radius: 50%;
+  animation: login-spin 0.7s linear infinite;
+}
+
+@keyframes login-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Người dùng bật "giảm chuyển động" thì đứng yên, tránh gây khó chịu */
+@media (prefers-reduced-motion: reduce) {
+  .login-splash__spinner {
+    animation: none;
+  }
+}
+
+/* ---------- Thu hẹp ---------- */
+
+@media (max-width: 900px) {
+  .login {
+    grid-template-columns: 1fr;
+  }
+
+  .login__brand {
+    display: none;
+  }
+
+  .login__mobile-logo {
+    display: block;
+  }
+}
