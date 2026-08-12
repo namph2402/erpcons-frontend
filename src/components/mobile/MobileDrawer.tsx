@@ -61,7 +61,7 @@ export default function MobileDrawer({
         inert={!open}
       >
         <header className="mdrawer__header">
-          <Logo variant="horizontal" onDark size={32} />
+          <Logo variant="horizontal" onDark size={48} />
           <button
             className="mdrawer__close"
             type="button"

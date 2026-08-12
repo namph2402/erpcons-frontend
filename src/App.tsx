@@ -25,7 +25,6 @@ import SupplierPortal from "./pages/partners/SupplierPortal";
 import CustomerPortal from "./pages/partners/CustomerPortal";
 import CustomerDetail from "./pages/partners/CustomerDetail";
 import Collaboration from "./pages/partners/Collaboration";
-import TaskBoardPage from "./pages/TaskBoardPage";
 /**
  * Router tối giản dựa trên hash — đủ cho giai đoạn dựng giao diện.
  * Khi tích hợp backend có thể thay bằng react-router mà không đụng
@@ -146,33 +145,6 @@ const ROUTES: {
     render: () => <ProfilePage user={currentUser} />,
   },
   { match: (p) => p.startsWith("/ca-nhan"), render: () => <PersonalHome /> },
-  {
-    match: (p) => p.startsWith("/lam-viec/hop-dong"),
-    render: () => <ContractDetail />,
-  },
-  {
-    match: (p) => p.startsWith("/doi-tac/nha-cung-cap"),
-    render: () => <SupplierPortal />,
-  },
-  {
-    match: (p) => p.startsWith("/doi-tac/cong-khach-hang"),
-    render: () => <CustomerPortal />,
-  },
-  {
-    match: (p) => p.startsWith("/doi-tac/khach-hang"),
-    render: () => <CustomerDetail />,
-  },
-  { match: (p) => p.startsWith("/cong-tac"), render: () => <Collaboration /> },
-  /* Công việc dùng bảng Kanban riêng, đặt trước workspaceRoutes để thắng route chung */
-  {
-    match: (p) => p.startsWith("/lam-viec/cong-viec"),
-    render: () => <TaskBoardPage />,
-  },
-  { match: (p) => p.startsWith("/tac-vu"), render: () => <TaskBoardPage /> },
-  {
-    match: (p) => p.startsWith("/ca-nhan/cong-viec"),
-    render: () => <TaskBoardPage />,
-  },
   {
     match: (p) => p.startsWith("/lam-viec/hop-dong"),
     render: () => <ContractDetail />,
