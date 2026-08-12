@@ -171,8 +171,13 @@
   padding: 32px;
 }
 
-/* Form chia lưới 3 cột giống ảnh */
-.form-grid {
+/* Form chia lưới 3 cột giống ảnh.
+   PHẢI giới hạn trong .profile-container: `.form-grid` là class DÙNG CHUNG do
+   src/components/ui/Field.css định nghĩa (lưới 2 cột), và mọi form khác trong
+   app đều dùng. Để trần ở phạm vi toàn cục thì file CSS này — được nạp ngay khi
+   App import ProfilePage — sẽ ép mọi form thành 3 cột. Đó là nguyên nhân khối
+   "Thời lượng" trong modal Tác vụ bị bóp và chữ chồng lên nhau. */
+.profile-container .form-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;

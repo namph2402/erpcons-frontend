@@ -135,3 +135,22 @@
     order: 5;
   }
 }
+
+/* Băng lỗi khi gọi API thất bại — nằm giữa thanh công cụ và bảng Kanban */
+.tboard-error {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin: 0 var(--sp-4) var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--danger);
+  border-radius: var(--r-input);
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: var(--fs-body-3);
+}
+
+.tboard-error span {
+  flex: 1;
+  min-width: 0;
+}
