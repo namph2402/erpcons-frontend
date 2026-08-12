@@ -1,28 +1,28 @@
-import type { ReactNode } from 'react'
-import Icon from '../ui/Icon'
-import './PageHeader.css'
+import type { ReactNode } from "react";
+import Icon from "../ui/Icon";
+import "./PageHeader.css";
 
 export interface BreadcrumbItem {
-  label: string
-  href?: string
+  label: string;
+  href?: string;
 }
 
 export interface PageHeaderProps {
   /** 02.5 · BREADCRUMB */
-  breadcrumbs?: BreadcrumbItem[]
-  title: ReactNode
+  breadcrumbs?: BreadcrumbItem[];
+  title: ReactNode;
   /** Mã đối tượng hiển thị dưới tiêu đề (PRJ-2024-0001) */
-  code?: string
-  subtitle?: ReactNode
+  code?: string;
+  subtitle?: ReactNode;
   /** Ảnh/biểu tượng đại diện đối tượng */
-  thumbnail?: ReactNode
+  thumbnail?: ReactNode;
   /** Badge trạng thái cạnh tiêu đề */
-  status?: ReactNode
+  status?: ReactNode;
   /** Thao tác bên phải */
-  actions?: ReactNode
+  actions?: ReactNode;
   /** Dải tab bên dưới (03.4 Primary Navigation) */
-  tabs?: ReactNode
-  className?: string
+  tabs?: ReactNode;
+  className?: string;
 }
 
 /** 03.2 · WORKSPACE HEADER — header đối tượng dùng chung */
@@ -35,7 +35,7 @@ export default function PageHeader({
   status,
   actions,
   tabs,
-  className = '',
+  className = "",
 }: PageHeaderProps) {
   return (
     <div className={`page-header ${className}`.trim()}>
@@ -43,11 +43,19 @@ export default function PageHeader({
         <nav className="breadcrumb" aria-label="Đường dẫn">
           {breadcrumbs.map((b, i) => (
             <span key={b.label} className="breadcrumb__item">
-              {i > 0 && <Icon name="chevron_right" size={16} className="breadcrumb__sep" />}
+              {i > 0 && (
+                <Icon
+                  name="chevron_right"
+                  size={16}
+                  className="breadcrumb__sep"
+                />
+              )}
               {b.href && i < breadcrumbs.length - 1 ? (
                 <a href={b.href}>{b.label}</a>
               ) : (
-                <span className={i === breadcrumbs.length - 1 ? 'is-current' : ''}>
+                <span
+                  className={i === breadcrumbs.length - 1 ? "is-current" : ""}
+                >
                   {b.label}
                 </span>
               )}
@@ -78,5 +86,5 @@ export default function PageHeader({
 
       {tabs && <div className="page-header__tabs">{tabs}</div>}
     </div>
-  )
+  );
 }

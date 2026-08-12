@@ -1,79 +1,80 @@
 /** Kiểu dữ liệu dùng chung toàn hệ thống ERPCons */
-
 export interface NavItem {
-  id: string
-  label: string
-  /** Tên Material Symbols Rounded */
-  icon: string
-  /** Đường dẫn hash (vd "#/du-an") */
-  href?: string
-  /** Số đếm (việc quá hạn, thông báo...) */
-  count?: number
-  /** Nhãn nhỏ bên phải (vd "New") */
-  tag?: string
-  children?: NavItem[]
+  id: string;
+  label: string;
+  icon: string;
+  href?: string; // Dùng cho thẻ <a>
+  path?: string; // Dùng cho Router navigate
+  hash?: string; // Dùng cho HashRouter
+  count?: number;
+  tag?: string;
+  children?: NavItem[];
+  [key: string]: any; // Cho phép các thuộc tính bổ sung khác
 }
 
 export interface NavGroup {
-  id: string
-  /** Tiêu đề nhóm — bỏ trống nếu nhóm không có tiêu đề */
-  title?: string
-  items: NavItem[]
+  id: string;
+  label: string;
+  title?: string;
+  items: NavItem[];
+  path?: string;
+  hash?: string;
+  [key: string]: any;
 }
 
 export interface User {
-  id: string
-  name: string
-  role: string
+  id: string;
+  name: string;
+  role: string;
   /** Đơn vị / công ty / mã nhân viên hiển thị dòng 3 */
-  org?: string
-  email?: string
-  phone?: string
-  avatar?: string
-  status?: 'online' | 'busy' | 'offline'
+  org?: string;
+  email?: string;
+  phone?: string;
+  avatar?: string;
+  status?: "online" | "busy" | "offline";
 }
 
 export interface Project {
-  id: string
-  code: string
-  name: string
-  thumbnail?: string
-  budgetUsed: number
-  budgetTotal: number
-  progress: number
-  status: string
-  location?: string
+  id: string;
+  code: string;
+  name: string;
+  thumbnail?: string;
+  budgetUsed: number;
+  budgetTotal: number;
+  progress: number;
+  status: string;
+  location?: string;
 }
 
 export interface TaskItem {
-  id: string
-  title: string
+  id: string;
+  title: string;
   /** Dự án / bối cảnh */
-  context: string
-  due: string
+  context: string;
+  due: string;
   /** overdue | today | upcoming | done */
-  state: 'overdue' | 'today' | 'upcoming' | 'done'
-  priority?: 'Ưu tiên cao' | 'Ưu tiên trung bình' | 'Ưu tiên thấp'
-  tag?: string
-  done?: boolean
+  state: "overdue" | "today" | "upcoming" | "done";
+  priority?: "Ưu tiên cao" | "Ưu tiên trung bình" | "Ưu tiên thấp";
+  tag?: string;
+  done?: boolean;
 }
 
 /** Tệp đính kèm của tác vụ — 05.8 Attachment */
 export interface TaskFile {
-  id: string
-  name: string
-  size: string
-  by: string
-  at: string
+  id: string;
+  name: string;
+  size: string;
+  by: string;
+  at: string;
 }
 
 /** Bình luận trong tác vụ — 06.5 Comment & Discussion */
 export interface TaskComment {
-  id: string
-  author: string
-  avatar?: string
-  at: string
-  body: string
+  id: string;
+  author: string;
+  avatar?: string;
+  at: string;
+  body: string;
 }
 
 /**
@@ -81,99 +82,99 @@ export interface TaskComment {
  * Một đối tượng = một nguồn dữ liệu duy nhất — mọi màn hình dùng chung kiểu này.
  */
 export interface BoardTask {
-  id: string
-  title: string
+  id: string;
+  title: string;
   /** id cột trạng thái: backlog | todo | doing | done */
-  status: string
+  status: string;
   /** Dự án */
-  project: string
+  project: string;
   /** Công việc (nhóm KPI) */
-  work?: string
+  work?: string;
   /** Đánh giá tác vụ: Lớn / Trung bình / Nhỏ */
-  weight?: 'Lớn' | 'Trung bình' | 'Nhỏ'
+  weight?: "Lớn" | "Trung bình" | "Nhỏ";
   /** Người phụ trách */
-  owner?: string
+  owner?: string;
   /** Người giám sát */
-  supervisor?: string
+  supervisor?: string;
   /** Người thực hiện */
-  assignee: string
-  assigneeAvatar?: string
+  assignee: string;
+  assigneeAvatar?: string;
   /** Thời gian đã ghi nhận, vd "15h:10m" */
-  spent?: string
+  spent?: string;
   /** Thời gian còn lại, vd "11 ngày 22 giờ" */
-  remaining?: string
+  remaining?: string;
   /** Thời gian quá hạn, vd "3 ngày 1 giờ" — có giá trị thì hiển thị màu danger */
-  overdue?: string
+  overdue?: string;
   /** Khối lượng hoàn thành (%) */
-  progress: number
+  progress: number;
   /** Ngày hiển thị trên card */
-  date: string
+  date: string;
   /** Độ ưu tiên theo thang sao 1–5 */
-  rating: number
+  rating: number;
   /** Liên kết với Dplan */
-  dplan?: string
-  start?: string
-  end?: string
+  dplan?: string;
+  start?: string;
+  end?: string;
   /** Thời lượng, vd "5d 2h" */
-  duration?: string
-  content?: string
-  files?: TaskFile[]
-  comments?: TaskComment[]
+  duration?: string;
+  content?: string;
+  files?: TaskFile[];
+  comments?: TaskComment[];
 }
 
 export interface NotificationItem {
-  id: string
-  title: string
-  context: string
-  description?: string
-  time: string
-  icon: string
-  tone: 'info' | 'success' | 'warning' | 'danger' | 'neutral'
-  unread?: boolean
-  important?: boolean
+  id: string;
+  title: string;
+  context: string;
+  description?: string;
+  time: string;
+  icon: string;
+  tone: "info" | "success" | "warning" | "danger" | "neutral";
+  unread?: boolean;
+  important?: boolean;
   /** Nhóm hiển thị: HÔM NAY / HÔM QUA / 2 NGÀY TRƯỚC */
-  group: string
+  group: string;
 }
 
 export interface ActivityItem {
-  id: string
-  actor: string
-  avatar?: string
-  action: string
-  time: string
-  icon: string
-  tone: 'info' | 'success' | 'warning' | 'danger' | 'ai' | 'neutral'
+  id: string;
+  actor: string;
+  avatar?: string;
+  action: string;
+  time: string;
+  icon: string;
+  tone: "info" | "success" | "warning" | "danger" | "ai" | "neutral";
 }
 
 export interface MeetingItem {
-  id: string
-  from: string
-  to?: string
-  title: string
-  place: string
-  tone: 'info' | 'success' | 'warning' | 'danger'
-  attendees?: { name: string; src?: string }[]
+  id: string;
+  from: string;
+  to?: string;
+  title: string;
+  place: string;
+  tone: "info" | "success" | "warning" | "danger";
+  attendees?: { name: string; src?: string }[];
 }
 
 export interface DocumentItem {
-  id: string
-  name: string
-  ext: string
-  size: string
-  meta: string
-  version?: string
+  id: string;
+  name: string;
+  ext: string;
+  size: string;
+  meta: string;
+  version?: string;
 }
 
 export interface GanttTask {
-  id: string
-  name: string
+  id: string;
+  name: string;
   /** 0 = nhóm cha, 1 = công việc con */
-  level: 0 | 1
-  progress: number
+  level: 0 | 1;
+  progress: number;
   /** Vị trí bắt đầu / độ dài theo cột lưới (đơn vị: ô) */
-  start: number
-  span: number
-  tone: 'done' | 'doing' | 'plan'
+  start: number;
+  span: number;
+  tone: "done" | "doing" | "plan";
   /** Cột mốc (milestone) đặt ở cuối thanh */
-  milestone?: boolean
+  milestone?: boolean;
 }

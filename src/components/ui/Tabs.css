@@ -54,7 +54,7 @@
   font-size: var(--fs-caption-1);
 }
 .tabs--underline .tabs__item::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
