@@ -47,7 +47,7 @@ export default function MobileHeader({
             >
               <Icon name="menu" size={24} />
             </button>
-            <Logo variant="horizontal" size={0} className="mheader__logo" />
+            <Logo variant="horizontal" size={32} className="mheader__logo" />
             <div className="mheader__spacer" />
             {actions ?? (
               <>

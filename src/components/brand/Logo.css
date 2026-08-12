@@ -1,57 +1,62 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: var(--sp-2);
   user-select: none;
+  line-height: 0;
+  vertical-align: middle;
+  background: transparent;
+}
+
+.logo--horizontal {
+  max-width: 100%;
 }
 
 .logo--vertical {
   flex-direction: column;
-  gap: var(--sp-1);
   text-align: center;
 }
 
-.logo__mark {
+.logo__img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Biến thể chỉ hiển thị Mark (Icon nhận diện thương hiệu hình đầu người) */
+.logo--mark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  background: transparent;
   flex-shrink: 0;
 }
 
-.logo__word {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
+.logo--mark .logo__img--mark {
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: cover;
+  object-position: left center;
+  display: block;
 }
 
-.logo__name {
-  display: flex;
-  align-items: baseline;
-  gap: 1px;
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: -0.4px;
-}
-.logo__name strong {
-  color: var(--erp-red);
-  font-weight: 800;
-}
-.logo__name em {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--text-primary);
-  letter-spacing: 0.4px;
+
+/* Nền tối (Sidebar, Drawer): trong suốt không nền trắng */
+.logo--on-dark {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-.logo__tagline {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  color: var(--text-tertiary);
+.logo--on-dark.logo--mark {
+  padding: 0;
+  border-radius: 0;
 }
 
-/* Trên nền tối: chữ CONS + tagline chuyển sáng, ERP giữ nguyên ERP RED */
-.logo--on-dark .logo__name em {
-  color: var(--white);
-}
-.logo--on-dark .logo__tagline {
-  color: var(--nav-text-muted);
-}
+
