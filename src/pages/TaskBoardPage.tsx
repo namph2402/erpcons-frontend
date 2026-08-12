@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { AppLayout, PageHeader } from '../components/layout'
+import { AppLayout } from '../components/layout'
 import {
   Avatar,
   Badge,
@@ -242,6 +242,7 @@ export default function TaskBoardPage() {
       sidebarFooterItems={appFooterNav}
       activeId="tasks"
       user={personalUser}
+      contained={false}
       notificationCount={12}
       searchPlaceholder="Tìm kiếm (Công việc, tài liệu, đồng nghiệp...)"
       drawerOpen={drawerOpen}
@@ -251,104 +252,93 @@ export default function TaskBoardPage() {
       mobileNavActiveId="tasks"
       mobileFab={{ icon: 'add', label: 'Thêm tác vụ', onClick: () => openCreate() }}
     >
-      <div className="page">
-        <PageHeader
-          breadcrumbs={[
-            { label: 'Trang chủ', href: '#/ca-nhan' },
-            { label: 'Cá nhân', href: '#/ca-nhan' },
-            { label: 'Tác vụ' },
-          ]}
-          title="Tác vụ"
-          subtitle={`Đang hiển thị ${filtered.length} tác vụ • Cập nhật 10/08/2026 12:00`}
-          thumbnail={<Icon name="assignment" size={24} />}
-          status={<Badge tone="info">{tasks.length} tác vụ</Badge>}
-          actions={
-            <>
-              <Button variant="secondary" icon="filter_list">
-                Bộ lọc
-              </Button>
-              <Button variant="primary" icon="add" onClick={() => openCreate()}>
-                Thêm mới
-              </Button>
-            </>
-          }
-        />
+      <div className="tboard-page">
+        {/* Thanh tiêu đề gọn — nhường toàn bộ chiều cao còn lại cho bảng Kanban */}
+        <header className="tboard-bar">
+          <span className="tboard-bar__icon">
+            <Icon name="view_kanban" size={20} />
+          </span>
+          <h1 className="tboard-bar__title">Tác vụ</h1>
+          <span className="tboard-bar__count num">{tasks.length}</span>
 
-        <Card flush className="tboard-card">
-          <div className="tboard-toolbar">
-            <SearchInput
-              size="md"
-              shortcut=""
-              placeholder="Tìm theo tiêu đề, mã tác vụ, người thực hiện..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="tboard-toolbar__search"
-            />
+          <Button variant="primary" size="sm" icon="add" onClick={() => openCreate()}>
+            Thêm mới
+          </Button>
 
-            <Select
-              size="sm"
-              value={project}
-              onChange={(e) => setProject(e.target.value)}
-              options={[
-                { value: '', label: 'Tất cả dự án' },
-                ...taskProjects.map((p) => ({ value: p, label: p })),
-              ]}
-            />
+          <span className="spacer" />
 
-            <Select
-              size="sm"
-              value={assignee}
-              onChange={(e) => setAssignee(e.target.value)}
-              options={[
-                { value: '', label: 'Tất cả người thực hiện' },
-                ...taskPeople.map((p) => ({ value: p, label: p })),
-              ]}
-            />
+          <SearchInput
+            size="md"
+            shortcut=""
+            placeholder="Tìm kiếm..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="tboard-bar__search"
+          />
 
-            <span className="spacer" />
+          <Select
+            size="sm"
+            value={project}
+            onChange={(e) => setProject(e.target.value)}
+            options={[
+              { value: '', label: 'Tất cả dự án' },
+              ...taskProjects.map((p) => ({ value: p, label: p })),
+            ]}
+          />
 
-            <div className="viewswitch" role="group" aria-label="Chế độ xem">
-              <button
-                type="button"
-                className={view === 'board' ? 'is-active' : ''}
-                onClick={() => setView('board')}
-              >
-                <Icon name="view_kanban" size={18} />
-                Bảng
-              </button>
-              <button
-                type="button"
-                className={view === 'list' ? 'is-active' : ''}
-                onClick={() => setView('list')}
-              >
-                <Icon name="format_list_bulleted" size={18} />
-                Danh sách
-              </button>
-            </div>
+          <Select
+            size="sm"
+            value={assignee}
+            onChange={(e) => setAssignee(e.target.value)}
+            options={[
+              { value: '', label: 'Tất cả người thực hiện' },
+              ...taskPeople.map((p) => ({ value: p, label: p })),
+            ]}
+          />
+
+          <div className="viewswitch" role="group" aria-label="Chế độ xem">
+            <button
+              type="button"
+              className={view === 'board' ? 'is-active' : ''}
+              aria-label="Xem dạng bảng Kanban"
+              onClick={() => setView('board')}
+            >
+              <Icon name="view_kanban" size={18} />
+            </button>
+            <button
+              type="button"
+              className={view === 'list' ? 'is-active' : ''}
+              aria-label="Xem dạng danh sách"
+              onClick={() => setView('list')}
+            >
+              <Icon name="format_list_bulleted" size={18} />
+            </button>
           </div>
+        </header>
 
-          {view === 'board' ? (
-            <div className="tboard-canvas">
-              <TaskBoard
-                columns={taskColumns}
-                tasks={filtered}
-                onOpen={setDetail}
-                onEdit={openEdit}
-                onDelete={remove}
-                onMove={move}
-                onAdd={openCreate}
+        {view === 'board' ? (
+          <TaskBoard
+            columns={taskColumns}
+            tasks={filtered}
+            onOpen={setDetail}
+            onEdit={openEdit}
+            onDelete={remove}
+            onMove={move}
+            onAdd={openCreate}
+          />
+        ) : (
+          <div className="tboard-list scroll-y">
+            <Card flush>
+              <DataTable
+                columns={columns}
+                rows={filtered as (BoardTask & Record<string, unknown>)[]}
+                rowKey={(t) => t.id}
+                onRowClick={(t) => setDetail(t)}
+                emptyText="Không có tác vụ nào khớp bộ lọc"
               />
-            </div>
-          ) : (
-            <DataTable
-              columns={columns}
-              rows={filtered as (BoardTask & Record<string, unknown>)[]}
-              rowKey={(t) => t.id}
-              onRowClick={(t) => setDetail(t)}
-              emptyText="Không có tác vụ nào khớp bộ lọc"
-            />
-          )}
-        </Card>
+            </Card>
+          </div>
+        )}
       </div>
 
       {/* Mount lại theo key để form/tab luôn khởi tạo sạch mỗi lần mở */}

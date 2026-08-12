@@ -23,6 +23,10 @@
   --danger-soft: #fdeaea;
   --info-soft: #e8f0fe;
 
+  /* Biến đậm — dùng khi đặt chữ trắng lên nền màu (đạt tương phản 4.5:1 · 11.4) */
+  --success-strong: #047857;
+  --warning-strong: #b45309;
+
   /* ---------- 02b · TECHNOLOGY SEMANTIC ---------- */
   --ai: #6366f1;
   --ocr: #0ea5a4;

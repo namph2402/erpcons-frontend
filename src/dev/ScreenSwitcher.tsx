@@ -44,6 +44,12 @@ const GROUPS: ScreenGroup[] = [
         icon: "account_circle",
         hash: "#/ca-nhan",
       },
+      {
+        path: "/lam-viec/cong-viec",
+        label: "Công việc (Kanban)",
+        icon: "view_kanban",
+        hash: "#/lam-viec/cong-viec",
+      },
     ],
   },
   {
