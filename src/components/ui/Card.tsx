@@ -1,23 +1,23 @@
-import type { ReactNode } from 'react'
-import Icon from './Icon'
-import './Card.css'
+import type { ReactNode } from "react";
+import Icon from "./Icon";
+import "./Card.css";
 
 export interface CardProps {
   /** Tiêu đề card — bỏ trống nếu card không cần header */
-  title?: ReactNode
-  subtitle?: ReactNode
+  title?: ReactNode;
+  subtitle?: ReactNode;
   /** Icon nhỏ trước tiêu đề */
-  icon?: string
-  iconColor?: string
+  icon?: string;
+  iconColor?: string;
   /** Vùng thao tác bên phải header (filter, select...) */
-  action?: ReactNode
+  action?: ReactNode;
   /** Link "Xem tất cả" ở góc phải header */
-  link?: { label: string; href?: string; onClick?: () => void }
+  link?: { label: string; href?: string; onClick?: () => void };
   /** Bỏ padding vùng body (dùng cho bảng tràn viền) */
-  flush?: boolean
-  className?: string
-  children?: ReactNode
-  footer?: ReactNode
+  flush?: boolean;
+  className?: string;
+  children?: ReactNode;
+  footer?: ReactNode;
 }
 
 export default function Card({
@@ -28,11 +28,11 @@ export default function Card({
   action,
   link,
   flush = false,
-  className = '',
+  className = "",
   children,
   footer,
 }: CardProps) {
-  const hasHeader = Boolean(title || action || link)
+  const hasHeader = Boolean(title || action || link);
   return (
     <section className={`card ${className}`.trim()}>
       {hasHeader && (
@@ -49,11 +49,11 @@ export default function Card({
             {link && (
               <a
                 className="card__link"
-                href={link.href ?? '#'}
+                href={link.href ?? "#"}
                 onClick={(e) => {
                   if (link.onClick) {
-                    e.preventDefault()
-                    link.onClick()
+                    e.preventDefault();
+                    link.onClick();
                   }
                 }}
               >
@@ -64,10 +64,10 @@ export default function Card({
           </div>
         </header>
       )}
-      <div className={flush ? 'card__body card__body--flush' : 'card__body'}>
+      <div className={flush ? "card__body card__body--flush" : "card__body"}>
         {children}
       </div>
       {footer && <footer className="card__footer">{footer}</footer>}
     </section>
-  )
+  );
 }
