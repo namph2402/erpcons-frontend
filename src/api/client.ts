@@ -14,7 +14,7 @@
  */
 
 /** Để rỗng nếu React chạy chung origin với Drupal (khuyến nghị: reverse proxy). */
-export const API_BASE = import.meta.env.VITE_API_BASE ?? ''
+export const API_BASE = import.meta.env.VITE_API_BASE ?? 'https://lpc.vn/erpcons'
 
 export interface ApiError extends Error {
   status: number
