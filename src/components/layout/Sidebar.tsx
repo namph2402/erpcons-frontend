@@ -1,24 +1,24 @@
-import { useState } from 'react'
-import Logo from '../brand/Logo'
-import Avatar from '../ui/Avatar'
-import Icon from '../ui/Icon'
-import type { NavGroup, NavItem, User } from '../../types'
-import './Sidebar.css'
+import { useState } from "react";
+import Logo from "../brand/Logo";
+import Avatar from "../ui/Avatar";
+import Icon from "../ui/Icon";
+import type { NavGroup, NavItem, User } from "../../types";
+import "./Sidebar.css";
 
 export interface SidebarProps {
-  groups: NavGroup[]
+  groups: NavGroup[];
   /** id của mục đang active */
-  activeId: string
-  onNavigate?: (item: NavItem) => void
-  user?: User
+  activeId: string;
+  onNavigate?: (item: NavItem) => void;
+  user?: User;
   /** Nhóm mục cố định dưới đáy (Cài đặt, Đăng xuất...) */
-  footerItems?: NavItem[]
-  collapsed?: boolean
-  onToggleCollapse?: () => void
+  footerItems?: NavItem[];
+  collapsed?: boolean;
+  onToggleCollapse?: () => void;
   /** Hiện nút "Thu gọn" dưới chân sidebar */
-  collapsible?: boolean
+  collapsible?: boolean;
   /** Nội dung phụ chèn cuối vùng cuộn (vd: danh sách dự án gần đây) */
-  extra?: React.ReactNode
+  extra?: React.ReactNode;
 }
 
 /**
@@ -36,28 +36,28 @@ export default function Sidebar({
   collapsible = true,
   extra,
 }: SidebarProps) {
-  const [openId, setOpenId] = useState<string | null>(null)
+  const [openId, setOpenId] = useState<string | null>(null);
 
   const renderItem = (item: NavItem) => {
-    const isActive = item.id === activeId
-    const hasChildren = Boolean(item.children?.length)
-    const isOpen = openId === item.id
+    const isActive = item.id === activeId;
+    const hasChildren = Boolean(item.children?.length);
+    const isOpen = openId === item.id;
 
     return (
       <li key={item.id}>
         <a
-          className={`sidenav__item${isActive ? ' is-active' : ''}`}
-          href={item.href ?? '#'}
+          className={`sidenav__item${isActive ? " is-active" : ""}`}
+          href={item.href ?? "#"}
           title={collapsed ? item.label : undefined}
           onClick={(e) => {
             if (hasChildren) {
-              e.preventDefault()
-              setOpenId(isOpen ? null : item.id)
-              return
+              e.preventDefault();
+              setOpenId(isOpen ? null : item.id);
+              return;
             }
             if (onNavigate) {
-              e.preventDefault()
-              onNavigate(item)
+              e.preventDefault();
+              onNavigate(item);
             }
           }}
         >
@@ -66,14 +66,14 @@ export default function Sidebar({
             <>
               <span className="sidenav__label truncate">{item.label}</span>
               {item.tag && <span className="sidenav__tag">{item.tag}</span>}
-              {typeof item.count === 'number' && (
+              {typeof item.count === "number" && (
                 <span className="sidenav__count num">{item.count}</span>
               )}
               {hasChildren && (
                 <Icon
                   name="expand_more"
                   size={18}
-                  className={`sidenav__caret${isOpen ? ' is-open' : ''}`}
+                  className={`sidenav__caret${isOpen ? " is-open" : ""}`}
                 />
               )}
             </>
@@ -85,12 +85,12 @@ export default function Sidebar({
             {item.children!.map((c) => (
               <li key={c.id}>
                 <a
-                  className={`sidenav__subitem${c.id === activeId ? ' is-active' : ''}`}
-                  href={c.href ?? '#'}
+                  className={`sidenav__subitem${c.id === activeId ? " is-active" : ""}`}
+                  href={c.href ?? "#"}
                   onClick={(e) => {
                     if (onNavigate) {
-                      e.preventDefault()
-                      onNavigate(c)
+                      e.preventDefault();
+                      onNavigate(c);
                     }
                   }}
                 >
@@ -101,11 +101,11 @@ export default function Sidebar({
           </ul>
         )}
       </li>
-    )
-  }
+    );
+  };
 
   return (
-    <aside className={`sidebar${collapsed ? ' sidebar--collapsed' : ''}`}>
+    <aside className={`sidebar${collapsed ? " sidebar--collapsed" : ""}`}>
       <div className="sidebar__brand">
         {collapsed ? (
           <Logo variant="mark" size={44} />
@@ -117,8 +117,8 @@ export default function Sidebar({
       <nav className="sidebar__nav scroll-y" aria-label="Điều hướng chính">
         {groups.map((group) => (
           <div className="sidenav__group" key={group.id}>
-            {group.title && !collapsed && (
-              <p className="sidenav__group-title">{group.title}</p>
+            {group.label && !collapsed && (
+              <p className="sidenav__group-title">{group.label}</p>
             )}
             <ul>{group.items.map(renderItem)}</ul>
           </div>
@@ -132,26 +132,41 @@ export default function Sidebar({
 
       {user && (
         <div className="sidebar__user">
-          <Avatar name={user.name} src={user.avatar} size={40} status={user.status} />
+          <Avatar
+            name={user.name}
+            src={user.avatar}
+            size={40}
+            status={user.status}
+          />
           {!collapsed && (
             <>
               <div className="sidebar__user-info">
                 <p className="sidebar__user-name truncate">{user.name}</p>
                 <p className="sidebar__user-role truncate">{user.role}</p>
-                {user.org && <p className="sidebar__user-org truncate">{user.org}</p>}
+                {user.org && (
+                  <p className="sidebar__user-org truncate">{user.org}</p>
+                )}
               </div>
-              <Icon name="expand_more" size={18} className="sidebar__user-caret" />
+              <Icon
+                name="expand_more"
+                size={18}
+                className="sidebar__user-caret"
+              />
             </>
           )}
         </div>
       )}
 
       {collapsible && (
-        <button className="sidebar__collapse" type="button" onClick={onToggleCollapse}>
-          <Icon name={collapsed ? 'chevron_right' : 'chevron_left'} size={18} />
+        <button
+          className="sidebar__collapse"
+          type="button"
+          onClick={onToggleCollapse}
+        >
+          <Icon name={collapsed ? "chevron_right" : "chevron_left"} size={18} />
           {!collapsed && <span>Thu gọn</span>}
         </button>
       )}
     </aside>
-  )
+  );
 }
