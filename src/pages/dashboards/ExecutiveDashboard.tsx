@@ -1,4 +1,4 @@
-import DashboardShell from './DashboardShell'
+import DashboardShell from "./DashboardShell";
 import {
   BarChart,
   Badge,
@@ -7,8 +7,8 @@ import {
   LineChart,
   ProgressBar,
   StatCard,
-} from '../../components/ui'
-import { CountRowList } from '../../components/widgets'
+} from "../../components/ui";
+import { CountRowList } from "../../components/widgets";
 import {
   ceoUser,
   departmentKpis,
@@ -21,20 +21,24 @@ import {
   revenueByBu,
   revenueProfit12m,
   topProjectsByRevenue,
-} from '../../data/dashboards'
+} from "../../data/dashboards";
 
-const RATING_TONE = { Tốt: 'success', Khá: 'warning', 'Trung bình': 'danger' } as const
+const RATING_TONE = {
+  Tốt: "success",
+  Khá: "warning",
+  "Trung bình": "danger",
+} as const;
 
 /** 54 · Executive Dashboard — tổng quan toàn bộ hoạt động doanh nghiệp */
 export default function ExecutiveDashboard() {
   return (
     <DashboardShell
-      activeId="dashboard-exec"
+      activeId="dashboard-executive"
       user={ceoUser}
       title="Điều hành tổng thể"
       subtitle="Tổng quan toàn bộ hoạt động doanh nghiệp"
       dateRange="01/05/2024 - 31/05/2024"
-      utilityIcons={[{ icon: 'more_vert', label: 'Thao tác khác' }]}
+      utilityIcons={[{ icon: "more_vert", label: "Thao tác khác" }]}
       updatedAt="31/05/2024 10:30:45"
     >
       <div className="dash-kpis">
@@ -69,14 +73,22 @@ export default function ExecutiveDashboard() {
           <BarChart
             labels={revenueProfit12m.labels}
             series={[
-              { name: 'Doanh thu (Tỷ VND)', color: 'var(--info)', values: revenueProfit12m.revenue },
+              {
+                name: "Doanh thu (Tỷ VND)",
+                color: "var(--info)",
+                values: revenueProfit12m.revenue,
+              },
             ]}
-            line={{ name: 'Lợi nhuận (Tỷ VND)', color: 'var(--success)', values: revenueProfit12m.profit }}
+            line={{
+              name: "Lợi nhuận (Tỷ VND)",
+              color: "var(--success)",
+              values: revenueProfit12m.profit,
+            }}
             height={230}
           />
         </Card>
 
-        <Card title="Tình hình dự án" link={{ label: 'Xem chi tiết' }}>
+        <Card title="Tình hình dự án" link={{ label: "Xem chi tiết" }}>
           <DonutChart
             data={projectStatusExec}
             size={150}
@@ -95,29 +107,48 @@ export default function ExecutiveDashboard() {
             height={210}
             showLegend
             series={[
-              { name: 'Tiền vào', color: 'var(--success)', points: execCashflow.in },
-              { name: 'Tiền ra', color: 'var(--danger)', points: execCashflow.out },
-              { name: 'Dòng tiền thuần', color: 'var(--info)', points: execCashflow.net, area: true },
+              {
+                name: "Tiền vào",
+                color: "var(--success)",
+                points: execCashflow.in,
+              },
+              {
+                name: "Tiền ra",
+                color: "var(--danger)",
+                points: execCashflow.out,
+              },
+              {
+                name: "Dòng tiền thuần",
+                color: "var(--info)",
+                points: execCashflow.net,
+                area: true,
+              },
             ]}
           />
         </Card>
 
-        <Card title="Các chỉ số tài chính" link={{ label: 'Xem chi tiết' }}>
+        <Card title="Các chỉ số tài chính" link={{ label: "Xem chi tiết" }}>
           <div className="metric-grid">
             {financialRatios.map((r) => (
               <div className="metric-tile" key={r.id}>
                 <p className="metric-tile__label">{r.label}</p>
                 <p className="metric-tile__value num">
                   {r.value}
-                  {r.unit && <span className="metric-tile__unit">{r.unit}</span>}
+                  {r.unit && (
+                    <span className="metric-tile__unit">{r.unit}</span>
+                  )}
                 </p>
-                <p className={`metric-tile__delta metric-tile__delta--${r.tone}`}>{r.delta}</p>
+                <p
+                  className={`metric-tile__delta metric-tile__delta--${r.tone}`}
+                >
+                  {r.delta}
+                </p>
               </div>
             ))}
           </div>
         </Card>
 
-        <Card title="Top dự án theo doanh thu" link={{ label: 'Xem chi tiết' }}>
+        <Card title="Top dự án theo doanh thu" link={{ label: "Xem chi tiết" }}>
           <div className="progress-list">
             <div className="progress-list__head">
               <span>Dự án</span>
@@ -129,7 +160,7 @@ export default function ExecutiveDashboard() {
                 <span className="truncate">
                   {p.id}. {p.name}
                 </span>
-                <span className="num" style={{ textAlign: 'right' }}>
+                <span className="num" style={{ textAlign: "right" }}>
                   {p.revenue}
                 </span>
                 <ProgressBar value={p.progress} size="sm" showValue />
@@ -140,25 +171,28 @@ export default function ExecutiveDashboard() {
       </div>
 
       <div className="dash-grid dash-grid--main">
-        <Card title="Cảnh báo & Rủi ro" link={{ label: 'Xem tất cả' }}>
+        <Card title="Cảnh báo & Rủi ro" link={{ label: "Xem tất cả" }}>
           <CountRowList rows={execAlerts} variant="icon" />
         </Card>
 
-        <Card title="Hiệu suất theo phòng ban" link={{ label: 'Xem chi tiết' }}>
+        <Card title="Hiệu suất theo phòng ban" link={{ label: "Xem chi tiết" }}>
           <table className="table table--dense">
             <thead>
               <tr>
                 <th>Phòng ban</th>
-                <th style={{ textAlign: 'right' }}>KPI tổng hợp</th>
-                <th style={{ textAlign: 'center' }}>Xu hướng</th>
-                <th style={{ textAlign: 'center' }}>Đánh giá</th>
+                <th style={{ textAlign: "right" }}>KPI tổng hợp</th>
+                <th style={{ textAlign: "center" }}>Xu hướng</th>
+                <th style={{ textAlign: "center" }}>Đánh giá</th>
               </tr>
             </thead>
             <tbody>
               {departmentKpis.map((d) => (
                 <tr key={d.id}>
                   <td>{d.name}</td>
-                  <td className="num" style={{ textAlign: 'right', fontWeight: 600 }}>
+                  <td
+                    className="num"
+                    style={{ textAlign: "right", fontWeight: 600 }}
+                  >
                     {d.kpi}%
                   </td>
                   <td>
@@ -169,14 +203,17 @@ export default function ExecutiveDashboard() {
                         series={[
                           {
                             name: d.name,
-                            color: d.rating === 'Tốt' ? 'var(--success)' : 'var(--warning)',
+                            color:
+                              d.rating === "Tốt"
+                                ? "var(--success)"
+                                : "var(--warning)",
                             points: d.trend,
                           },
                         ]}
                       />
                     </div>
                   </td>
-                  <td style={{ textAlign: 'center' }}>
+                  <td style={{ textAlign: "center" }}>
                     <Badge tone={RATING_TONE[d.rating]}>{d.rating}</Badge>
                   </td>
                 </tr>
@@ -185,7 +222,10 @@ export default function ExecutiveDashboard() {
           </table>
         </Card>
 
-        <Card title="Phân bổ nhân sự theo phòng ban" link={{ label: 'Xem chi tiết' }}>
+        <Card
+          title="Phân bổ nhân sự theo phòng ban"
+          link={{ label: "Xem chi tiết" }}
+        >
           <DonutChart
             data={headcountByDept}
             size={150}
@@ -197,5 +237,5 @@ export default function ExecutiveDashboard() {
         </Card>
       </div>
     </DashboardShell>
-  )
+  );
 }

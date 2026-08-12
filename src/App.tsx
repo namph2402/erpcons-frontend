@@ -25,7 +25,6 @@ import SupplierPortal from "./pages/partners/SupplierPortal";
 import CustomerPortal from "./pages/partners/CustomerPortal";
 import CustomerDetail from "./pages/partners/CustomerDetail";
 import Collaboration from "./pages/partners/Collaboration";
-
 /**
  * Router tối giản dựa trên hash — đủ cho giai đoạn dựng giao diện.
  * Khi tích hợp backend có thể thay bằng react-router mà không đụng

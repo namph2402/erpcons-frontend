@@ -145,7 +145,7 @@
   padding-bottom: var(--sp-4);
 }
 .pt-timeline__item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 93px;
   top: 14px;
@@ -303,7 +303,7 @@
   padding-bottom: var(--sp-4);
 }
 .pt-flow__step::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 13px;
   top: 28px;
