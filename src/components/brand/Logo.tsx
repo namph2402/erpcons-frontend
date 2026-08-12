@@ -1,4 +1,5 @@
 import logoImg from '../../assets/logo.png'
+import logoMarkImg from '../../assets/logo-mark.png'
 import './Logo.css'
 
 export interface LogoProps {
@@ -44,7 +45,7 @@ export default function Logo({
         style={{ width: markSizeStr, height: markSizeStr }}
       >
         <img
-          src={logoImg}
+          src={logoMarkImg}
           alt={alt}
           className="logo__img logo__img--mark"
         />
