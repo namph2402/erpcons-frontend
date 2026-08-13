@@ -34,7 +34,7 @@
 }
 
 .select--soft {
-  background: var(--slate-50);
+  background: var(--bg-subtle);
   border-color: transparent;
 }
 
@@ -47,5 +47,5 @@
   position: absolute;
   right: var(--sp-2);
   pointer-events: none;
-  color: var(--slate-400);
+  color: var(--text-disabled);
 }

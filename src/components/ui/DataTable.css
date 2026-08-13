@@ -10,7 +10,7 @@
 .table thead th {
   position: sticky;
   top: 0;
-  background: var(--slate-50);
+  background: var(--bg-subtle);
   padding: var(--sp-3) var(--sp-4);
   font-size: var(--fs-caption-1);
   font-weight: 600;
@@ -47,7 +47,7 @@
   transition: background var(--dur-fast) var(--ease-standard);
 }
 .table tbody tr.is-clickable:hover {
-  background: var(--slate-50);
+  background: var(--bg-subtle);
 }
 
 .table__empty {
@@ -69,8 +69,8 @@
   border-radius: var(--r-sm);
   display: grid;
   place-items: center;
-  background: var(--slate-100);
-  color: var(--slate-500);
+  background: var(--bg-muted);
+  color: var(--text-tertiary);
   flex-shrink: 0;
   overflow: hidden;
 }

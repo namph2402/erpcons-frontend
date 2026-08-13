@@ -36,7 +36,7 @@ export default function WordCloud({
               className="wordcloud__word"
               style={{
                 fontSize: Math.round(size),
-                color: w.color ?? 'var(--slate-500)',
+                color: w.color ?? 'var(--disabled)',
                 fontWeight: size > 26 ? 700 : size > 18 ? 600 : 500,
               }}
               onClick={() => onSelect?.(w)}

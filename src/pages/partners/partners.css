@@ -185,8 +185,8 @@
   color: var(--info);
 }
 .pt-timeline__dot--neutral {
-  background: var(--slate-300);
-  color: var(--slate-300);
+  background: var(--border-strong);
+  color: var(--text-disabled);
 }
 .pt-timeline__title {
   font-size: var(--fs-caption-1);
@@ -327,15 +327,15 @@
 }
 .pt-flow__badge--done {
   background: var(--success);
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 .pt-flow__badge--current {
   background: var(--info);
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 .pt-flow__badge--todo {
-  background: var(--slate-100);
-  color: var(--slate-500);
+  background: var(--bg-muted);
+  color: var(--text-tertiary);
 }
 .pt-flow__body {
   flex: 1;
@@ -442,7 +442,7 @@
 .pt-diff__cell--head {
   font-weight: 600;
   color: var(--text-tertiary);
-  background: var(--slate-50);
+  background: var(--bg-subtle);
 }
 .pt-diff__cell--num {
   color: var(--text-tertiary);

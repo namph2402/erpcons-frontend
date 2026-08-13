@@ -62,7 +62,7 @@ const OPPORTUNITIES = [
 const DEBT_SPLIT = [
   { label: 'Trong hạn', value: 1.9, color: 'var(--success)', note: '1.90 tỷ', extra: '81%' },
   { label: 'Quá hạn 1-30 ngày', value: 0.3, color: 'var(--warning)', note: '300 tr', extra: '13%' },
-  { label: 'Quá hạn 31-60 ngày', value: 0.1, color: '#f97316', note: '100 tr', extra: '4%' },
+  { label: 'Quá hạn 31-60 ngày', value: 0.1, color: 'var(--construction)', note: '100 tr', extra: '4%' },
   { label: 'Quá hạn > 60 ngày', value: 0.05, color: 'var(--danger)', note: '50 tr', extra: '2%' },
 ]
 
@@ -170,7 +170,7 @@ export default function CustomerDetail() {
               labels={REVENUE.labels}
               height={230}
               series={[
-                { name: 'Năm 2023', color: 'var(--slate-300)', values: REVENUE.y2023 },
+                { name: 'Năm 2023', color: 'var(--chart-track)', values: REVENUE.y2023 },
                 { name: 'Năm 2024', color: 'var(--info)', values: REVENUE.y2024 },
               ]}
             />

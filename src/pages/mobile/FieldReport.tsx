@@ -164,7 +164,7 @@ export default function FieldReport() {
             <p className="m-attach__name truncate">Kế hoạch thi công tầng 12.pdf</p>
             <p className="m-attach__size">2.4 MB</p>
           </div>
-          <button type="button" aria-label="Gỡ tệp" style={{ color: 'var(--slate-400)' }}>
+          <button type="button" aria-label="Gỡ tệp" style={{ color: 'var(--text-disabled)' }}>
             <Icon name="close" size={18} />
           </button>
         </div>

@@ -52,15 +52,15 @@
     padding: var(--sp-6) var(--sp-4);
     overflow-y: auto;
     background:
-      radial-gradient(circle at 50% 0%, #eaf0f8 0%, var(--bg-app) 60%);
+      radial-gradient(circle at 50% 0%, var(--bg-muted) 0%, var(--bg-app) 60%);
   }
 
   .mobile-device {
     width: 390px;
     height: min(844px, calc(100vh - var(--sp-8)));
     border-radius: 44px;
-    border: 10px solid #0f172a;
-    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+    border: 10px solid var(--device-frame);
+    box-shadow: var(--shadow-pop);
     overflow: hidden;
   }
 

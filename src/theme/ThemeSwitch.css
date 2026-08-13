@@ -1,0 +1,78 @@
+/* 02.9 · User Menu — hàng chọn giao diện */
+.theme-seg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+}
+
+.theme-seg__label {
+  font-size: var(--fs-caption-1);
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+.theme-seg__group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  padding: 2px;
+  border-radius: var(--r-input);
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+}
+
+.theme-seg__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-1);
+  padding: var(--sp-2) var(--sp-1);
+  border-radius: var(--r-sm);
+  color: var(--text-tertiary);
+  font-size: var(--fs-caption-2);
+  font-weight: 600;
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard);
+}
+
+.theme-seg__btn:hover {
+  color: var(--text-primary);
+}
+
+.theme-seg__btn.is-active {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-seg__text {
+  white-space: nowrap;
+}
+
+@media (max-width: 380px) {
+  .theme-seg__text {
+    display: none;
+  }
+}
+
+/* Nút một chạm trên Topbar */
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-width: 40px;
+  border-radius: var(--r-input);
+  color: var(--text-tertiary);
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    color var(--dur-fast) var(--ease-standard);
+}
+
+.theme-toggle:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}

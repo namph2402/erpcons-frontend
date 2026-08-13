@@ -6,7 +6,7 @@
 }
 
 .rating__star {
-  color: var(--slate-300);
+  color: var(--text-disabled);
 }
 .rating__star.is-on {
   color: var(--warning);

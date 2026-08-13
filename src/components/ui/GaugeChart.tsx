@@ -72,7 +72,7 @@ export default function GaugeChart({
           <path
             d={arcPath(0, 1)}
             fill="none"
-            stroke="var(--slate-100)"
+            stroke="var(--chart-track)"
             strokeWidth={thickness}
             strokeLinecap="round"
           />
@@ -82,7 +82,7 @@ export default function GaugeChart({
             cy={cy}
             r={r}
             fill="none"
-            stroke="var(--slate-100)"
+            stroke="var(--chart-track)"
             strokeWidth={thickness}
           />
         )}
@@ -152,11 +152,11 @@ export default function GaugeChart({
                     y1={cy}
                     x2={px}
                     y2={py}
-                    stroke="var(--slate-900)"
+                    stroke="var(--text-primary)"
                     strokeWidth="2.5"
                     strokeLinecap="round"
                   />
-                  <circle cx={cx} cy={cy} r="5" fill="var(--slate-900)" />
+                  <circle cx={cx} cy={cy} r="5" fill="var(--text-primary)" />
                 </>
               )
             })()}

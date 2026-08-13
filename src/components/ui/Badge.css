@@ -27,20 +27,20 @@
 }
 
 .badge--default {
-  background: var(--slate-100);
+  background: var(--bg-muted);
   color: var(--text-secondary);
 }
 .badge--neutral {
-  background: var(--slate-100);
-  color: var(--slate-500);
+  background: var(--bg-muted);
+  color: var(--text-tertiary);
 }
 .badge--success {
   background: var(--success-soft);
-  color: #0e8f55;
+  color: var(--success-text);
 }
 .badge--warning {
   background: var(--warning-soft);
-  color: #b06f04;
+  color: var(--warning-text);
 }
 .badge--danger {
   background: var(--danger-soft);

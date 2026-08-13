@@ -70,7 +70,7 @@
   font-size: var(--fs-caption-2);
   font-weight: 700;
   color: inherit;
-  background: rgba(255, 255, 255, 0.22);
+  background: var(--glass);
   border-radius: var(--r-pill);
 }
 
@@ -89,12 +89,12 @@
     opacity var(--dur-fast) var(--ease-standard);
 }
 .board__add:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: var(--glass);
   opacity: 1;
 }
 
 .board__head--neutral {
-  background: var(--slate-500);
+  background: var(--disabled);
 }
 .board__head--warning {
   background: var(--warning-strong);

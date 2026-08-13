@@ -54,7 +54,7 @@ const PERFORMANCE = [
 const DEBT_SPLIT = [
   { label: 'Trong hạn', value: 1.9, color: 'var(--success)', note: '1.90 tỷ', extra: '81%' },
   { label: 'Quá hạn 1-30 ngày', value: 0.3, color: 'var(--warning)', note: '300.00 tr', extra: '13%' },
-  { label: 'Quá hạn 31-60 ngày', value: 0.1, color: '#f97316', note: '100.00 tr', extra: '4%' },
+  { label: 'Quá hạn 31-60 ngày', value: 0.1, color: 'var(--construction)', note: '100.00 tr', extra: '4%' },
   { label: 'Quá hạn > 60 ngày', value: 0.05, color: 'var(--danger)', note: '50.00 tr', extra: '2%' },
 ]
 

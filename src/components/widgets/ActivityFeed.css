@@ -45,8 +45,8 @@
   color: var(--ai);
 }
 .activity__icon--neutral {
-  background: var(--slate-100);
-  color: var(--slate-500);
+  background: var(--bg-muted);
+  color: var(--text-tertiary);
 }
 
 .activity__body {
@@ -73,5 +73,5 @@
   font-weight: 600;
 }
 .activity__dot {
-  color: var(--slate-300);
+  color: var(--text-disabled);
 }

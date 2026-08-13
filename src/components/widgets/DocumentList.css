@@ -25,7 +25,7 @@
   padding: var(--sp-3);
   border: 1px solid var(--border);
   border-radius: var(--r-input);
-  background: var(--slate-50);
+  background: var(--bg-subtle);
   align-items: flex-start;
 }
 

@@ -54,7 +54,7 @@
   gap: var(--sp-1);
 }
 .profile__contact .material-symbols-rounded {
-  color: var(--slate-400);
+  color: var(--text-disabled);
 }
 
 .profile__stats {

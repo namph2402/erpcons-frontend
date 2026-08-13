@@ -30,7 +30,7 @@
   font-size: var(--fs-caption-2);
   font-weight: 700;
   flex-shrink: 0;
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 .count-row__badge--danger {
   background: var(--danger);
@@ -45,7 +45,7 @@
   background: var(--success);
 }
 .count-row__badge--neutral {
-  background: var(--slate-400);
+  background: var(--disabled);
 }
 
 .count-row__icon {
@@ -73,8 +73,8 @@
   color: var(--success);
 }
 .count-row__icon--neutral {
-  background: var(--slate-100);
-  color: var(--slate-500);
+  background: var(--bg-muted);
+  color: var(--text-tertiary);
 }
 
 .count-row__body {
@@ -101,6 +101,6 @@
 }
 
 .count-row__chev {
-  color: var(--slate-300);
+  color: var(--text-disabled);
   flex-shrink: 0;
 }

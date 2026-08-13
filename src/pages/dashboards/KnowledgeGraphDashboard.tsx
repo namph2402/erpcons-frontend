@@ -74,7 +74,7 @@ export default function KnowledgeGraphDashboard() {
         <Card
           title="Đồ thị tri thức (Knowledge Graph)"
           icon="info"
-          iconColor="var(--slate-400)"
+          iconColor="var(--text-disabled)"
           action={
             <div className="row">
               <SearchInput placeholder="Tìm thực thể trong đồ thị..." shortcut="" />

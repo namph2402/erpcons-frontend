@@ -16,7 +16,7 @@
   align-items: center;
 }
 .breadcrumb__sep {
-  color: var(--slate-300);
+  color: var(--text-disabled);
   margin: 0 2px;
 }
 .breadcrumb a:hover {
@@ -39,10 +39,10 @@
   height: 56px;
   border-radius: var(--r-input);
   overflow: hidden;
-  background: var(--slate-100);
+  background: var(--bg-muted);
   display: grid;
   place-items: center;
-  color: var(--slate-400);
+  color: var(--text-disabled);
   flex-shrink: 0;
 }
 .page-header__thumb img {
@@ -84,7 +84,7 @@
   font-weight: 500;
 }
 .page-header__dot {
-  color: var(--slate-300);
+  color: var(--text-disabled);
 }
 
 .page-header__actions {

@@ -91,7 +91,7 @@
   background: var(--success);
 }
 .task__dot--neutral {
-  background: var(--slate-300);
+  background: var(--border-strong);
 }
 
 /* Biến thể "Công việc hôm nay": nhãn module dạng chip dưới tiêu đề */

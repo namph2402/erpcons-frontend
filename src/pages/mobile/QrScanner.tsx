@@ -27,7 +27,7 @@ function QrPattern() {
       {Array.from({ length: CELLS }, (_, r) =>
         Array.from({ length: CELLS }, (_, c) =>
           filled(r, c) ? (
-            <rect key={`${r}-${c}`} x={c} y={r} width="1" height="1" fill="#0f172a" />
+            <rect key={`${r}-${c}`} x={c} y={r} width="1" height="1" fill="currentColor" />
           ) : null,
         ),
       )}

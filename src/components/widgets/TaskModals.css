@@ -32,7 +32,7 @@
   transition: background var(--dur-fast) var(--ease-standard);
 }
 .duration__step:hover {
-  background: var(--slate-200);
+  background: var(--bg-active);
   color: var(--text-primary);
 }
 
@@ -75,7 +75,7 @@
   background: linear-gradient(
     to right,
     var(--success) var(--pct),
-    var(--slate-200) var(--pct)
+    var(--chart-track) var(--pct)
   );
   cursor: pointer;
 }
@@ -84,7 +84,7 @@
   width: 18px;
   height: 18px;
   border-radius: var(--r-pill);
-  background: var(--white);
+  background: var(--bg-surface);
   border: 2px solid var(--success);
   box-shadow: var(--shadow-sm);
 }
@@ -93,7 +93,7 @@
   height: 18px;
   border: 2px solid var(--success);
   border-radius: var(--r-pill);
-  background: var(--white);
+  background: var(--bg-surface);
 }
 .slider:focus-visible {
   outline: none;

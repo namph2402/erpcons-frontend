@@ -4,8 +4,8 @@
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-5) var(--sp-5);
   border-radius: var(--r-card);
-  border: 1px solid #dfe3fd;
-  background: linear-gradient(180deg, #f4f5ff 0%, var(--white) 60%);
+  border: 1px solid var(--ai-border);
+  background: linear-gradient(180deg, var(--ai-soft) 0%, var(--bg-surface) 60%);
   box-shadow: var(--shadow-card);
 }
 
@@ -59,14 +59,14 @@
   display: flex;
   align-items: center;
   gap: var(--sp-2);
-  background: var(--white);
-  border: 1px solid #d9defb;
+  background: var(--bg-surface);
+  border: 1px solid var(--ai-border);
   border-radius: var(--r-input);
   padding: var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-3);
 }
 .copilot__input:focus-within {
   border-color: var(--ai);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.16);
+  box-shadow: var(--ring-ai);
 }
 .copilot__input input {
   flex: 1;
@@ -78,7 +78,7 @@
   padding: var(--sp-2) 0;
 }
 .copilot__input input::placeholder {
-  color: var(--slate-400);
+  color: var(--text-disabled);
 }
 .copilot__input button {
   width: 32px;
@@ -87,11 +87,11 @@
   place-items: center;
   border-radius: var(--r-sm);
   background: var(--info);
-  color: var(--white);
+  color: var(--text-on-accent);
   flex-shrink: 0;
 }
 .copilot__input button:hover {
-  background: #1d4fd8;
+  background: var(--info-hover);
 }
 
 .copilot__suggestions {

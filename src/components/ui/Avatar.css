@@ -16,7 +16,7 @@
 }
 
 .avatar__initials {
-  color: var(--white);
+  color: var(--text-on-accent);
   font-weight: 600;
   letter-spacing: 0.2px;
 }
@@ -39,7 +39,7 @@
   background: var(--warning);
 }
 .avatar__status--offline {
-  background: var(--slate-300);
+  background: var(--border-strong);
 }
 
 /* ---- AvatarGroup ---- */
@@ -60,7 +60,7 @@
   place-items: center;
   margin-left: -8px;
   border: 2px solid var(--bg-surface);
-  background: var(--slate-100);
+  background: var(--bg-muted);
   color: var(--text-secondary);
   font-size: var(--fs-caption-2);
   font-weight: 600;

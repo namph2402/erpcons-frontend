@@ -28,11 +28,11 @@
   color: var(--text-tertiary);
 }
 .device-map__filters button:hover {
-  background: var(--slate-100);
+  background: var(--bg-muted);
 }
 .device-map__filters button.is-active {
   background: var(--info);
-  color: var(--white);
+  color: var(--text-on-accent);
 }
 
 .device-map__canvas {
@@ -41,17 +41,17 @@
   border: 1px solid var(--border);
   overflow: hidden;
   background:
-    radial-gradient(circle at 30% 25%, #e6f0e8 0%, transparent 45%),
-    radial-gradient(circle at 72% 65%, #dfeaf7 0%, transparent 50%),
-    linear-gradient(160deg, #f2f6f4 0%, #eaf1f7 100%);
+    radial-gradient(circle at 30% 25%, var(--map-blob-1) 0%, transparent 45%),
+    radial-gradient(circle at 72% 65%, var(--map-blob-2) 0%, transparent 50%),
+    var(--map-bg);
 }
 
 .device-map__grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(100, 116, 139, 0.09) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(100, 116, 139, 0.09) 1px, transparent 1px);
+    linear-gradient(to right, var(--map-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--map-grid) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
@@ -64,10 +64,10 @@
   height: 30px;
   padding: 0 var(--sp-2);
   border-radius: var(--r-pill);
-  color: var(--white);
+  color: var(--text-on-accent);
   font-size: var(--fs-caption-2);
   font-weight: 700;
-  border: 2px solid var(--white);
+  border: 2px solid var(--bg-surface);
   box-shadow: var(--shadow-md);
   transition: transform var(--dur-fast) var(--ease-standard);
 }
@@ -89,7 +89,7 @@
   background: var(--danger);
 }
 .device-map__marker--neutral {
-  background: var(--slate-500);
+  background: var(--disabled);
 }
 
 .device-map__zoom {
@@ -114,6 +114,6 @@
   border-top: 1px solid var(--border);
 }
 .device-map__zoom button:hover {
-  background: var(--slate-50);
+  background: var(--bg-subtle);
   color: var(--text-primary);
 }

@@ -15,8 +15,8 @@
 
 .btn:disabled {
   cursor: not-allowed;
-  background: var(--slate-100);
-  color: var(--slate-400);
+  background: var(--bg-muted);
+  color: var(--text-disabled);
   border-color: transparent;
 }
 
@@ -58,10 +58,10 @@
   color: var(--text-invert);
 }
 .btn--primary:hover:not(:disabled) {
-  background: #1d4fd8;
+  background: var(--info-hover);
 }
 .btn--primary:active:not(:disabled) {
-  background: #1a45bd;
+  background: var(--info-pressed);
 }
 
 .btn--brand {
@@ -81,7 +81,7 @@
   border-color: var(--border);
 }
 .btn--secondary:hover:not(:disabled) {
-  background: var(--slate-50);
+  background: var(--bg-subtle);
   border-color: var(--border-strong);
 }
 
@@ -90,7 +90,7 @@
   color: var(--text-secondary);
 }
 .btn--ghost:hover:not(:disabled) {
-  background: var(--slate-100);
+  background: var(--bg-muted);
 }
 
 .btn--danger {
