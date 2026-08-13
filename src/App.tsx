@@ -5,6 +5,7 @@ import PersonalHome from './pages/PersonalHome'
 import ProjectWorkspace from './pages/ProjectWorkspace'
 import LoginPage, { AuthSplash } from './pages/LoginPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
+import SchemaFormPage from './pages/SchemaFormPage'
 import TaskBoardPage from './pages/TaskBoardPage'
 import AiInsightDashboard from './pages/dashboards/AiInsightDashboard'
 import ConstructionDashboard from './pages/dashboards/ConstructionDashboard'
@@ -72,6 +73,9 @@ const workspaceRoutes: Route[] = WORKSPACE_LIST.map((config) => ({
  * bỏ chú thích 2 dòng cuối bảng và import lại LoginTestPage / TaskApiTestPage.
  */
 const ROUTES: Route[] = [
+  /* ---- Biểu mẫu tự dựng từ schema Drupal ---- */
+  { match: (p) => p.startsWith('/bieu-mau'), render: () => <SchemaFormPage /> },
+
   /* ---- Dashboard ---- */
   { match: (p) => p.startsWith('/dashboard/executive'), render: () => <ExecutiveDashboard /> },
   { match: (p) => p.startsWith('/dashboard/project'), render: () => <ProjectDashboard /> },
