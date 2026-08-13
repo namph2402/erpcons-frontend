@@ -1,0 +1,112 @@
+/* =========================================================================
+   Bố cục cho biểu mẫu tự dựng.
+   Tái hiện field_group của Drupal: bootstrap_grid → lưới N cột,
+   html_element → thẻ bọc kèm lớp gốc (d-flex, justify-content-between…).
+   ========================================================================= */
+
+.sform {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* Nhóm dạng lưới — `columns` lấy từ format_settings.width của Drupal */
+.sform-grid {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(var(--cols, 1), minmax(0, 1fr));
+  align-items: start;
+}
+
+/* Nhóm dạng thẻ bọc */
+.sform-el {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* Drupal dùng class Bootstrap trong format_settings.classes. Dự án không nạp
+   Bootstrap grid nên tái hiện lại đúng ba lớp hay gặp nhất trong config. */
+.sform-el.d-flex,
+.sform-grid.d-flex {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.sform-el.justify-content-between {
+  justify-content: space-between;
+}
+
+.sform-el.d-flex > *,
+.sform-grid.d-flex > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Nhóm bị Drupal giấu (classes có d-none) — không dựng, phòng khi vẫn lọt */
+.sform-el.d-none,
+.sform-grid.d-none {
+  display: none;
+}
+
+.sform-group__label {
+  margin: 0;
+  font-size: var(--fs-body-3);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Trường không thuộc nhóm nào */
+.sform-loose {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.sform-actions {
+  display: flex;
+  gap: var(--sp-2);
+  justify-content: flex-end;
+  padding-top: var(--sp-2);
+}
+
+.sform-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--text-tertiary);
+  font-size: var(--fs-caption-1);
+}
+
+.sform-warn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--warning-strong);
+  font-size: var(--fs-body-3);
+}
+
+.sform-new {
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: var(--r-xs);
+  background: var(--warning-soft);
+  color: var(--warning-strong);
+  font-size: 10px;
+}
+
+@media (max-width: 767px) {
+  /* Màn hẹp thì mọi lưới về một cột — giữ đúng cách Drupal responsive */
+  .sform-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sform-el.d-flex,
+  .sform-grid.d-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -63,6 +63,8 @@ export interface TaskPayload {
   title?: string
   project?: number
   job?: number | null
+  propose?: number | null
+  public?: boolean | null
   evaluation?: string | null
   dplan?: number | null
   startDate?: string | null

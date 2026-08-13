@@ -61,3 +61,9 @@ export type { TaskDetailModalProps } from './TaskDetailModal'
 
 export { default as RichTextEditor } from './RichTextEditor'
 export type { RichTextEditorProps } from './RichTextEditor'
+
+export { default as SchemaForm } from './SchemaForm'
+export type { SchemaFormProps } from './SchemaForm'
+
+export { default as EntityFormModal } from './EntityFormModal'
+export type { EntityFormModalProps } from './EntityFormModal'

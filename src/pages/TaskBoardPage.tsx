@@ -14,10 +14,10 @@ import {
   type Column,
 } from '../components/ui'
 import {
+  EntityFormModal,
   NotificationDrawer,
   TaskBoard,
   TaskDetailModal,
-  TaskFormModal,
   type BoardTone,
 } from '../components/widgets'
 import type { BoardColumn } from '../components/widgets/TaskBoard'
@@ -27,15 +27,11 @@ import LogoutButton from '../auth/LogoutButton'
 import { useUiUser } from '../auth/useUiUser'
 import {
   changeTaskState,
-  createTask,
   deleteTask,
-  fetchTask,
   fetchTaskOptions,
   fetchTasks,
-  updateTask,
   type Task,
   type TaskOptions,
-  type TaskPayload,
 } from '../api/tasks'
 import type { BoardTask } from '../types'
 import './pages.css'
@@ -149,11 +145,9 @@ export default function TaskBoardPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const [formOpen, setFormOpen] = useState(false)
-  const [editing, setEditing] = useState<Task | null>(null)
+  const [editingId, setEditingId] = useState<number | null>(null)
   const [targetColumn, setTargetColumn] = useState('list')
   const [detail, setDetail] = useState<Task | null>(null)
-  const [saving, setSaving] = useState(false)
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
 
   /* ------------------------------ Nạp dữ liệu ----------------------------- */
 
@@ -230,47 +224,39 @@ export default function TaskBoardPage() {
   /* ------------------------------- Hành động ------------------------------ */
 
   const openCreate = (columnId = 'list') => {
-    setEditing(null)
-    setFormErrors({})
+    setEditingId(null)
     setTargetColumn(columnId)
     setFormOpen(true)
   }
 
-  const openEdit = async (t: BoardTask) => {
-    setFormErrors({})
+  /**
+   * Mở form sửa.
+   *
+   * Không cần gọi /api/v1/tasks/{id} nữa: EntityFormModal tự lấy giá trị qua
+   * /api/v1/form/task/work_task/values/{id}, đúng khoá mà biểu mẫu dùng.
+   */
+  const openEdit = (t: BoardTask) => {
     setDetail(null)
-    try {
-      // Thẻ trên bảng chỉ mang bản rút gọn; form cần bản đầy đủ (nội dung, người
-      // phụ trách, giám sát, thời lượng) nên phải gọi lại chi tiết.
-      const res = await fetchTask(Number(t.id))
-      setEditing(res.task)
-      setTargetColumn(res.task.state)
-      setFormOpen(true)
-    } catch (e) {
-      setError((e as Error).message)
-    }
+    setEditingId(Number(t.id))
+    setFormOpen(true)
   }
 
-  const submit = async (payload: TaskPayload) => {
-    setSaving(true)
-    setFormErrors({})
-    try {
-      if (editing) {
-        await updateTask(editing.id, payload)
-      } else {
-        // Tạo mới thì đặt luôn vào cột đang bấm "+".
-        await createTask({ ...payload, state: targetColumn })
-      }
-      setFormOpen(false)
-      setEditing(null)
-      await loadTasks()
-    } catch (e) {
-      const err = e as Error & { errors?: Record<string, string> }
-      if (err.errors) setFormErrors(err.errors)
-      setError(err.errors ? null : err.message)
-    } finally {
-      setSaving(false)
-    }
+  /**
+   * Sau khi modal lưu xong — ghép kết quả vào danh sách TẠI CHỖ.
+   *
+   * Không gọi lại loadTasks(): endpoint đã trả về bản ghi vừa lưu, tải lại toàn
+   * bộ danh sách chỉ tốn thêm một vòng mạng và làm bảng nháy. Tạo mới thì chèn
+   * lên đầu, sửa thì thay đúng phần tử.
+   */
+  const onSaved = (result: unknown) => {
+    const saved = (result as { task?: Task })?.task
+    if (!saved) return
+
+    setTasks((prev) => {
+      const exists = prev.some((t) => t.id === saved.id)
+      return exists ? prev.map((t) => (t.id === saved.id ? saved : t)) : [saved, ...prev]
+    })
+    setEditingId(null)
   }
 
   /**
@@ -496,17 +482,27 @@ export default function TaskBoardPage() {
         )}
       </div>
 
-      {/* Mount lại theo key để form luôn khởi tạo sạch mỗi lần mở */}
+      {/* Form dựng từ file YAML của Drupal
+          (erp_api/config/custom/task_form_work_task.yml).
+
+          forceWritable: file khai `writable: false` vì tác vụ phải lưu qua
+          /api/v1/tasks để hook kanban_change_status_alter còn chạy (đồng bộ
+          tiến độ lên Dplan). Trang này tự lo việc đó nên bật nút Lưu. */}
       {formOpen && (
-        <TaskFormModal
-          key={editing?.id ?? 'new'}
+        <EntityFormModal
           open
           onClose={() => setFormOpen(false)}
-          onSubmit={submit}
-          task={editing}
-          options={options}
-          serverErrors={formErrors}
-          saving={saving}
+          entityType="task"
+          bundle="work_task"
+          recordId={editingId}
+          // Bấm "+" trên một cột thì tác vụ mới rơi đúng vào cột đó.
+          initialValues={{ field_work_task_state: targetColumn }}
+          // KHÔNG truyền onSubmit: modal tự gửi theo khối `submit` khai trong
+          // file YAML (create/update/delete + bảng map). Trang này chỉ nhận kết
+          // quả và ghép vào danh sách.
+          onSaved={onSaved}
+          forceWritable
+          title={editingId ? 'Sửa nội dung Tác vụ' : 'Thêm nội dung Tác vụ'}
         />
       )}
 
