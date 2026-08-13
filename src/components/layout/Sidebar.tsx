@@ -41,7 +41,12 @@ export default function Sidebar({
   const renderItem = (item: NavItem) => {
     const isActive = item.id === activeId;
     const hasChildren = Boolean(item.children?.length);
-    const isOpen = openId === item.id;
+    const isChildActive = Boolean(
+      item.children?.some(
+        (c) => c.id === activeId || (c.children && c.children.some((sub) => sub.id === activeId))
+      )
+    );
+    const isOpen = openId !== null ? openId === item.id : isChildActive;
 
     return (
       <li key={item.id}>
@@ -52,7 +57,7 @@ export default function Sidebar({
           onClick={(e) => {
             if (hasChildren) {
               e.preventDefault();
-              setOpenId(isOpen ? null : item.id);
+              setOpenId(isOpen ? "" : item.id);
               return;
             }
             if (onNavigate) {

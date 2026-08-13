@@ -5026,21 +5026,12 @@ const aiResult: WorkspaceConfig = {
 
 /** Toàn bộ workspace, tra cứu theo id */
 export const WORKSPACES: Record<string, WorkspaceConfig> = {
-  tasks,
   issues,
-  ncr,
-  rfi,
-  drawings,
-  meetings,
-  documents,
-  budget,
-  cost,
-  invoices,
-  purchase,
-  assets,
-  equipment,
-  materials,
-  "ai-result": aiResult,
 };
 
+export const NHANSU_WORKSPACE: Record<string, WorkspaceConfig> = {
+  tasks,
+}
+
 export const WORKSPACE_LIST = Object.values(WORKSPACES);
+export const NHANSU_WORKSPACE_LIST = Object.values(NHANSU_WORKSPACE);

@@ -9,17 +9,17 @@ export interface NavItem {
   count?: number;
   tag?: string;
   children?: NavItem[];
-  [key: string]: any; // Cho phép các thuộc tính bổ sung khác
+  [key: string]: unknown; // Cho phép các thuộc tính bổ sung khác
 }
 
 export interface NavGroup {
   id: string;
-  label: string;
+  label?: string;
   title?: string;
   items: NavItem[];
   path?: string;
   hash?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface User {

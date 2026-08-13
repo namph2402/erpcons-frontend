@@ -4,7 +4,7 @@ import Button from "../ui/Button";
 import Icon from "../ui/Icon";
 import type { User } from "../../types";
 import "./ProfileCard.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export interface ProfileStat {
   id: string;

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Avatar from '../ui/Avatar'
 import Icon from '../ui/Icon'
 import Logo from '../brand/Logo'
@@ -28,28 +29,75 @@ export default function MobileDrawer({
   footerItems,
   onNavigate,
 }: MobileDrawerProps) {
-  const renderItem = (item: NavItem) => (
-    <li key={item.id}>
-      <a
-        className={`mdrawer__item${item.id === activeId ? ' is-active' : ''}`}
-        href={item.href ?? '#'}
-        onClick={(e) => {
-          if (onNavigate) {
-            e.preventDefault()
-            onNavigate(item)
-          }
-          onClose()
-        }}
-      >
-        <Icon name={item.icon} size={24} filled={item.id === activeId} />
-        <span className="mdrawer__label truncate">{item.label}</span>
-        {item.tag && <span className="mdrawer__tag">{item.tag}</span>}
-        {typeof item.count === 'number' && (
-          <span className="mdrawer__count num">{item.count}</span>
+  const [openId, setOpenId] = useState<string | null>(null)
+
+  const renderItem = (item: NavItem) => {
+    const isActive = item.id === activeId
+    const hasChildren = Boolean(item.children?.length)
+    const isChildActive = Boolean(
+      item.children?.some(
+        (c) => c.id === activeId || (c.children && c.children.some((sub) => sub.id === activeId))
+      )
+    )
+    const isOpen = openId !== null ? openId === item.id : isChildActive
+
+    return (
+      <li key={item.id}>
+        <a
+          className={`mdrawer__item${isActive ? ' is-active' : ''}`}
+          href={item.href ?? '#'}
+          onClick={(e) => {
+            if (hasChildren) {
+              e.preventDefault()
+              setOpenId(isOpen ? '' : item.id)
+              return
+            }
+            if (onNavigate) {
+              e.preventDefault()
+              onNavigate(item)
+            }
+            onClose()
+          }}
+        >
+          <Icon name={item.icon} size={24} filled={isActive} />
+          <span className="mdrawer__label truncate">{item.label}</span>
+          {item.tag && <span className="mdrawer__tag">{item.tag}</span>}
+          {typeof item.count === 'number' && (
+            <span className="mdrawer__count num">{item.count}</span>
+          )}
+          {hasChildren && (
+            <Icon
+              name="expand_more"
+              size={20}
+              className={`sidenav__caret${isOpen ? ' is-open' : ''}`}
+            />
+          )}
+        </a>
+
+        {hasChildren && isOpen && (
+          <ul className="sidenav__sub">
+            {item.children!.map((c) => (
+              <li key={c.id}>
+                <a
+                  className={`sidenav__subitem${c.id === activeId ? ' is-active' : ''}`}
+                  href={c.href ?? '#'}
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault()
+                      onNavigate(c)
+                    }
+                    onClose()
+                  }}
+                >
+                  {c.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         )}
-      </a>
-    </li>
-  )
+      </li>
+    )
+  }
 
   return (
     <>

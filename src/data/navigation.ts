@@ -1,34 +1,14 @@
 import type { NavGroup, NavItem } from "../types";
-import { WORKSPACE_LIST } from "../data/workspaces";
-import { Children } from "react";
+import { NHANSU_WORKSPACE_LIST, WORKSPACE_LIST } from "../data/workspaces";
 
 export const appNav: NavGroup[] = [
   {
-    id: "trang-chu-group",
-    label: "Trang chủ",
+    id: "main-nav",
     items: [
       {
-        id: "home",
-        label: "Trang chủ",
-        icon: "home",
-        path: "/",
-        href: "#/",
-        hash: "#/",
-      },
-    ],
-  },
-  {
-    id: "ca-nhan",
-    label: "Cá nhân",
-    icon: "account_circle",
-    items: [
-      {
-        id: "personal1",
+        id: "ca-nhan",
         label: "Cá nhân",
         icon: "account_circle",
-        path: "/1/ca-nhan",
-        href: "#/1/ca-nhan",
-        hash: "#/1/ca-nhan",
         children: [
           {
             id: "personal",
@@ -38,29 +18,12 @@ export const appNav: NavGroup[] = [
             href: "#/ca-nhan",
             hash: "#/ca-nhan",
           },
-          {
-            id: "collaboration",
-            label: "Cộng tác",
-            icon: "forum",
-            path: "/cong-tac",
-            href: "#/cong-tac",
-            hash: "#/cong-tac",
-          },
         ],
       },
-    ],
-  },
-  {
-    id: "du-an",
-    label: "Dự án",
-    items: [
       {
-        id: "projectss",
+        id: "du-an",
         label: "Dự án",
         icon: "domain",
-        path: "/ddu-an/NT-2024-001",
-        href: "#/ddu-an/NT-2024-001",
-        hash: "#/ddu-an/NT-2024-001",
         children: [
           {
             id: "projects",
@@ -82,25 +45,32 @@ export const appNav: NavGroup[] = [
             id: "dashboard-construction",
             label: "Tổng quan thi công",
             icon: "engineering",
+            path: "/dashboard/construction",
             href: "#/dashboard/construction",
             hash: "#/dashboard/construction",
           },
+          {
+            id: "dashboard-ncr",
+            label: "Báo cáo không phù hợp (NCR)",
+            icon: "engineering",
+            path: "#/dashboard/ncr",
+            href: "#/dashboard/ncr",
+            hash: "#/dashboard/ncr",
+          },
+          {
+            id: "dashboard-nfi",
+            label: "Yêu cầu thông tin (NFI)",
+            icon: "engineering",
+            path: "#/dashboard/nfi",
+            href: "#/dashboard/nfi",
+            hash: "#/dashboard/nfi",
+          }
         ],
       },
-    ],
-  },
-
-  {
-    id: "crm",
-    label: "CRM",
-    items: [
       {
         id: "crm",
         label: "CRM",
         icon: "handshake",
-        path: "",
-        href: "",
-        hash: "",
         children: [
           {
             id: "customers",
@@ -118,45 +88,46 @@ export const appNav: NavGroup[] = [
             href: "#/doi-tac/cong-khach-hang",
             hash: "#/doi-tac/cong-khach-hang",
           },
+          {
+            id: "collaboration",
+            label: "Cộng tác",
+            icon: "forum",
+            path: "/cong-tac",
+            href: "#/cong-tac",
+            hash: "#/cong-tac",
+          },
         ],
       },
-    ],
-  },
-  {
-    id: "nghiep-vu-khac",
-    label: "Hành chính ",
-    items: WORKSPACE_LIST.map((w) => ({
-      id: w.id,
-      label: w.title,
-      icon: "table_view",
-      path: w.route,
-      href: `#${w.route}`,
-      hash: `#${w.route}`,
-    })),
-  },
-  {
-    id: "nghiep-vu-khac",
-    label: " Nhân sự",
-    items: WORKSPACE_LIST.map((w) => ({
-      id: w.id,
-      label: w.title,
-      icon: "table_view",
-      path: w.route,
-      href: `#${w.route}`,
-      hash: `#${w.route}`,
-    })),
-  },
-  {
-    id: "ke-toan",
-    label: "Kế toán",
-    items: [
       {
-        id: "ke_ toann",
+        id: "hanh-chinh",
+        label: "Hành chính",
+        icon: "corporate_fare",
+        children: WORKSPACE_LIST.map((w) => ({
+          id: `hanh-chinh-${w.id}`,
+          label: w.title,
+          icon: "table_view",
+          path: w.route,
+          href: `#${w.route}`,
+          hash: `#${w.route}`,
+        })),
+      },
+      {
+        id: "nhan-su",
+        label: "Nhân sự",
+        icon: "badge",
+        children: NHANSU_WORKSPACE_LIST.map((w) => ({
+          id: `nhan-su-${w.id}`,
+          label: w.title,
+          icon: "table_view",
+          path: w.route,
+          href: `#${w.route}`,
+          hash: `#${w.route}`,
+        })),
+      },
+      {
+        id: "ke-toan",
         label: "Kế toán",
         icon: "payments",
-        path: "",
-        href: "",
-        hash: "",
         children: [
           {
             id: "dashboard-finance",
@@ -176,33 +147,56 @@ export const appNav: NavGroup[] = [
           },
         ],
       },
-    ],
-  },
-  {
-    id: "cung-ung",
-    label: "Cung ứng",
-    items: [
       {
-        id: "suppliers",
+        id: "cung-ung",
         label: "Cung ứng",
         icon: "local_shipping",
-        path: "/doi-tac/nha-cung-cap",
-        href: "#/doi-tac/nha-cung-cap",
-        hash: "#/doi-tac/nha-cung-cap",
+        children: [
+          {
+            id: "suppliers",
+            label: "Nhà cung cấp",
+            icon: "local_shipping",
+            path: "/doi-tac/nha-cung-cap",
+            href: "#/doi-tac/nha-cung-cap",
+            hash: "#/doi-tac/nha-cung-cap",
+          },
+          {
+            id: "supplier-portal",
+            label: "Cổng nhà cung cấp",
+            icon: "store",
+            path: "/doi-tac/cong-nha-cung-cap",
+            href: "#/doi-tac/cong-nha-cung-cap",
+            hash: "#/doi-tac/cong-nha-cung-cap",
+          },
+        ],
       },
-    ],
-  },
-  {
-    id: "tai-san",
-    label: "Tài sản",
-    items: [
       {
-        id: "",
+        id: "kho-van",
+        label: "Kho vận",
+        icon: "inventory_2",
+        children: [
+          {
+            id: "kho-van-main",
+            label: "Kho vận",
+            icon: "inventory_2",
+            path: "/kho-van",
+            href: "#/kho-van",
+            hash: "#/kho-van",
+          },
+          {
+            id: "kho-van-collaboration",
+            label: "Cộng tác",
+            icon: "forum",
+            path: "/cong-tac",
+            href: "#/cong-tac",
+            hash: "#/cong-tac",
+          },
+        ],
+      },
+      {
+        id: "tai-san",
         label: "Tài sản",
         icon: "sensors",
-        path: "",
-        href: "",
-        hash: "",
         children: [
           {
             id: "dashboard-iot",
@@ -214,22 +208,13 @@ export const appNav: NavGroup[] = [
           },
         ],
       },
-    ],
-  },
-  {
-    id: "tai-lieu-cde",
-    label: "Tài liệu (CDE)",
-    items: [
       {
-        id: "dashboard-knowledge",
+        id: "tai-lieu-cde",
         label: "Tài liệu (CDE)",
         icon: "hub",
-        path: "",
-        href: "",
-        hash: "",
         children: [
           {
-            id: "dashboard-knowledge",
+            id: "dashboard-graph",
             label: "Đồ thị tri thức",
             icon: "hub",
             path: "/dashboard/knowledge-graph",
@@ -241,23 +226,15 @@ export const appNav: NavGroup[] = [
             label: "Báo cáo hệ thống",
             icon: "description",
             path: "/mobile/bao-cao",
+            href: "#/mobile/bao-cao",
             hash: "#/mobile/bao-cao",
           },
         ],
       },
-    ],
-  },
-  {
-    id: "quan-ly",
-    label: "Quản lí",
-    items: [
       {
-        id: "quanly",
+        id: "quan-ly",
         label: "Quản lý",
-        icon: "",
-        path: "",
-        href: "",
-        hash: "",
+        icon: "space_dashboard",
         children: [
           {
             id: "dashboard",
@@ -284,36 +261,28 @@ export const appNav: NavGroup[] = [
             hash: "#/dashboard/ai-insight",
           },
           {
-            id: "mobile",
-            label: "Hệ thống Mobile",
+            id: "mb-home",
+            label: "Trang chủ mobile",
             icon: "smartphone",
-            path: "/mobile",
-            href: "#/mobile",
-            hash: "#/mobile",
-            children: [
-              {
-                id: "mb-home",
-                label: "Trang chủ mobile",
-                icon: "smartphone",
-                path: "/mobile/trang-chu",
-                href: "#/mobile/trang-chu",
-                hash: "#/mobile/trang-chu",
-              },
-              {
-                id: "mb-sync",
-                label: "Đồng bộ offline",
-                icon: "cloud_sync",
-                path: "/mobile/dong-bo",
-                hash: "#/mobile/dong-bo",
-              },
-              {
-                id: "mb-qr",
-                label: "Quét QR Code",
-                icon: "qr_code_scanner",
-                path: "/mobile/qr",
-                hash: "#/mobile/qr",
-              },
-            ],
+            path: "/mobile/trang-chu",
+            href: "#/mobile/trang-chu",
+            hash: "#/mobile/trang-chu",
+          },
+          {
+            id: "mb-sync",
+            label: "Đồng bộ offline",
+            icon: "cloud_sync",
+            path: "/mobile/dong-bo",
+            href: "#/mobile/dong-bo",
+            hash: "#/mobile/dong-bo",
+          },
+          {
+            id: "mb-qr",
+            label: "Quét QR Code",
+            icon: "qr_code_scanner",
+            path: "/mobile/qr",
+            href: "#/mobile/qr",
+            hash: "#/mobile/qr",
           },
         ],
       },

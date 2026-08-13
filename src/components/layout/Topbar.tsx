@@ -4,7 +4,6 @@ import Icon from "../ui/Icon";
 import SearchInput from "../ui/SearchInput";
 import type { User } from "../../types";
 import "./Topbar.css";
-import { useNavigate } from "react-router-dom";
 import "../../pages/PersonalHome";
 
 export interface TopbarProps {
